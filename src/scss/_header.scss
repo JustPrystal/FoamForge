@@ -1,14 +1,16 @@
 .header{
+    background-color:$grey;
     .inner{
-        background-color:$grey;
         display:flex;
         align-items: center;
         justify-content: space-between;
-        padding:0px 60px;
+        max-width:1200px;
+        margin:0 auto;
         position:relative;
         .logo-wrap{
             img{
                 max-width:260px;
+                width:100%;
                 height:auto;
             }
         }
@@ -23,6 +25,13 @@
                     text-transform:uppercase;
                     color:#000;
                     text-decoration:none;
+                    transition:0.3s all ease;
+                    &:hover{
+                        font-weight:600;
+                    }
+                    &.active{
+                        font-weight:600;
+                    }
                 }
                 .mega-menu{
                     background-color:#fff;
@@ -31,7 +40,7 @@
                     width:100%;
                     left:0;
                     right:0;
-                    top:96px;
+                    top:101px;
                     &-inner{
                         padding:30px 0px;
                         display:flex;
@@ -51,7 +60,10 @@
                                             font-size:16px;
                                             font-weight:normal;
                                             margin-bottom:10px;
-                                            
+                                            transition:all .3s ease;
+                                            &:hover{
+                                                font-weight:600;
+                                            }
                                         }
                                     }
                                 }

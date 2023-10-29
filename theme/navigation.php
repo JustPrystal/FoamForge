@@ -12,20 +12,20 @@
             <?php foreach($menu as $menu_item){
                 ?>
                     <div class="menu-item <?php if($menu_item['link_type'] == "dropdown"){ echo "dropdown"; }?>">
-                        <a href="<?php echo $menu_item['link']['url'] ?>" target="<?php echo $menu_item['link']['target']; ?>"><?php echo $menu_item['link']['title']; ?></a>
+                        <a href="<?php echo $menu_item['link']['url'] ?>" target="<?php echo $menu_item['link']['target']; ?>"><?php echo htmlspecialchars_decode($menu_item['link']['title']) ; ?></a>
                         <?php if($menu_item['link_type'] == 'dropdown'){?>
                             <div class="mega-menu">
                                 <div class="mega-menu-inner">
                                     <?php foreach($menu_item['menu'] as $sub_item){?>
                                         <div class="menu-col">
                                             <div class="submenu-item">
-                                                <a href="<?php echo $sub_item['link']['url']; ?>" target="<?php echo $sub_item['link']['target']; ?>"><?php echo $sub_item['link']['title']; ?></a>
+                                                <a href="<?php echo $sub_item['link']['url']; ?>" target="<?php echo $sub_item['link']['target']; ?>"><?php echo htmlspecialchars_decode($sub_item['link']['title']); ?></a>
                                                 <?php if($sub_item['menu']){
                                                    ?>
                                                     <div class="child-menu">
                                                         <?php  foreach($sub_item['menu'] as $child_item){?>
                                                             <div class="child-item">
-                                                                <a href="<?php echo $child_item['link']['url']; ?>" target="<?php echo $child_item['link']['target']; ?>"><?php echo $child_item['link']['title']; ?></a>
+                                                                <a href="<?php echo $child_item['link']['url']; ?>" target="<?php echo $child_item['link']['target']; ?>"><?php echo htmlspecialchars_decode($child_item['link']['title']); ?></a>
                                                             </div>
                                                         <?php }?>
                                                     </div>
@@ -91,6 +91,7 @@
     let timeout;
     jQuery(document).ready(function(){
         jQuery('.menu-item.dropdown').hover(function(){
+            jQuery(this).find('a:eq(0)').toggleClass('active');
             jQuery(this).find('.mega-menu').stop().fadeToggle();
         })
     })

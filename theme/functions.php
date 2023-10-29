@@ -9,3 +9,6 @@ include_once INCLUDES_DIR . 'getBlocks.php';
 include_once INCLUDES_DIR . 'style-editor.php';
 include_once INCLUDES_DIR . 'required-plugins.php';
 
+add_filter('woocommerce_resize_images', static function() {
+    return false;
+});
