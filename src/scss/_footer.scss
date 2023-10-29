@@ -47,14 +47,10 @@
                 gap:10px;
                 .social-item{
                     img{
-                        width:45px;
-                        height:45px;
-                        filter:grayscale(1);
+                        width:40px;
+                        height:40px;
                         display:block;
                         transition:0.3s all ease;
-                        &:hover{
-                            filter:none;   
-                        }
                     }
                 }
             }
@@ -62,13 +58,13 @@
                 form{
                     display:flex;
                     input.email-input{
-                        height:50px;
-                        width:250px;
+                        height:40px;
+                        width:276px;
                         font-family:$gilroy;
-                        font-size:16px;
+                        font-size:14px;
                         padding:0px 20px;
                         border: 1px solid #BDBDBD;
-                        border-radius:10px 0px 0px 10px;
+                        border-radius:5px 0px 0px 5px;
                     }
                     input.submit{
                         background-color:#404040;
@@ -76,9 +72,9 @@
                         font-family:$gilroy;
                         border:none;
                         outline:none;
-                        padding:15px;
-                        font-size:16px;
-                        border-radius:0px 10px 10px 0px;
+                        padding:10px;
+                        font-size:14px;
+                        border-radius:0px 5px 5px 0px;
                         transition:0.3s all ease;
                         cursor:pointer;
                         &:hover{
@@ -86,6 +82,9 @@
                         }
                     }
                 }
+            }
+            .copyright{
+                font-size:12px;
             }
             &.bottom-row{
                 justify-content: space-between;
@@ -95,8 +94,10 @@
                     .menu-item{
                         padding-right:10px;
                         margin-right:10px;
+                        font-size:12px;
                         border-right:1px solid #000;
                         a{
+                            
                             color:#000;
                             text-decoration:none;
                             transition:all .3s ease;
