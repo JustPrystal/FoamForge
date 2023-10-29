@@ -86,3 +86,12 @@
         </div>
     </div>
 </div>
+
+<script>
+    let timeout;
+    jQuery(document).ready(function(){
+        jQuery('.menu-item.dropdown').hover(function(){
+            jQuery(this).find('.mega-menu').stop().fadeToggle();
+        })
+    })
+</script>
