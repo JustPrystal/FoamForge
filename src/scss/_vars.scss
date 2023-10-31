@@ -7,6 +7,9 @@ $gilroy : 'Gilroy';
 $white : #fff;
 $grey : #f4f4f4;
 
+$textDark : #1B1B1B;
+$textMed : #323232;
+
 // Breakpoints Structure
 $custom-breakpoints: (
     xs: (minSize: 0px, maxSize: 575px, maxContWidth: 0px, name: 'XS'),

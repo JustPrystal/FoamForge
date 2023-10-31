@@ -17,6 +17,13 @@
 				"version" => '3.3.1',
 				"loadInFooter" => false
 			],
+			[
+				"name" => 'products.js', 
+				"type" => 'js',
+				"path" => $templatedir . '/assets/js/products.js',
+				"version" => '1.0.0',
+				"loadInFooter" => true
+			],
 		];
 		
 		foreach($enqueList as $asset) {	

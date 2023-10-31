@@ -4,4 +4,5 @@
     add_filter('woocommerce_resize_images', static function() {
         return false;
     });
+    
 ?>

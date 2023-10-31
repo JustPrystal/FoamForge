@@ -13,16 +13,9 @@ Version: THEME_VERSION
 @import 'header';
 @import 'footer';
 
-// Navigation
-
-
-// 404
-
-
-// Blocks
-
-// Shortcodes
-
+//Shop
+@import './shop/global';
+@import './shop/single-product';
 
 table.xdebug-error.xe-warning {
     display: none;
