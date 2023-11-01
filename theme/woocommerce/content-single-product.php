@@ -54,21 +54,49 @@ if ( post_password_required() ) {
 					<?php echo $product->description; ?>
 				</p>
 			</div>
-			<div class="price-range">
-				<?php woocommerce_template_single_price(); ?>
-			</div>
+			
 			<div class="product-add-to-cart">
 				<?php woocommerce_template_single_add_to_cart(); ?>	
-				<!-- <div class="add-to-cart-btn-wrap">
-					
-					<div class="sku-wrap">
-						<?php woocommerce_template_single_meta(); ?>
+			</div>
+			<div class="product-information">
+				<?php if(get_field('content_after_add_to_cart')){?>
+					<div class="notice-after-cart">
+						<?php echo get_field('content_after_add_to_cart')?>
 					</div>
-					<button class="add-to-cart-btn">
-						Add Selection To Cart
-						<?php woocommerce_single_variation();?>
-					</button>
-				</div> -->
+				<?php }?>
+				<div class="accordions-wrap">
+					<?php if(get_field('product_specs_content')){?>
+						<div class="accordion-item">
+							<div class="accordion-header">
+								<div class="accordion-title">Product Specifications</div>
+								<div class="accordion-icon">
+									<svg  viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<path d="M6 9L12 15L18 9" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+									</svg>
+								</div>
+							</div>
+							
+							<div class="accordion-body">
+								<?php echo get_field('product_specs_content'); ?>
+							</div>
+						</div>
+					<?php }?>
+					<?php if(get_field('hazard_info_content')){?>
+						<div class="accordion-item red">
+							<div class="accordion-header">
+								<div class="accordion-title">Potential Hazards</div>
+								<div class="accordion-icon">
+									<svg  viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<path d="M6 9L12 15L18 9" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+									</svg>
+								</div>
+							</div>
+							<div class="accordion-body">
+								<?php echo get_field('hazard_info_content'); ?>
+							</div>
+						</div>
+					<?php }?>
+				</div>
 			</div>
 			<?php
 			/**

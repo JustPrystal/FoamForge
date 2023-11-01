@@ -5,6 +5,12 @@
 		$templatedir = get_template_directory_uri();
 		$enqueList = [	
 			[
+				"name" => 'select-2.css', 
+				"type" => 'css',
+				"path" => 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css',
+				"version" => '4.1.0'
+			],
+			[
 				"name" => 'style.css', 
 				"type" => 'css',
 				"path" => $templatedir . '/style.css',
@@ -16,6 +22,13 @@
 				"path" => 'https://code.jquery.com/jquery-3.3.1.min.js',
 				"version" => '3.3.1',
 				"loadInFooter" => false
+			],
+			[
+				"name" => 'select-2.js', 
+				"type" => 'js',
+				"path" => 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js',
+				"version" => '4.1.0',
+				"loadInFooter" => true
 			],
 			[
 				"name" => 'products.js', 

@@ -8,10 +8,17 @@ jQuery(document).ready(function(){
 
             that.html('$'+ newPrice);
         }
-        else{
-            that.html('pee');
-        }
     })
+    function isOneVariantSelected(){
+        var isSelected = false;
+        jQuery('form.variations_form .variations select').each(function(){
+            if(jQuery(this).val() != ''){
+                return isSelected = true;
+            }
+        })
+
+        return isSelected;
+    }
     function checkAllVariations(){
         var isEmpty = false;
         jQuery('form.variations_form .variations select').each(function(){
@@ -22,11 +29,39 @@ jQuery(document).ready(function(){
 
         return isEmpty;
     }
+    jQuery('form.variations_form .variations select').select2({
+        width: '100%'
+    });
+    jQuery('form.variations_form .reset_variations').click(function(){
+        jQuery(this).attr('style', '');
+    })
     jQuery('form.variations_form .variations select').change(function(){
         var isEmpty = checkAllVariations();
-        
+        var isOneSelected = isOneVariantSelected();
+
+        if(isOneSelected){
+            jQuery('.reset_variation').addClass('show');
+        }
+        else{
+            jQuery('.reset_variation').removeClass('show');
+        }
+
         if(isEmpty){
             jQuery('.add-to-cart-btn .product-price').html('');
         }
     })
+    
+    jQuery('.accordions-wrap .accordion-header').click(function(){
+        console.log('clicked');
+        if(jQuery(this).parent().hasClass('active')){
+            jQuery(this).parent().removeClass('active')
+            jQuery(this).parent().find('.accordion-body').slideUp();
+        }else{
+            jQuery('.accordions-wrap .accordion-body').slideUp();
+            jQuery('.accordions-wrap .accordion-item').removeClass('active');
+            jQuery(this).parent().addClass('active')
+            jQuery(this).parent().find('.accordion-body').slideDown();
+        }
+    })
+    
 });
