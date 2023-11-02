@@ -6,7 +6,9 @@
 <div class="header header-main">
     <div class="inner">
         <div class="logo-wrap">
+          <a href="<?php echo get_site_url();?>">
             <img src="<?php echo $logo['url'] ?>" alt="">
+          </a>
         </div>
         <div class="menu-wrap">
             <?php foreach($menu as $menu_item){
