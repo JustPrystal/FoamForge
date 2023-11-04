@@ -4,15 +4,31 @@
     .inner{
         max-width:1200px;
         margin:0 auto;
+        @include responsive(lg){
+            padding:0px 20px;
+        }
         .footer-row{
             padding:20px 0px;
             display:flex;
+            @include responsive(sm){
+               flex-wrap:wrap;
+            }
             &.top-row{
                 justify-content: flex-end;
                 min-height:250px;
+                @include responsive(sm){
+                    justify-content: start;
+                    min-height:200px;
+                }
             }
             .footer-col{
                 flex: 0 0 20%;
+                @include responsive(sm){
+                    flex : 0 0 33.3%;
+                }
+                @include responsive(xs){
+                    flex: 0 0 100%;
+                }
                 .group-name{
                     font-size:14px;
                     font-weight:600;
@@ -42,6 +58,11 @@
                 align-items: center;
                 border-top:1px solid #BDBDBD;
                 border-bottom:1px solid #BDBDBD;
+                @include responsive(xs){
+                    flex-wrap:wrap;
+                    gap:20px;
+                    border-top:0px;
+                }
             }
             .socials-wrap{
                 display:flex;
@@ -58,17 +79,25 @@
                 }
             }
             .newsletter-wrap{
+                @include responsive(xs){
+                    flex:0 0 100%;
+                }
                 form{
                     display:flex;
+                   
                     input.email-input{
                         height:40px;
-                        width:276px;
+                        width:283px;
                         font-family:$gilroy;
                         background-color:transparent;
                         font-size:14px;
                         padding:0px 20px;
                         border: 1px solid #BDBDBD;
                         border-radius:5px 0px 0px 5px;
+                        @include responsive(xs){
+                            flex:1;
+                            width:unset;
+                        }
                     }
                     input.submit{
                         background-color:#404040;
@@ -93,8 +122,21 @@
             &.bottom-row{
                 justify-content: space-between;
                 align-items: center;
+                @include responsive(sm){
+                    justify-content: center;
+                    flex-wrap:wrap;
+                    .copyright{
+                        flex: 0 0 100%;
+                        text-align: center;
+                    }
+                }
                 .bottom-menu{
                     display:flex;
+                    @include responsive(xs){
+                        margin-top:5px;
+                        flex-wrap:wrap;
+                        justify-content: center;
+                    }
                     .menu-item{
                         padding-right:10px;
                         margin-right:10px;
