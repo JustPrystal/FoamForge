@@ -128,6 +128,31 @@ if ( post_password_required() ) {
 			?>
 		</div>
 	</div>
+	<?php if($product->get_upsell_ids()){?>
+	<div class="related-products">
+		<div class="inner">
+			<h3 class="heading">Related Products</h3>
+			<div class="products-wrap">
+				<?php foreach($product->get_upsell_ids() as $product_id){
+					$_product = wc_get_product($product_id);
+					?>
+					<div class="product-item">
+						<a href="<?php echo get_the_permalink($product_id);?>">
+							<div class="image-wrap">
+								<?php echo $_product->get_image();?>
+							</div>
+							<div class="text-col">
+								<div class="sub-title">Tear, Heat and Adhesive Resistant <?php echo get_field('subtitle', $product_id); ?></div>
+								<div class="product-name"><?php echo $product->get_name();?></div>
+							</div>
+						</a>
+					</div>
+					<?php 
+				}?>
+			</div>
+		</div>
+	</div>
+	<?php }?>
 </div>
 
 <?php do_action( 'woocommerce_after_single_product' ); ?>
