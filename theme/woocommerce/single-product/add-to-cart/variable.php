@@ -42,6 +42,7 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 									'options'   => $options,
 									'attribute' => $attribute_name,
 									'product'   => $product,
+									'show_option_none' => __( 'Choose a '.wc_attribute_label($attribute_name), 'woocommerce' ),
 								)
 							);
 						?>
@@ -49,7 +50,7 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 				</div>
 			<?php endforeach; ?>
 		</div>
-		<?php echo wp_kses_post( apply_filters( 'woocommerce_reset_variations_link', '<a class="reset_variations" href="#">' . esc_html__( 'Clear Selections', 'woocommerce' ) . '</a>' ) );?>
+		
 		<?php do_action( 'woocommerce_after_variations_table' ); ?>
 
 		<div class="single_variation_wrap">

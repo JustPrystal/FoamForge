@@ -41,8 +41,34 @@ if ( post_password_required() ) {
 				 * @hooked woocommerce_show_product_sale_flash - 10
 				 * @hooked woocommerce_show_product_images - 20
 				 */
-				do_action( 'woocommerce_before_single_product_summary' );
+				// do_action( 'woocommerce_before_single_product_summary' );
+
+				
 			?>
+			<?php 
+				$images = []; 
+				$images[0] = $product->get_image_id();
+				$gallery = $product->get_gallery_image_ids();
+				$images = array_merge($images , $gallery);
+			?>
+			<div class="product-slider <?php if(count($images) > 1){echo 'slider-active';}?>">
+				<?php foreach($images as $image){
+					?>
+					<div class="slide-item">
+						<img src="<?php echo wp_get_attachment_image_url($image , 'large')?>" alt="">
+					</div>
+					<?php
+				}?>
+			</div>
+			<div class="product-slider-thumbs <?php if(count($images) > 1){ echo 'slider-active'; }?>">
+				<?php foreach($images as $image){
+					?>
+					<div class="slide-item">
+						<img src="<?php echo wp_get_attachment_image_url($image , 'large')?>" alt="">
+					</div>
+					<?php
+				}?>
+			</div>
 		</div>
 		<div class="column summary-col">
 			<div class="title-wrap">

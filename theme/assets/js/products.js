@@ -64,4 +64,20 @@ jQuery(document).ready(function(){
         }
     })
     
+    jQuery('.product-slider.slider-active').slick({
+        slidesToShow:1,
+        slidesToScroll:1,
+        arrows:false,
+        dots:false,
+        asNavFor:'.product-slider-thumbs',
+    });
+    jQuery('.product-slider-thumbs.slider-active').slick({
+        slidesToShow:3,
+        slidesToScroll:1,
+        arrows:false,
+        dots:false,
+        centerPadding:0,
+        centerMode:true,
+        asNavFor:'.product-slider',
+    })
 });
