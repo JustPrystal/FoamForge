@@ -14,7 +14,7 @@
  * @package     WooCommerce\Templates
  * @version     1.6.4
  */
-
+global $product;
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
@@ -30,11 +30,19 @@ get_header( 'shop' ); ?>
 		 */
 		do_action( 'woocommerce_before_main_content' );
 	?>
-
+		
 		<?php while ( have_posts() ) : ?>
 			<?php the_post(); ?>
-
-			<?php wc_get_template_part( 'content', 'single-product' ); ?>
+			<?php 
+				$categories = $product->get_category_ids();
+				$match_found = search_product_for_category($categories , 'magnets');
+				
+			?>
+			<?php if($match_found == 'magnets'){
+				wc_get_template_part( 'content', 'single-product-magnets' );
+			} else{
+				wc_get_template_part( 'content', 'single-product' );
+			}?>
 
 		<?php endwhile; // end of the loop. ?>
 

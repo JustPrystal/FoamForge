@@ -23,6 +23,8 @@ $attribute_keys  = array_keys( $attributes );
 $variations_json = wp_json_encode( $available_variations );
 $variations_attr = function_exists( 'wc_esc_json' ) ? wc_esc_json( $variations_json ) : _wp_specialchars( $variations_json, ENT_QUOTES, 'UTF-8', true );
 
+$isMagnet = search_product_for_category($product->get_category_ids(), 'magnets');
+
 do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 
 <form class="variations_form cart" action="<?php echo esc_url( apply_filters( 'woocommerce_add_to_cart_form_action', $product->get_permalink() ) ); ?>" method="post" enctype='multipart/form-data' data-product_id="<?php echo absint( $product->get_id() ); ?>" data-product_variations="<?php echo $variations_attr; // WPCS: XSS ok. ?>">
@@ -36,7 +38,51 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 				<div class="variation-item">
 					<div class="label"><label for="<?php echo esc_attr( sanitize_title( $attribute_name ) ); ?>"><?php echo wc_attribute_label( $attribute_name ); // WPCS: XSS ok. ?>: </label></div>
 					<div class="value">
-						<?php
+						<?php if($isMagnet && $isMagnet == 'magnets'){
+								if(strtolower($attribute_name) == 'shape' || strtolower($attribute_name) == 'style' ){
+									?>
+									<div class="custom-switches">
+										<?php foreach($options as $option){?>
+											<div class="switch-item <?php echo strtolower($option);?>" data-val="<?php echo $option; ?>" >
+												<?php echo $option; ?>
+											</div>
+										<?php }?>
+									</div>
+									<div style="display:none" >
+										<?php 
+											wc_dropdown_variation_attribute_options(
+												array(
+													'options'   => $options,
+													'attribute' => $attribute_name,
+													'product'   => $product,
+													'show_option_none' => __( 'Choose a '.wc_attribute_label($attribute_name), 'woocommerce' ),
+												)
+											);
+										?>
+									</div>
+									<?php 
+								} else if(strtolower($attribute_name) == 'size'){
+									wc_dropdown_variation_attribute_options(
+										array(
+											'options'   => $options,
+											'attribute' => $attribute_name,
+											'product'   => $product,
+											'class'   => 'magnet_size_dropdown',
+											'show_option_none' => __( 'Choose a '.wc_attribute_label($attribute_name), 'woocommerce' ),
+										)
+									);
+									
+								}else{
+									wc_dropdown_variation_attribute_options(
+										array(
+											'options'   => $options,
+											'attribute' => $attribute_name,
+											'product'   => $product,
+											'show_option_none' => __( 'Choose a '.wc_attribute_label($attribute_name), 'woocommerce' ),
+										)
+									);
+								}
+						}else {
 							wc_dropdown_variation_attribute_options(
 								array(
 									'options'   => $options,
@@ -45,7 +91,8 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 									'show_option_none' => __( 'Choose a '.wc_attribute_label($attribute_name), 'woocommerce' ),
 								)
 							);
-						?>
+						}?>
+						
 					</div>
 				</div>
 			<?php endforeach; ?>

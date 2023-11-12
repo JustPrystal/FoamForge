@@ -29,7 +29,7 @@ jQuery(document).ready(function(){
 
         return isEmpty;
     }
-    jQuery('form.variations_form .variations select').select2({
+    jQuery('form.variations_form .variations select:not(.magnet_size_dropdown)').select2({
         width: '100%'
     });
     jQuery('form.variations_form .reset_variations').click(function(){
@@ -80,4 +80,53 @@ jQuery(document).ready(function(){
         centerMode:true,
         asNavFor:'.product-slider',
     })
+
+    jQuery(document.body).on('click', '.variation-item .custom-switches .switch-item', function(){
+        var val = jQuery(this).data('val');
+        jQuery(this).parents('.value').find('select').val(val).change();
+
+        if(jQuery(this).parents('.value').find('select').val() == val){
+            jQuery(this).parent().find('.switch-item').removeClass('active');
+            jQuery(this).addClass('active');
+        }
+        else{
+            jQuery(this).parent().find('.switch-item').removeClass('active');
+            alert('This variation is out of stock');
+        }
+    })
+
+    function convert_metric_size_to_imperial(state){
+
+        if(!state.id){
+            return jQuery('<span class="metric_value"> Metric Scale</span>  <span class="imperial_value"> Imperial Scale </span>');
+        }
+        
+        var metric_value = state.text;
+        var stripped_value = metric_value.replaceAll(" ", "").replace("(D)", "").replace("(T)", "");
+        var values = stripped_value.split('x');
+
+        // convert to imperial
+        var convertedValues = [];
+
+        for(i = 0 ; i < values.length ; i++){
+            if(values[i].includes('mm')){
+                convertedValues[i] = i == 0 ? (parseInt(values[i].replace('mm')) / 25.4).toFixed(3) + "\" (D)" : (parseInt(values[i].replace('mm')) / 25.4).toFixed(3) + "\" (T)";
+            }
+            else if(values[i].includes('cm')){
+                convertedValues[i] = i == 0 ? (parseInt(values[i].replace('cm')) / 2.54).toFixed(2) + "\" (D)" : (parseInt(values[i].replace('cm')) / 2.54).toFixed(2) + "\" (T)";
+            }
+        }
+        
+        var imperial_value = convertedValues.toString().replace(',', " x ");
+
+        var $html = jQuery('<span class="metric_value">'+ metric_value +'</span>  <span class="imperial_value"> '+ imperial_value +' </span>');
+
+        return $html;
+
+    }
+    jQuery('form.variations_form .variations select.magnet_size_dropdown').select2({
+        width: '100%',
+        minimumResultsForSearch: 10,
+        templateResult: convert_metric_size_to_imperial,
+    });
 });

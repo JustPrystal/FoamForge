@@ -51,7 +51,7 @@
             }
             .product-slider-thumbs{
                 display:flex;
-                
+                justify-content: center;
                 max-width:60%;
                 margin:0 auto;
                 margin-top:40px;
@@ -146,6 +146,64 @@
                         }
                         .value{
                             flex:1;
+                            .custom-switches{
+                                display:flex;
+                                align-items: center;
+                                gap:20px;
+                                .switch-item{
+                                    color:#fff;
+                                    font-size:14px;
+                                    cursor:pointer;
+                                    text-transform:uppercase;
+                                    background-color:#727272;
+                                    transition:background-color .3s ease;
+                                    &.disc{
+                                        padding:12px 4px;
+                                        border-radius:50%;
+                                    }
+                                    &.block{
+                                        padding:12px 25px;
+                                        border-radius:3px;
+                                    }
+                                    &.solid{
+                                        padding:12px 20px;
+                                        border-radius:3px;
+                                    }
+                                    &.countersunk{
+                                        padding:12px 35px;
+                                        border-radius:3px;
+                                        position:relative;
+                                        &:before{
+                                            content:"";
+                                            position:absolute;
+                                            top:50%;
+                                            left:10px;
+                                            border-radius:50%;
+                                            width:15px;
+                                            height:15px;
+                                            background-color:#f4f4f4;
+                                            transform:translateY(-50%);
+                                        }
+                                        &:after{
+                                            content:"";
+                                            position:absolute;
+                                            top:50%;
+                                            right:10px;
+                                            border-radius:50%;
+                                            width:15px;
+                                            height:15px;
+                                            background-color:#f4f4f4;
+                                            transform:translateY(-50%);
+                                        }   
+                                    }
+                                    &:hover{
+                                        background-color:#000;
+                                    }
+                                    &.active{
+                                        background-color:#000;
+                                    }
+                                }
+                            }
                             .select2-container{
                                 .select2-selection--single{
                                     background-color:transparent;
@@ -340,5 +398,14 @@
                 }
             }
         }
+    }
+}
+
+li.select2-results__option{
+    display:flex;
+    justify-content: space-between;
+    .metric_value, .imperial_value{
+        flex:1;
+        padding:0px 10px;
     }
 }
