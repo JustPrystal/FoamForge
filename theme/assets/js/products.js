@@ -6,7 +6,7 @@ jQuery(document).ready(function(){
             var price = jQuery('.woocommerce-variation.single_variation bdi').text().replace("$","");        
             var newPrice = parseFloat(qty) * parseFloat(price);
 
-            that.html('$'+ newPrice);
+            that.html('$'+ newPrice.toFixed(2));
         }
     })
     function isOneVariantSelected(){
@@ -79,8 +79,13 @@ jQuery(document).ready(function(){
         arrows:false,
         dots:false,
         centerPadding:0,
+        infinite:true,
         centerMode:true,
         asNavFor:'.product-slider',
+    })
+    jQuery('.product-slider-thumbs .slide-item').click(function(){
+        var slideno = jQuery(this).data('slick-index');
+        jQuery('.product-slider.slider-active').slick('slickGoTo', parseInt(slideno));
     })
 
     jQuery(document.body).on('click', '.variation-item .custom-switches .switch-item', function(){
@@ -146,13 +151,13 @@ jQuery(document).ready(function(){
         var current_value = jQuery(this).parent().find('input').val()
         
         if(jQuery(this).hasClass('qty-up')){
-            jQuery(this).parent().find('input').val(parseInt(current_value) + 1)    
+            jQuery(this).parent().find('input').val(parseInt(current_value) + 1).change()    
         }
         else if( jQuery(this).hasClass('qty-down')){
             if(current_value == 1){
                 return;
             }
-            jQuery(this).parent().find('input').val(parseInt(current_value) - 1)  
+            jQuery(this).parent().find('input').val(parseInt(current_value) - 1).change()  
         }
     })
 });

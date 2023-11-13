@@ -32,18 +32,10 @@ get_header( 'shop' ); ?>
 	?>
 		
 		<?php while ( have_posts() ) : ?>
-			<?php the_post(); ?>
-			<?php 
-				$categories = $product->get_category_ids();
-				$match_found = search_product_for_category($categories , 'magnets');
-				
-			?>
-			<?php if($match_found == 'magnets'){
-				wc_get_template_part( 'content', 'single-product-magnets' );
-			} else{
+			<?php the_post(); 
+			
 				wc_get_template_part( 'content', 'single-product' );
-			}?>
-
+			?>
 		<?php endwhile; // end of the loop. ?>
 
 	<?php

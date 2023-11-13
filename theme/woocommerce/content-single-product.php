@@ -60,6 +60,11 @@ if ( post_password_required() ) {
 					<?php
 				}?>
 			</div>
+			<?php if(get_field('content_after_image')){?>
+				<div class="product-image-notice">
+					<?php echo get_field('content_after_image');?>
+				</div>
+			<?php }?>
 			<div class="product-slider-thumbs <?php if(count($images) > 1){ echo 'slider-active'; }?>">
 				<?php foreach($images as $image){
 					?>
@@ -76,9 +81,7 @@ if ( post_password_required() ) {
 				<h1 class="product-title"><?php echo $product->get_name()?></h1>
 			</div>
 			<div class="description">
-				<p>
-					<?php echo $product->description; ?>
-				</p>
+				<?php the_content();?>
 			</div>
 			
 			<div class="product-add-to-cart">
