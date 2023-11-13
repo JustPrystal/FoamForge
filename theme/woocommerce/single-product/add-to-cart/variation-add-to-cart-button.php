@@ -29,6 +29,8 @@ global $product;
 				)
 			);
 		?>
+		<span class="qty-controls qty-up"></span>
+		<span class="qty-controls qty-down"></span>
 	</div>
 	<?php
 

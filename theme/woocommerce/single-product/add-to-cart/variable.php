@@ -71,7 +71,9 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 											'show_option_none' => __( 'Choose a '.wc_attribute_label($attribute_name), 'woocommerce' ),
 										)
 									);
-									
+									?>
+									<div class="variation-conversion-imperial"></div>
+									<?php
 								}else{
 									wc_dropdown_variation_attribute_options(
 										array(

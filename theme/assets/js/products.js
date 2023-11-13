@@ -48,6 +48,8 @@ jQuery(document).ready(function(){
 
         if(isEmpty){
             jQuery('.add-to-cart-btn .product-price').html('');
+        }else{
+            jQuery('button.add-to-cart-btn').addClass('active');
         }
     })
     
@@ -102,6 +104,16 @@ jQuery(document).ready(function(){
         }
         
         var metric_value = state.text;
+        
+        var imperial_value = get_imperial_values_from_metric(metric_value);
+
+        var $html = jQuery('<span class="metric_value">'+ metric_value +'</span>  <span class="imperial_value"> '+ imperial_value +' </span>');
+
+        return $html;
+
+    }
+
+    function get_imperial_values_from_metric(metric_value){
         var stripped_value = metric_value.replaceAll(" ", "").replace("(D)", "").replace("(T)", "");
         var values = stripped_value.split('x');
 
@@ -119,14 +131,28 @@ jQuery(document).ready(function(){
         
         var imperial_value = convertedValues.toString().replace(',', " x ");
 
-        var $html = jQuery('<span class="metric_value">'+ metric_value +'</span>  <span class="imperial_value"> '+ imperial_value +' </span>');
-
-        return $html;
-
+        return imperial_value;
     }
     jQuery('form.variations_form .variations select.magnet_size_dropdown').select2({
         width: '100%',
         minimumResultsForSearch: 10,
         templateResult: convert_metric_size_to_imperial,
     });
+    jQuery('form.variations_form .variations select.magnet_size_dropdown').change(function(){
+        jQuery('.variation-conversion-imperial').html('Imperial Conversion: ' + get_imperial_values_from_metric(jQuery(this).val())); 
+    })
+
+    jQuery('.woocommerce-variation-add-to-cart .quantity-wrap .qty-controls').click(function(){
+        var current_value = jQuery(this).parent().find('input').val()
+        
+        if(jQuery(this).hasClass('qty-up')){
+            jQuery(this).parent().find('input').val(parseInt(current_value) + 1)    
+        }
+        else if( jQuery(this).hasClass('qty-down')){
+            if(current_value == 1){
+                return;
+            }
+            jQuery(this).parent().find('input').val(parseInt(current_value) - 1)  
+        }
+    })
 });
