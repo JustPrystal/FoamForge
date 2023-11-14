@@ -18,7 +18,7 @@
             "layouts": {
                 "layout_608315650c88c": {
                     "key": "layout_608315650c88c",
-                    "name": "Fullwidth_text",
+                    "name": "fullwidth_text",
                     "label": "Fullwidth Text",
                     "display": "block",
                     "sub_fields": [
@@ -35,6 +35,7 @@
                                 "class": "",
                                 "id": ""
                             },
+                            "aria-label": "",
                             "default_value": "",
                             "tabs": "all",
                             "toolbar": "full",
@@ -79,5 +80,5 @@
     ],
     "active": 1,
     "description": "Block Chooser for all content types that will have blocks.",
-    "modified": 1698511045
+    "modified": 1699972383
 }
