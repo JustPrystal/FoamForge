@@ -3,7 +3,9 @@ jQuery(document).ready(function(){
         var that = jQuery('.add-to-cart-btn .product-price');
         if(jQuery('.woocommerce-variation.single_variation').css('display') != 'none' || !jQuery('.woocommerce-variation.single_variation').is(':empty')){
             var qty = jQuery(this).val();
-            var price = jQuery('.woocommerce-variation.single_variation bdi').text().replace("$","");        
+            var price = jQuery('.woocommerce-variation.single_variation bdi').text().replace("$",""); 
+            price = price ? price :  jQuery('.woocommerce-fallback-price bdi').text().replace("$","")        
+            console.log(price);
             var newPrice = parseFloat(qty) * parseFloat(price);
 
             that.html('$'+ newPrice.toFixed(2));
@@ -66,13 +68,18 @@ jQuery(document).ready(function(){
         }
     })
     
-    jQuery('.product-slider.slider-active').slick({
+    var sliderArgs = {
         slidesToShow:1,
         slidesToScroll:1,
         arrows:false,
         dots:false,
-        asNavFor:'.product-slider-thumbs',
-    });
+        infinite:true,
+    }
+    if(jQuery('.product-slider .slide-item:not(.slick-cloned)').length >= 4){
+        sliderArgs.asNavFor = '.product-slider-thumbs';
+    }
+    jQuery('.product-slider.slider-active').slick(sliderArgs);
+
     jQuery('.product-slider-thumbs.slider-active').slick({
         slidesToShow:3,
         slidesToScroll:1,
@@ -81,11 +88,16 @@ jQuery(document).ready(function(){
         centerPadding:0,
         infinite:true,
         centerMode:true,
+        infinite:true,
         asNavFor:'.product-slider',
     })
     jQuery('.product-slider-thumbs .slide-item').click(function(){
         var slideno = jQuery(this).data('slick-index');
         jQuery('.product-slider.slider-active').slick('slickGoTo', parseInt(slideno));
+        if(!jQuery(this).hasClass('slick-current')){
+            jQuery('.product-slider-thumbs .slide-item').removeClass('slick-current');
+            jQuery(this).addClass('slick-current');
+        }
     })
 
     jQuery(document.body).on('click', '.variation-item .custom-switches .switch-item', function(){

@@ -65,14 +65,14 @@ if ( post_password_required() ) {
 					<?php echo get_field('content_after_image');?>
 				</div>
 			<?php }?>
-			<div class="product-slider-thumbs <?php if(count($images) > 1){ echo 'slider-active'; }?>">
-				<?php foreach($images as $image){
-					?>
-					<div class="slide-item">
+			<div class="product-slider-thumbs <?php if(count($images) > 3){ echo 'slider-active'; }?>">
+				<?php
+					$i = 0;
+					foreach($images as $image){?>
+					<div class="slide-item" data-slick-index="<?php echo $i;?>">
 						<img src="<?php echo wp_get_attachment_image_url($image , 'large')?>" alt="">
 					</div>
-					<?php
-				}?>
+					<?php $i++;} ?>
 			</div>
 		</div>
 		<div class="column summary-col">
@@ -83,9 +83,13 @@ if ( post_password_required() ) {
 			<div class="description">
 				<?php the_content();?>
 			</div>
-			
+		
 			<div class="product-add-to-cart">
+				
 				<?php woocommerce_template_single_add_to_cart(); ?>	
+				<div class="woocommerce-fallback-price">
+					<?php woocommerce_template_single_price(); ?>
+				</div>
 			</div>
 			<div class="product-information">
 				<?php if(get_field('content_after_add_to_cart')){?>
