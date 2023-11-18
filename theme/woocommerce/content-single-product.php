@@ -91,12 +91,12 @@ if ( post_password_required() ) {
 					<?php woocommerce_template_single_price(); ?>
 				</div>
 			</div>
+			<?php woocommerce_output_all_notices()?>
 			<div class="product-information">
 				<?php if(get_field('content_after_add_to_cart')){?>
 					<div class="notice-after-cart">
 						<?php echo get_field('content_after_add_to_cart')?>
 					</div>
-					<?php woocommerce_output_all_notices()?>
 				<?php }?>
 				<div class="accordions-wrap">
 					<?php if(get_field('product_specs_content')){?>
