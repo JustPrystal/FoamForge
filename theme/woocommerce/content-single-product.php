@@ -96,6 +96,7 @@ if ( post_password_required() ) {
 					<div class="notice-after-cart">
 						<?php echo get_field('content_after_add_to_cart')?>
 					</div>
+					<?php woocommerce_output_all_notices()?>
 				<?php }?>
 				<div class="accordions-wrap">
 					<?php if(get_field('product_specs_content')){?>
