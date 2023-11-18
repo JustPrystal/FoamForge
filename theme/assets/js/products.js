@@ -1,7 +1,7 @@
 jQuery(document).ready(function(){
     jQuery('.input-text.qty').change(function(){
         var that = jQuery('.add-to-cart-btn .product-price');
-        if(jQuery('.woocommerce-variation.single_variation').css('display') != 'none' || !jQuery('.woocommerce-variation.single_variation').is(':empty')){
+        if(jQuery('.woocommerce-variation.single_variation').css('display') != 'none' || !jQuery('.woocommerce-variation.single_variation').is(':empty') || (!!jQuery(".woocommerce-variation"))){
             var qty = jQuery(this).val();
             var price = jQuery('.woocommerce-variation.single_variation bdi').text().replace("$",""); 
             price = price ? price :  jQuery('.woocommerce-fallback-price bdi').text().replace("$","")        
@@ -159,7 +159,7 @@ jQuery(document).ready(function(){
         jQuery('.variation-conversion-imperial').html('Imperial Conversion: ' + get_imperial_values_from_metric(jQuery(this).val())); 
     })
 
-    jQuery('.woocommerce-variation-add-to-cart .quantity-wrap .qty-controls').click(function(){
+    jQuery('.cart .quantity-wrap .qty-controls').click(function(){
         var current_value = jQuery(this).parent().find('input').val()
         
         if(jQuery(this).hasClass('qty-up')){
