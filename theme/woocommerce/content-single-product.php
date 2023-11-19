@@ -176,8 +176,8 @@ if ( post_password_required() ) {
 								<?php echo $_product->get_image();?>
 							</div>
 							<div class="text-col">
-								<div class="sub-title">Tear, Heat and Adhesive Resistant <?php echo get_field('subtitle', $product_id); ?></div>
-								<div class="product-name"><?php echo $product->get_name();?></div>
+								<div class="sub-title"><?php echo get_field('subtitle', $product_id); ?></div>
+								<div class="product-name"><?php echo $_product->get_name();?></div>
 							</div>
 						</a>
 					</div>
