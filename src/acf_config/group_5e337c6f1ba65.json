@@ -6,6 +6,7 @@
             "key": "field_5e337c7407471",
             "label": "Blocks",
             "name": "blocks",
+            "aria-label": "",
             "type": "flexible_content",
             "instructions": "",
             "required": 0,
@@ -16,17 +17,18 @@
                 "id": ""
             },
             "layouts": {
-                "layout_608315650c88c": {
-                    "key": "layout_608315650c88c",
-                    "name": "fullwidth_text",
-                    "label": "Fullwidth Text",
+                "layout_655cd0d1d786c": {
+                    "key": "layout_655cd0d1d786c",
+                    "name": "two_column",
+                    "label": "Two Column",
                     "display": "block",
                     "sub_fields": [
                         {
-                            "key": "field_61c32ba59dac7",
-                            "label": "Text",
-                            "name": "text",
-                            "type": "wysiwyg",
+                            "key": "field_655cd0edd786e",
+                            "label": "fields",
+                            "name": "fields",
+                            "aria-label": "",
+                            "type": "clone",
                             "instructions": "",
                             "required": 0,
                             "conditional_logic": 0,
@@ -35,21 +37,54 @@
                                 "class": "",
                                 "id": ""
                             },
+                            "clone": [
+                                "group_655ccf153fab1"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_655cd25c844a2": {
+                    "key": "layout_655cd25c844a2",
+                    "name": "fullwidth",
+                    "label": "Fullwidth",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_655cd26e844a5",
+                            "label": "fields",
+                            "name": "fields",
                             "aria-label": "",
-                            "default_value": "",
-                            "tabs": "all",
-                            "toolbar": "full",
-                            "media_upload": 1,
-                            "delay": 0
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_655cd1645b886"
+                            ],
+                            "display": "seamless",
+                            "layout": "",
+                            "prefix_label": 0,
+                            "prefix_name": 0
                         }
                     ],
                     "min": "",
                     "max": ""
                 }
             },
-            "button_label": "Add Block",
             "min": "",
-            "max": ""
+            "max": "",
+            "button_label": "Add Block"
         }
     ],
     "location": [
@@ -66,6 +101,13 @@
                 "operator": "==",
                 "value": "globalblock"
             }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "product"
+            }
         ]
     ],
     "menu_order": 10,
@@ -78,7 +120,8 @@
         "discussion",
         "comments"
     ],
-    "active": 1,
+    "active": true,
     "description": "Block Chooser for all content types that will have blocks.",
-    "modified": 1699972383
+    "show_in_rest": 0,
+    "modified": 1700582114
 }

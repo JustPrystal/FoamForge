@@ -5,7 +5,6 @@ jQuery(document).ready(function(){
             var qty = jQuery(this).val();
             var price = jQuery('.woocommerce-variation.single_variation bdi').text().replace("$",""); 
             price = price ? price :  jQuery('.woocommerce-fallback-price bdi').text().replace("$","")        
-            console.log(price);
             var newPrice = parseFloat(qty) * parseFloat(price);
 
             that.html('$'+ newPrice.toFixed(2));
@@ -161,6 +160,9 @@ jQuery(document).ready(function(){
 
     jQuery('.cart .quantity-wrap .qty-controls').click(function(){
         var current_value = jQuery(this).parent().find('input').val()
+        if(current_value == ""){
+            current_value = 0;
+        }
         
         if(jQuery(this).hasClass('qty-up')){
             jQuery(this).parent().find('input').val(parseInt(current_value) + 1).change()    

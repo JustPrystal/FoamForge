@@ -31,4 +31,54 @@
     }
 
     remove_action('woocommerce_before_single_product', 'woocommerce_output_all_notices', 10);
+
+    add_filter( 'woocommerce_catalog_orderby', 'custom_woocommerce_catalog_orderby' );
+    
+    function custom_woocommerce_catalog_orderby( $options ) {
+        $options['alpha'] = 'Alphabetical';
+        $options['b-sell'] = 'Best Sellers';
+        $options['featured'] = 'Featured';
+        $options['new'] = 'New';
+        $options['price-asc'] = 'Price: Low to High';
+        $options['price-desc'] = 'Price: High to Low';
+        // repositionArrayElement($options, "price-desc", 5);
+        // repositionArrayElement($options, "popularity", 1);
+        // repositionArrayElement($options, "price", 2);
+        // repositionArrayElement($options, "price-desc", 3);
+        unset($options['date']);
+        unset($options['price']);
+        unset($options['menu_order']);
+        unset($options['latest']);
+        unset($options['rating']);
+        unset($options['popularity']);
+    
+        return $options;
+    }
+
+    function custom_woocommerce_get_catalog_ordering_args($args) {
+        if (isset($_GET['orderby'])) {
+            switch ($_GET['orderby']) {
+                case 'alpha':
+                    $args['orderby'] = 'title';
+                    $args['order'] = 'asc';
+                    break;
+                case 'b-sell':
+                    // Implement your logic for best sellers
+                    $args['orderby'] = 'meta_value_num';
+                    $args['order'] = 'desc';
+                    $args['meta_key'] = 'total_sales';
+                    break;
+                case 'featured':
+                    // Implement your logic for featured products
+                    // Example: $args['meta_key'] = '_featured';
+                    break;
+                // case 'new':
+                //     $args['orderby'] = 'date';
+                //     $args['order'] = 'desc';
+                //     break;
+            }
+        }
+        return $args;
+    }
+    add_filter('woocommerce_get_catalog_ordering_args', 'custom_woocommerce_get_catalog_ordering_args');
 ?>
