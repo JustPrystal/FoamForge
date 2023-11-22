@@ -9,7 +9,7 @@
             if($block["boxes"]){
                 foreach($block["boxes"] as $box){?>
                     <div class="box">
-                        <img class="icon" src="<?php echo $boc["icon"]?>" alt="">
+                        <img class="icon" src="<?php echo $box["icon"]?>" alt="">
                         <div class="text"><?php echo $box["text"];?></div>
                     </div>
                 <?php } 

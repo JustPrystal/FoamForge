@@ -1,0 +1,58 @@
+.fullwidth{
+    .inner{
+        max-width:1200px;
+        margin:0 auto;
+        padding: 40px 0;
+        @include responsive(lg){
+            padding:40px 20px;
+        }
+        .content{
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            margin: 0 auto;
+            max-width: 700px;
+
+            .heading{
+                text-align: center;
+                font-size: 48px;
+                text-transform: uppercase;
+                font-weight: 600;
+            }
+            .description{
+                text-align: center;
+                font-size: 18px;
+                margin-bottom: 60px;
+            }
+        }
+        .boxes{
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            @include responsive(md){
+                justify-content: center;
+            }
+            .box{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin-bottom: 60px;
+                @include responsive(md){
+                    width: 40%;
+                }
+                @include responsive(sm){
+                    width: 100%;
+                }
+                .icon{
+                    width: 150px;
+                    margin-bottom: 30px;
+                }
+                .text{
+                    font-size: 18px;
+                    font-weight: 600;
+                    text-transform: uppercase;
+                }
+            }
+        }
+    }
+}

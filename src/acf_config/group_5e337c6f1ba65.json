@@ -6,6 +6,7 @@
             "key": "field_5e337c7407471",
             "label": "Blocks",
             "name": "blocks",
+            "aria-label": "",
             "type": "flexible_content",
             "instructions": "",
             "required": 0,
@@ -26,6 +27,7 @@
                             "key": "field_655d5e8654cab",
                             "label": "text",
                             "name": "text",
+                            "aria-label": "",
                             "type": "wysiwyg",
                             "instructions": "",
                             "required": 0,
@@ -55,6 +57,7 @@
                             "key": "field_655cd0edd786e",
                             "label": "fields",
                             "name": "fields",
+                            "aria-label": "",
                             "type": "clone",
                             "instructions": "",
                             "required": 0,
@@ -64,7 +67,6 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "aria-label": "",
                             "clone": [
                                 "group_655ccf153fab1"
                             ],
@@ -87,6 +89,7 @@
                             "key": "field_655cd26e844a5",
                             "label": "fields",
                             "name": "fields",
+                            "aria-label": "",
                             "type": "clone",
                             "instructions": "",
                             "required": 0,
@@ -96,7 +99,6 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "aria-label": "",
                             "clone": [
                                 "group_655cd1645b886"
                             ],
@@ -148,7 +150,8 @@
         "discussion",
         "comments"
     ],
-    "active": 1,
+    "active": true,
     "description": "Block Chooser for all content types that will have blocks.",
-    "modified": 1700617873
+    "show_in_rest": false,
+    "modified": 1700620262
 }
