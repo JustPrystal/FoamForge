@@ -6,7 +6,6 @@
             "key": "field_655cd1c1e391d",
             "label": "Background Image",
             "name": "background_image",
-            "aria-label": "",
             "type": "image",
             "instructions": "",
             "required": 0,
@@ -16,6 +15,7 @@
                 "class": "",
                 "id": ""
             },
+            "aria-label": "",
             "return_format": "url",
             "library": "all",
             "min_width": "",
@@ -31,7 +31,6 @@
             "key": "field_655cd164e391b",
             "label": "Heading",
             "name": "heading",
-            "aria-label": "",
             "type": "text",
             "instructions": "",
             "required": 0,
@@ -41,6 +40,7 @@
                 "class": "",
                 "id": ""
             },
+            "aria-label": "",
             "default_value": "",
             "maxlength": "",
             "placeholder": "",
@@ -51,7 +51,6 @@
             "key": "field_655cd1a9e391c",
             "label": "Description",
             "name": "description",
-            "aria-label": "",
             "type": "wysiwyg",
             "instructions": "",
             "required": 0,
@@ -61,6 +60,7 @@
                 "class": "",
                 "id": ""
             },
+            "aria-label": "",
             "default_value": "",
             "tabs": "all",
             "toolbar": "full",
@@ -71,7 +71,6 @@
             "key": "field_655cd1d9e391e",
             "label": "Boxes",
             "name": "boxes",
-            "aria-label": "",
             "type": "repeater",
             "instructions": "",
             "required": 0,
@@ -81,6 +80,7 @@
                 "class": "",
                 "id": ""
             },
+            "aria-label": "",
             "layout": "table",
             "pagination": 0,
             "min": 0,
@@ -93,7 +93,6 @@
                     "key": "field_655cd209e391f",
                     "label": "Icon",
                     "name": "icon",
-                    "aria-label": "",
                     "type": "image",
                     "instructions": "",
                     "required": 0,
@@ -103,6 +102,7 @@
                         "class": "",
                         "id": ""
                     },
+                    "aria-label": "",
                     "return_format": "url",
                     "library": "all",
                     "min_width": "",
@@ -119,7 +119,6 @@
                     "key": "field_655cd222e3920",
                     "label": "Text",
                     "name": "text",
-                    "aria-label": "",
                     "type": "text",
                     "instructions": "",
                     "required": 0,
@@ -129,6 +128,7 @@
                         "class": "",
                         "id": ""
                     },
+                    "aria-label": "",
                     "default_value": "",
                     "maxlength": "",
                     "placeholder": "",
@@ -157,5 +157,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1700582054
+    "modified": 1700617242
 }

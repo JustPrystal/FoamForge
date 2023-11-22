@@ -162,6 +162,7 @@ if ( post_password_required() ) {
 			?>
 		</div>
 	</div>
+	<?php get_blocks(); ?>
 	<?php if($product->get_upsell_ids()){?>
 	<div class="related-products">
 		<div class="inner">

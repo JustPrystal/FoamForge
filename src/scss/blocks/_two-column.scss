@@ -1,0 +1,49 @@
+.two-column{
+    .inner{
+        max-width:1200px;
+        margin:0 auto;
+        display:flex;
+        align-items: center;
+        padding:40px 0px;
+        @include responsive(lg){
+            max-width:100%;
+            padding:40px 20px;
+        }
+        @include responsive(sm){
+            flex-wrap:wrap;
+        }
+        .left{
+            flex: 0 0 50%;
+            padding-right:40px;
+            @include responsive(sm){
+                flex: 0 0 100%;
+                padding:0;
+            }
+            .heading{
+                font-size:28px;
+                font-weight:600;
+            }
+        }
+        .right{
+            flex: 0 0 50%;
+            @include responsive(sm){
+                flex: 0 0 100%;
+            }
+            img{
+                width:100%;
+                height:auto;
+            }
+        }
+        &.inverted{
+            flex-direction:row-reverse;
+            @include responsive(sm){
+                flex-direction:column-reverse;
+                padding:0;
+            }
+            .left{
+                padding-left:40px;
+                padding-right:0;
+            }
+        }
+    }
+}

@@ -6,7 +6,6 @@
             "key": "field_5e337c7407471",
             "label": "Blocks",
             "name": "blocks",
-            "aria-label": "",
             "type": "flexible_content",
             "instructions": "",
             "required": 0,
@@ -17,6 +16,35 @@
                 "id": ""
             },
             "layouts": {
+                "layout_655d5e7a54caa": {
+                    "key": "layout_655d5e7a54caa",
+                    "name": "fullwidth_text",
+                    "label": "Fullwidth Text",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_655d5e8654cab",
+                            "label": "text",
+                            "name": "text",
+                            "type": "wysiwyg",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "tabs": "all",
+                            "toolbar": "full",
+                            "media_upload": 1,
+                            "delay": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
                 "layout_655cd0d1d786c": {
                     "key": "layout_655cd0d1d786c",
                     "name": "two_column",
@@ -27,7 +55,6 @@
                             "key": "field_655cd0edd786e",
                             "label": "fields",
                             "name": "fields",
-                            "aria-label": "",
                             "type": "clone",
                             "instructions": "",
                             "required": 0,
@@ -37,6 +64,7 @@
                                 "class": "",
                                 "id": ""
                             },
+                            "aria-label": "",
                             "clone": [
                                 "group_655ccf153fab1"
                             ],
@@ -59,7 +87,6 @@
                             "key": "field_655cd26e844a5",
                             "label": "fields",
                             "name": "fields",
-                            "aria-label": "",
                             "type": "clone",
                             "instructions": "",
                             "required": 0,
@@ -69,6 +96,7 @@
                                 "class": "",
                                 "id": ""
                             },
+                            "aria-label": "",
                             "clone": [
                                 "group_655cd1645b886"
                             ],
@@ -82,9 +110,9 @@
                     "max": ""
                 }
             },
+            "button_label": "Add Block",
             "min": "",
-            "max": "",
-            "button_label": "Add Block"
+            "max": ""
         }
     ],
     "location": [
@@ -120,8 +148,7 @@
         "discussion",
         "comments"
     ],
-    "active": true,
+    "active": 1,
     "description": "Block Chooser for all content types that will have blocks.",
-    "show_in_rest": 0,
-    "modified": 1700582114
+    "modified": 1700617873
 }

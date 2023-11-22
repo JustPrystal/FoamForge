@@ -17,13 +17,15 @@
                 loop_blocks($blocks);
               }
               break;
+            case 'fullwidth_text':
+              include 'blocks/fullwidth_text.php';
+              break;
             case 'two_column':
               include 'blocks/two_column.php';
               break;
             case 'fullwidth':
               include 'blocks/fullwidth.php';
               break;
-            
           }
         }
       }

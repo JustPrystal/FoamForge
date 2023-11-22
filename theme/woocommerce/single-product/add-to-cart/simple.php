@@ -74,34 +74,5 @@ if ( $product->is_in_stock() ) : ?>
 	</form>
 
 	<?php do_action( 'woocommerce_after_add_to_cart_form' ); ?>
-	<?php 
-	get_blocks();
-	// $blocks = get_field("blocks", $product->ID);
-	// var_dump($blocks);
-	
-
-	// 	if ($blocks){
-	// 	  foreach ($blocks as $key => $block) {
-	// 		switch ($block['acf_fc_layout']) {
-	// 		  case 'global_block':
-	// 			if ($block['global_block']){
-	// 			  $blocks = get_fields($block['global_block'][0]);
-	// 			  loop_blocks($blocks);
-	// 			}
-	// 			break;
-	// 		  case 'two_column':
-	// 			include get_template_directory_uri() . '/includes/blocks/two_column.php';
-	// 			break;
-	// 		  case 'fullwidth':
-	// 			include get_template_directory_uri() . '/includes/blocks/fullwidth.php';
-	// 			break;
-			  
-	// 		}
-	// 	  }
-	// 	}
-
-
-
-	?>
 
 <?php endif; ?>
