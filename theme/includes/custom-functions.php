@@ -30,7 +30,13 @@
         return $defaults;
     }
 
+    
     remove_action('woocommerce_before_single_product', 'woocommerce_output_all_notices', 10);
+    
+    //shop edits
+    remove_action('woocommerce_before_shop_loop', 'woocommerce_output_all_notices', 10);
+    remove_action('woocommerce_before_shop_loop', 'woocommerce_result_count', 20);
+    remove_action('woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30);
 
     add_filter( 'woocommerce_catalog_orderby', 'custom_woocommerce_catalog_orderby' );
     

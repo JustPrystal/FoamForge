@@ -174,4 +174,14 @@ jQuery(document).ready(function(){
             jQuery(this).parent().find('input').val(parseInt(current_value) - 1).change()  
         }
     })
+
+
+    jQuery(".hide-filters").click(function(){
+        jQuery(".filters").toggle()
+        if($(this).text().trim() == "hide filters"){
+            $(this).text("show filters")
+        }else{
+            $(this).text("hide filters")
+        }
+    })
 });

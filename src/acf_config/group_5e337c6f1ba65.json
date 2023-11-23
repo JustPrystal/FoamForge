@@ -131,13 +131,6 @@
                 "operator": "==",
                 "value": "globalblock"
             }
-        ],
-        [
-            {
-                "param": "post_type",
-                "operator": "==",
-                "value": "product"
-            }
         ]
     ],
     "menu_order": 10,
@@ -153,5 +146,5 @@
     "active": true,
     "description": "Block Chooser for all content types that will have blocks.",
     "show_in_rest": false,
-    "modified": 1700620262
+    "modified": 1700690493
 }

@@ -13,10 +13,13 @@ Version: THEME_VERSION
 @import 'header';
 @import 'footer';
 
-//Shop
-@import './shop/single-product';
+//Blocks
 @import './blocks/two-column';
 @import './blocks/fullwidth';
+
+//Shop
+@import './shop/single-product';
+@import './shop/shop';
 
 table.xdebug-error.xe-warning {
     display: none;

@@ -6,6 +6,7 @@
             "key": "field_654035df705bd",
             "label": "General",
             "name": "",
+            "aria-label": "",
             "type": "tab",
             "instructions": "",
             "required": 0,
@@ -22,6 +23,7 @@
             "key": "field_654035fa705be",
             "label": "Subtitle",
             "name": "subtitle",
+            "aria-label": "",
             "type": "text",
             "instructions": "",
             "required": 0,
@@ -41,6 +43,7 @@
             "key": "field_6541f31617128",
             "label": "Content After Add to Cart",
             "name": "content_after_add_to_cart",
+            "aria-label": "",
             "type": "textarea",
             "instructions": "",
             "required": 0,
@@ -60,6 +63,7 @@
             "key": "field_6552237a4ef2f",
             "label": "Content After Image",
             "name": "content_after_image",
+            "aria-label": "",
             "type": "textarea",
             "instructions": "",
             "required": 0,
@@ -79,6 +83,7 @@
             "key": "field_6541f1bac597f",
             "label": "Product Specs",
             "name": "",
+            "aria-label": "",
             "type": "tab",
             "instructions": "",
             "required": 0,
@@ -95,6 +100,7 @@
             "key": "field_6541f1d4c5980",
             "label": "Content",
             "name": "product_specs_content",
+            "aria-label": "",
             "type": "wysiwyg",
             "instructions": "",
             "required": 0,
@@ -114,6 +120,7 @@
             "key": "field_6541f1e7c5981",
             "label": "Hazard Information",
             "name": "",
+            "aria-label": "",
             "type": "tab",
             "instructions": "",
             "required": 0,
@@ -130,6 +137,7 @@
             "key": "field_6541f209c5982",
             "label": "Content",
             "name": "hazard_info_content",
+            "aria-label": "",
             "type": "wysiwyg",
             "instructions": "",
             "required": 0,
@@ -144,6 +152,45 @@
             "toolbar": "full",
             "media_upload": 1,
             "delay": 0
+        },
+        {
+            "key": "field_655d6d6b83c14",
+            "label": "Blocks",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "left",
+            "endpoint": 0
+        },
+        {
+            "key": "field_655d6d7783c15",
+            "label": "fields",
+            "name": "fields",
+            "aria-label": "",
+            "type": "clone",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "clone": [
+                "group_5e337c6f1ba65"
+            ],
+            "display": "seamless",
+            "layout": "block",
+            "prefix_label": 0,
+            "prefix_name": 0
         }
     ],
     "location": [
@@ -161,7 +208,8 @@
     "label_placement": "top",
     "instruction_placement": "label",
     "hide_on_screen": "",
-    "active": 1,
+    "active": true,
     "description": "",
-    "modified": 1699881871
+    "show_in_rest": false,
+    "modified": 1700690493
 }
