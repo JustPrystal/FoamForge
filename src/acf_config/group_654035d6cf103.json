@@ -157,7 +157,10 @@
             "key": "field_655d6d6b83c14",
             "label": "Blocks",
             "name": "",
+<<<<<<< HEAD
             "aria-label": "",
+=======
+>>>>>>> 1b860a515b098a2c541acf85966235d382180442
             "type": "tab",
             "instructions": "",
             "required": 0,
@@ -174,7 +177,10 @@
             "key": "field_655d6d7783c15",
             "label": "fields",
             "name": "fields",
+<<<<<<< HEAD
             "aria-label": "",
+=======
+>>>>>>> 1b860a515b098a2c541acf85966235d382180442
             "type": "clone",
             "instructions": "",
             "required": 0,
@@ -210,6 +216,11 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
+<<<<<<< HEAD
     "show_in_rest": false,
     "modified": 1700690493
 }
+=======
+    "modified": 1700621809
+}
+>>>>>>> 1b860a515b098a2c541acf85966235d382180442
