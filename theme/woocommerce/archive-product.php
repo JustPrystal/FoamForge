@@ -67,7 +67,7 @@ if ( woocommerce_product_loop() ) {
 			</div>
 			<div class="products-wrapper">
 				<div class="filters">
-					<?php echo do_shortcode('[yith_wcan_filters slug="dddd"]');?>
+					<?php echo do_shortcode('[yith_wcan_filters slug="filters"]');?>
 				</div>
 				<?php
 				do_action( 'woocommerce_before_shop_loop' );
