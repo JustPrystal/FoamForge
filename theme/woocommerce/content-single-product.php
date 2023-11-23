@@ -174,11 +174,14 @@ if ( post_password_required() ) {
 					<div class="product-item">
 						<a href="<?php echo get_the_permalink($product_id);?>">
 							<div class="image-wrap">
-								<?php echo $_product->get_image();?>
+							<img src="<?php echo wp_get_attachment_url( $product->get_image_id() );?>" alt="">
 							</div>
 							<div class="text-col">
 								<div class="sub-title"><?php echo get_field('subtitle', $product_id); ?></div>
 								<div class="product-name"><?php echo $_product->get_name();?></div>
+							</div>
+							<div class="short_description">
+								<?php echo($product->short_description);?>
 							</div>
 						</a>
 					</div>

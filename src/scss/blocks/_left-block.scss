@@ -1,0 +1,51 @@
+.left-block{
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-position:center center;
+    .inner{
+        max-width: 1200px;
+        margin: 0 auto; 
+        padding: 60px 0; 
+        .content{
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            max-width: 500px;
+            margin-left: 50px;
+            @include responsive(sm){
+                margin-left: 0px;
+                max-width: 100%;
+                
+            }
+            div{
+                text-align: center;
+                color: white;
+                text-decoration: none;
+            }
+            .heading{
+                text-transform: uppercase;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                font-weight: 600;
+                font-size: 50px;
+                margin-bottom: 10px;
+                span{
+                    font-size: 36px;
+                    line-height: 80%;
+                }
+            }
+            .description{
+                font-size: 18px;
+                margin-bottom: 20px;
+            }
+            .button{
+                font-size: 36px;
+                font-weight: 600;
+                color: white;
+                text-transform: uppercase;
+                text-decoration: none;
+            }
+        }
+    }
+}

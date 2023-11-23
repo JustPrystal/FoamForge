@@ -177,11 +177,12 @@ jQuery(document).ready(function(){
 
 
     jQuery(".hide-filters").click(function(){
-        jQuery(".filters").toggle()
         if($(this).text().trim() == "hide filters"){
             $(this).text("show filters")
+            $(".filters").css("transform", "translateX(-350px)").css("width", "0").css("min-width", "0")
         }else{
             $(this).text("hide filters")
+            $(".filters").css("width", "250px").css("min-width", "250px").css("transform", "translateX(0px)")
         }
     })
 });

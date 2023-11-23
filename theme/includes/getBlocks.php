@@ -26,6 +26,9 @@
             case 'fullwidth':
               include 'blocks/fullwidth.php';
               break;
+            case 'left_block':
+              include 'blocks/left_block.php';
+              break;
           }
         }
       }
