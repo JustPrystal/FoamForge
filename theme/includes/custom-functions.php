@@ -61,6 +61,42 @@
         return $options;
     }
 
+
+
+    
+
+    //best seller logic
+    // Function to count product sales from orders
+    function count_product_sales() {
+        $products_count = array();
+
+        $orders = wc_get_orders( array( 'status' => 'completed' ) );
+
+        foreach ( $orders as $order ) {
+            $items = $order->get_items();
+            foreach ( $items as $item ) {
+                $product_id = $item->get_product_id();
+
+                if ( isset( $products_count[ $product_id ] ) ) {
+                    $products_count[ $product_id ]++;
+                } else {
+                    $products_count[ $product_id ] = 1;
+                }
+            }
+        }
+        // var_dump($products_count);
+        return $products_count;
+    }
+
+    // Function to update sales data
+    function update_sales_data() {
+        $sales_data = count_product_sales();
+        foreach ( $sales_data as $product_id => $count ) {
+            update_post_meta( $product_id, '_sales_count', $count );
+            
+        }
+    }
+    
     function custom_woocommerce_get_catalog_ordering_args($args) {
         if (isset($_GET['orderby'])) {
             switch ($_GET['orderby']) {
@@ -70,18 +106,40 @@
                     break;
                 case 'b-sell':
                     // Implement your logic for best sellers
+                    $allArgs = array( 
+                        'post_type' => 'product', 
+                        'posts_per_page' => -1 
+                    );
+                    $allProducts = wc_get_products( $allArgs ); 
+                    foreach ( $allProducts as $prd){
+                        update_post_meta( $prd->id, '_sales_count', "0" );
+                    }
+                    update_sales_data();
                     $args['orderby'] = 'meta_value_num';
-                    $args['order'] = 'desc';
-                    $args['meta_key'] = 'total_sales';
+                    $args['order'] = 'DESC';
+                    $args['meta_key'] = '_sales_count';
+
                     break;
                 case 'featured':
                     // Implement your logic for featured products
-                    // Example: $args['meta_key'] = '_featured';
+                    $allArgs = array( 
+                        'post_type' => 'product', 
+                        'posts_per_page' => -1 
+                    );
+                    $allProducts = wc_get_products( $allArgs ); 
+                    foreach ( $allProducts as $prd){
+                        if(get_field("featured_product", $prd->id)){
+                            update_post_meta( $prd->id, '_featured_product', "1" );
+                        }
+                        $args['orderby'] = 'meta_value_num';
+                        $args['order'] = 'DESC';
+                        $args['meta_key'] = '_featured_product';
+                    }
                     break;
-                // case 'new':
-                //     $args['orderby'] = 'date';
-                //     $args['order'] = 'desc';
-                //     break;
+                case 'new':
+                    $args['orderby'] = 'date';
+                    $args['order'] = 'desc';
+                    break;
             }
         }
         return $args;

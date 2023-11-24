@@ -174,15 +174,33 @@ if ( post_password_required() ) {
 					<div class="product-item">
 						<a href="<?php echo get_the_permalink($product_id);?>">
 							<div class="image-wrap">
-							<img src="<?php echo wp_get_attachment_url( $product->get_image_id() );?>" alt="">
+							<img src="<?php echo wp_get_attachment_url( $_product->get_image_id() );?>" alt="">
 							</div>
 							<div class="text-col">
 								<div class="sub-title"><?php echo get_field('subtitle', $product_id); ?></div>
 								<div class="product-name"><?php echo $_product->get_name();?></div>
 							</div>
 							<div class="short_description">
-								<?php echo($product->short_description);?>
+								<?php echo $_product->short_description;?>
 							</div>
+							<div class="price">
+								$<?php echo $_product->price;?>
+							</div>
+							<?php
+								echo apply_filters(
+									'woocommerce_loop_add_to_cart_link', // WPCS: XSS ok.
+									sprintf(
+										'<a href="%s" data-quantity="%s" class="%s" %s>%s</a>',
+										esc_url( $product->add_to_cart_url() ),
+										esc_attr( isset( $args['quantity'] ) ? $args['quantity'] : 1 ),
+										esc_attr( isset( $args['class'] ) ? $args['class'] : 'button' ),
+										isset( $args['attributes'] ) ? wc_implode_html_attributes( $args['attributes'] ) : '',
+										esc_html( $product->add_to_cart_text() == "Add to cart" ? "Add this item to Cart" : $product->add_to_cart_text())
+									),
+									$product,
+									$args
+								);
+							?>
 						</a>
 					</div>
 					<?php 

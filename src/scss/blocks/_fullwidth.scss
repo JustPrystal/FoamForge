@@ -9,6 +9,9 @@
         @include responsive(lg){
             padding:40px 20px;
         }
+        .image{
+            width: 100%;
+        }
         .content{
             display: flex;
             align-items: center;

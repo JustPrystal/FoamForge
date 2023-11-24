@@ -1,5 +1,6 @@
 <section class="fullwidth" style="background-image: url('<?php echo $block["background_image"];?>');">
     <div class="inner">
+        <img src="<?php echo $block["image"]?>" alt="" class="image">
         <div class="content">
             <div class="heading"><?php echo $block["heading"];?></div>
             <div class="description"><?php echo $block["description"];?></div>

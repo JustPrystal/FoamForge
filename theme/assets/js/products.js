@@ -3,6 +3,9 @@ jQuery(document).ready(function(){
         var that = jQuery('.add-to-cart-btn .product-price');
         if(jQuery('.woocommerce-variation.single_variation').css('display') != 'none' || !jQuery('.woocommerce-variation.single_variation').is(':empty') || (!!jQuery(".woocommerce-variation"))){
             var qty = jQuery(this).val();
+            if( qty < 0 ){
+                qty = 1;
+            }
             var price = jQuery('.woocommerce-variation.single_variation bdi').text().replace("$",""); 
             price = price ? price :  jQuery('.woocommerce-fallback-price bdi').text().replace("$","")        
             var newPrice = parseFloat(qty) * parseFloat(price);
@@ -163,7 +166,6 @@ jQuery(document).ready(function(){
         if(current_value == ""){
             current_value = 0;
         }
-        
         if(jQuery(this).hasClass('qty-up')){
             jQuery(this).parent().find('input').val(parseInt(current_value) + 1).change()    
         }
@@ -174,15 +176,21 @@ jQuery(document).ready(function(){
             jQuery(this).parent().find('input').val(parseInt(current_value) - 1).change()  
         }
     })
-
-
-    jQuery(".hide-filters").click(function(){
-        if($(this).text().trim() == "hide filters"){
-            $(this).text("show filters")
-            $(".filters").css("transform", "translateX(-350px)").css("width", "0").css("min-width", "0")
-        }else{
-            $(this).text("hide filters")
-            $(".filters").css("width", "250px").css("min-width", "250px").css("transform", "translateX(0px)")
+    jQuery(".cart .quantity-wrap .quantity input").change(function(){
+        if(jQuery(this).val() < 0){
+            jQuery(this).val(1)
         }
     })
+    jQuery(".hide-filters, .hide-filters-mobile").click(function(){
+        if(!$(".filters").hasClass("close")){
+            $(".hide-filters").text("show filters")
+            $(".filters").addClass("close")
+            $(".hide-filters-mobile").addClass("cross")
+        }else{
+            $(".hide-filters").text("hide filters")
+            $(".filters").removeClass("close")
+            $(".hide-filters-mobile").removeClass("cross")
+        }
+    })
+
 });

@@ -6,7 +6,6 @@
             "key": "field_655cd2f9c54dd",
             "label": "Block Orientation",
             "name": "block_orientation",
-            "aria-label": "",
             "type": "checkbox",
             "instructions": "",
             "required": 0,
@@ -16,6 +15,7 @@
                 "class": "",
                 "id": ""
             },
+            "aria-label": "",
             "choices": {
                 "inverted": "Inverted"
             },
@@ -31,7 +31,6 @@
             "key": "field_655ccf4d8a37a",
             "label": "Heading",
             "name": "heading",
-            "aria-label": "",
             "type": "text",
             "instructions": "",
             "required": 0,
@@ -41,6 +40,7 @@
                 "class": "",
                 "id": ""
             },
+            "aria-label": "",
             "default_value": "",
             "maxlength": "",
             "placeholder": "",
@@ -51,7 +51,6 @@
             "key": "field_655ccf5d8a37b",
             "label": "Description",
             "name": "description",
-            "aria-label": "",
             "type": "wysiwyg",
             "instructions": "",
             "required": 0,
@@ -61,6 +60,7 @@
                 "class": "",
                 "id": ""
             },
+            "aria-label": "",
             "default_value": "",
             "tabs": "all",
             "toolbar": "full",
@@ -71,7 +71,6 @@
             "key": "field_655ccf828a37c",
             "label": "Image",
             "name": "image",
-            "aria-label": "",
             "type": "image",
             "instructions": "",
             "required": 0,
@@ -81,6 +80,7 @@
                 "class": "",
                 "id": ""
             },
+            "aria-label": "",
             "return_format": "url",
             "library": "all",
             "min_width": "",
@@ -111,5 +111,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1700605314
+    "modified": 1700617242
 }

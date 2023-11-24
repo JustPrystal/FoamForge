@@ -57,17 +57,21 @@ if ( woocommerce_product_loop() ) {
 	?>
 	<div class="main-content">
 		<div class="inner">
+			<div class="hide-filters-mobile">
+				<span class="rect"></span>
+				<span class="square"></span>
+			</div>
 			<div class="top-bar">
 				<div class="hide-filters">
 					hide filters
 				</div>
 				<div class="sort">
-					<?php echo do_shortcode('[yith_wcan_filters slug="sort"]');?>
+					<?php echo do_shortcode('[yith_wcan_filters slug="draft-preset"]');?>
 				</div>
 			</div>
 			<div class="products-wrapper">
 				<div class="filters">
-					<?php echo do_shortcode('[yith_wcan_filters slug="filters"]');?>
+					<?php echo do_shortcode('[yith_wcan_filters slug="draft-preset-2"]');?>
 				</div>
 				<?php
 				do_action( 'woocommerce_before_shop_loop' );

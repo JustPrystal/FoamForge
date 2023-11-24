@@ -5,12 +5,64 @@
     margin-bottom: 50px;
 }
 .main-content{
+    padding: 0 20px;
     .inner{
         max-width: 1400px;
         margin: 0 auto;
         overflow: hidden;
+        position: relative;
         @include responsive(sm){
             overflow: visible;
+        }
+        .hide-filters-mobile{
+            transition: 0.4s ease;
+            display: none;
+            width: 60px;
+            height: 60px;
+            padding: 20px 15px;
+            position: fixed;
+            background-color: #313131;
+            z-index: 12;
+            top: calc( 100dvh - 90px);
+            right: 20px;
+            border-radius: 50%;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.575);
+            justify-content: space-between;
+            @include responsive(sm){
+                display: flex;
+            }
+            span{
+                transition: 0.4s ease;
+                background-color: $grey;
+                border-radius: 2px;
+                box-shadow: 0 0 3px;
+                &.rect{
+                    width: 25%;
+                    height: 100%;
+                }   
+                &.square{
+                    width: 65%;
+                    height: 100%;
+                }   
+            }
+            &.cross{
+                transition: 0.4s ease;
+                padding: 12px;
+                span{
+                    transition: 0.4s ease;
+                    width: 15%;
+                    &.rect{
+                        transform: translateX(11px) translateY(-11px);
+                        rotate: -315deg;
+                        // rotate: 45deg;
+                    }
+                    &.square{
+                        transform: translateX(-11px) translateY(-11px);
+                        rotate: -405deg;
+                        // rotate: -45deg;
+                    }
+                }
+            }
         }
         .top-bar{
             display: flex;
@@ -24,10 +76,7 @@
                 background-color: $grey;
                 top: 90px;
                 z-index: 20;
-            }
-            @include responsive(xs){
-                flex-direction: column-reverse;
-                align-items: flex-start;
+                justify-content: flex-end;
                 grid-gap: 0px;
             }
             .hide-filters{
@@ -35,11 +84,14 @@
                 text-transform: uppercase;
                 cursor: pointer;
                 user-select: none;
-                padding-bottom: 10px;
-                background: $textMed;
-                color: $grey;
-                padding: 10px 20px;
                 border-radius: 3px;
+                @include responsive(sm){
+                    display: none;
+                }
+            }
+            .sort{
+                width: 255px;
+                min-width: 255px;
             }
             .yith-wcan-filters{
                 margin-bottom: 0;
@@ -69,6 +121,8 @@
                             text-transform: uppercase;
                         }
                         .dropdown-wrapper{
+                            width: 185px;
+                            min-width: 185px;
                         }
                     }
                 }
@@ -83,17 +137,22 @@
                 width: 250px;
                 min-width: 250px;
                 background-color: $grey;
-                transition: 150ms ;
+                transition: all .5s ease ;
                 @include responsive(sm){
                     position: fixed;
-                    top: 139px;
+                    top: 135px;
                     padding-left: 20px;
                     z-index: 10;
                     border: 1px solid #c0c0c0;
                     border-left: 0;
+                    height: calc(100dvh - 135px);
+                    overflow: auto;
+                    overflow-x: hidden;
+                    margin-left: -20px;
+                    transform: translateX(-100%);
                 }
                 @include responsive(xs){
-                    top: 174px;
+                    width: 100%;
                 }
                 .yith-wcan-filters{
                     background-color: transparent;
@@ -146,10 +205,24 @@
                         font-weight: 700;
                     }
                 }
+                &.close{
+                    transform: translateX(calc(-100% - 100px));
+                    width: 0;
+                    min-width: 0;
+                    @include responsive(sm){
+                        transform: translateX(0);
+                        width: 250px;
+                        min-width: 250px;
+                    }
+                    @include responsive(xs){
+                        width: 100%;
+                    }
+                }
             }
             .products{
                 display: flex;
                 width: 100%;
+                padding-left: 0;
                 flex-wrap: wrap;
                 .product{
                     width: calc(33% - 10px);
@@ -187,17 +260,17 @@
                             font-weight: 500;
                             margin-bottom: 20px;
                         }
-                    }
-                    .button{
-                        background-color: $textMed;
-                        color: $grey;
-                        text-transform: uppercase;
-                        padding: 10px 20px;
-                        margin-top: 15px;
-                        border-radius: 3px;
-                        text-align: center;
-                        font-size: 14px;
-                        width: auto;
+                        .button{
+                            background-color: $textMed;
+                            color: $grey;
+                            text-transform: uppercase;
+                            padding: 10px 20px;
+                            margin-top: 15px;
+                            border-radius: 3px;
+                            text-align: center;
+                            font-size: 14px;
+                            width: auto;
+                        }
                     }
                 }
             }

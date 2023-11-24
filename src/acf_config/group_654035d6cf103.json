@@ -20,6 +20,26 @@
             "endpoint": 0
         },
         {
+            "key": "field_6560e20e191d6",
+            "label": "Featured Product",
+            "name": "featured_product",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
             "key": "field_654035fa705be",
             "label": "Subtitle",
             "name": "subtitle",
@@ -210,6 +230,6 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "show_in_rest": false,
-    "modified": 1700690493
+    "show_in_rest": 0,
+    "modified": 1700848181
 }
