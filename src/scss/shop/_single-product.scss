@@ -425,6 +425,11 @@
     .inner{
         max-width:1200px;
         margin:0 auto;
+        @include responsive(lg){
+            max-width:100%;
+            padding:0px 20px;
+        }
+        
         h3.heading{
             font-weight:600;
             text-transform:uppercase;
@@ -434,8 +439,20 @@
             display:flex;
             gap:40px;
             margin:40px 0px;
+            @include responsive(md){
+                flex-wrap:wrap;
+            }
             .product-item{
                 flex: 0 0 25%;
+                @include responsive(md){
+                    flex: 0 0 33.3%;
+                }
+                @include responsive(sm){
+                    flex: 0 0 50%;
+                }
+                @include responsive(xs){
+                    flex: 0 0 100%;
+                }
                 a{
                     text-decoration:none;
                     color: $textMed;
