@@ -96,7 +96,8 @@
             
         }
     }
-    
+    add_action('update_product_sales_data', 'update_sales_data');
+
     function custom_woocommerce_get_catalog_ordering_args($args) {
         if (isset($_GET['orderby'])) {
             switch ($_GET['orderby']) {
@@ -105,36 +106,14 @@
                     $args['order'] = 'asc';
                     break;
                 case 'b-sell':
-                    // Implement your logic for best sellers
-                    $allArgs = array( 
-                        'post_type' => 'product', 
-                        'posts_per_page' => -1 
-                    );
-                    $allProducts = wc_get_products( $allArgs ); 
-                    foreach ( $allProducts as $prd){
-                        update_post_meta( $prd->id, '_sales_count', "0" );
-                    }
-                    update_sales_data();
                     $args['orderby'] = 'meta_value_num';
                     $args['order'] = 'DESC';
                     $args['meta_key'] = '_sales_count';
-
                     break;
                 case 'featured':
-                    // Implement your logic for featured products
-                    $allArgs = array( 
-                        'post_type' => 'product', 
-                        'posts_per_page' => -1 
-                    );
-                    $allProducts = wc_get_products( $allArgs ); 
-                    foreach ( $allProducts as $prd){
-                        if(get_field("featured_product", $prd->id)){
-                            update_post_meta( $prd->id, '_featured_product', "1" );
-                        }
-                        $args['orderby'] = 'meta_value_num';
-                        $args['order'] = 'DESC';
-                        $args['meta_key'] = '_featured_product';
-                    }
+                    $args['meta_key'] = 'featured_product';
+                    $args['meta_value'] = '1';
+                    $args['meta_compare'] = "=";
                     break;
                 case 'new':
                     $args['orderby'] = 'date';
