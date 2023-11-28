@@ -29,6 +29,9 @@
             case 'left_block':
               include 'blocks/left_block.php';
               break;
+            case 'faq':
+              include 'blocks/faq.php';
+              break;
           }
         }
       }

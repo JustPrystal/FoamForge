@@ -2,10 +2,15 @@
     text-align: center;
     color: $textDark;
     text-transform: uppercase;
-    margin-bottom: 50px;
+    // background-color: white;
+    margin-bottom: 30px;
 }
 .main-content{
-    padding: 0 20px;
+    padding: 0 40px;
+    background-color: white;
+    @include responsive(sm){
+        padding: 0 15px;
+    }
     .inner{
         max-width: 1400px;
         margin: 0 auto;
@@ -69,14 +74,16 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 30px;
-            padding-bottom: 10px;
+            font-size: 12px;
+            padding: 15px 0;
             border-bottom:1px solid #cecece;
             @include responsive(sm){
                 position: sticky;
                 background-color: $grey;
+                background-color: white;
                 top: 90px;
                 z-index: 20;
-                justify-content: flex-end;
+                justify-content: space-between;
                 grid-gap: 0px;
             }
             .hide-filters{
@@ -84,9 +91,20 @@
                 text-transform: uppercase;
                 cursor: pointer;
                 user-select: none;
+                display: flex;
+                align-items: center;
                 border-radius: 3px;
-                @include responsive(sm){
-                    display: none;
+                .text{
+                    @include responsive(sm){
+                        display: none;
+                    }
+                }
+                svg{
+                    width: 18px;
+                    margin-right: 5px;
+                    @include responsive(sm){
+                        width: 22px;
+                    }
                 }
             }
             .sort{
@@ -101,13 +119,25 @@
                 display: flex;
                 align-items: center;
                 margin-bottom: 0;
+                justify-content: flex-end;
+                @include responsive(sm){
+                    position: relative;
+                }
                 .filter-title{
                     margin: 0;
                     text-transform: uppercase;
+                    @include responsive(sm){
+                        margin-right: 15px;
+                    }
                 }
                 .filter-content{
+                    @include responsive(sm){
+                        position: absolute;
+                    }
                     .yith-wcan-dropdown{
                         border: 0;
+                        padding: 8px;
+                        padding-right: 15px;
                         &::after{
                             right: 0px;
                             top: calc(50% - 7px);
@@ -117,12 +147,28 @@
                             box-shadow: 0 0 0 0;
                         }
                         .dropdown-label{
-                            font-weight: 700;
-                            text-transform: uppercase;
+                            font-weight: 500;
+                            // text-transform: uppercase;
+                            @include responsive(sm){
+                                opacity: 0;
+                            }
                         }
                         .dropdown-wrapper{
                             width: 185px;
                             min-width: 185px;
+                            left: auto;
+                        }
+                        .filter-items{
+                            .filter-item{
+                                &.active{
+                                    a{
+                                        font-weight: 500;
+                                    }
+                                }
+                                a{
+                                    font-weight: 400;
+                                }
+                            }
                         }
                     }
                 }
@@ -136,16 +182,16 @@
             .filters{
                 width: 250px;
                 min-width: 250px;
-                background-color: $grey;
+                background-color: white;
                 transition: all .5s ease ;
                 @include responsive(sm){
                     position: fixed;
-                    top: 135px;
+                    top: 150px;
                     padding-left: 20px;
                     z-index: 10;
                     border: 1px solid #c0c0c0;
                     border-left: 0;
-                    height: calc(100dvh - 135px);
+                    height: calc(100dvh - 150px);
                     overflow: auto;
                     overflow-x: hidden;
                     margin-left: -20px;
@@ -156,6 +202,9 @@
                 }
                 .yith-wcan-filters{
                     background-color: transparent;
+                    .filter-title{
+                        text-transform: uppercase;
+                    }
                 }
                 .filter-content{
                     .filter-item{
@@ -203,6 +252,7 @@
                     }
                     .filter-item.label.active.with-image a .term-label{
                         font-weight: 700;
+                        // text-transform: uppercase;
                     }
                 }
                 &.close{
@@ -234,6 +284,7 @@
                     }
                     @include responsive(sm){
                         width: 100%;
+                        padding: 0 0 40px 0;
                     }
                     a{
                         width: 100%;
@@ -260,17 +311,17 @@
                             font-weight: 500;
                             margin-bottom: 20px;
                         }
-                        .button{
-                            background-color: $textMed;
-                            color: $grey;
-                            text-transform: uppercase;
-                            padding: 10px 20px;
-                            margin-top: 15px;
-                            border-radius: 3px;
-                            text-align: center;
-                            font-size: 14px;
-                            width: auto;
-                        }
+                    }
+                    .button{
+                        background-color: $textMed;
+                        color: $grey;
+                        text-transform: uppercase;
+                        padding: 10px 20px;
+                        margin-top: 15px;
+                        border-radius: 3px;
+                        text-align: center;
+                        font-size: 14px;
+                        width: auto;
                     }
                 }
             }
