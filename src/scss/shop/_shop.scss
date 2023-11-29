@@ -73,7 +73,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 30px;
+            margin-bottom: 10px;
             font-size: 12px;
             padding: 15px 0;
             border-bottom:1px solid #cecece;
@@ -186,12 +186,12 @@
                 transition: all .5s ease ;
                 @include responsive(sm){
                     position: fixed;
-                    top: 150px;
+                    top: 135px;
                     padding-left: 20px;
                     z-index: 10;
                     border: 1px solid #c0c0c0;
                     border-left: 0;
-                    height: calc(100dvh - 150px);
+                    height: calc(100dvh - 135px);
                     overflow: auto;
                     overflow-x: hidden;
                     margin-left: -20px;
@@ -202,8 +202,12 @@
                 }
                 .yith-wcan-filters{
                     background-color: transparent;
+                    .yith-wcan-filter{
+                        margin-bottom: 60px;
+                    }
                     .filter-title{
                         text-transform: uppercase;
+                        margin-bottom: 10px;
                     }
                 }
                 .filter-content{
@@ -275,12 +279,12 @@
                 padding-left: 0;
                 flex-wrap: wrap;
                 .product{
-                    width: calc(33% - 10px);
-                    padding: 10px;
+                    width: 33.33%;
+                    padding: 5px;
                     padding-bottom: 40px;
                     list-style: none;
                     @include responsive(lg){
-                        width: calc(50% - 10px);
+                        width: 50%;
                     }
                     @include responsive(sm){
                         width: 100%;
