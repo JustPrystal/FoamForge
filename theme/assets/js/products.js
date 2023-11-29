@@ -12,6 +12,10 @@ jQuery(document).ready(function(){
 
             that.html('$'+ newPrice.toFixed(2));
         }
+        if($(".product").hasClass("product-type-simple")){
+            console.log("simple")
+            $('button.add-to-cart-btn').addClass('active');
+        }
     })
     function isOneVariantSelected(){
         var isSelected = false;
