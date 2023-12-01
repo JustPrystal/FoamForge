@@ -5,6 +5,9 @@
     // background-color: white;
     margin-bottom: 30px;
 }
+body.shop{
+    background-color:white;
+}
 .main-content{
     padding: 0 40px;
     background-color: white;
@@ -157,6 +160,12 @@
                             width: 185px;
                             min-width: 185px;
                             left: auto;
+                            ul{
+                                margin-top:0;
+                                li{
+                                    margin-bottom:0;
+                                }
+                            }
                         }
                         .filter-items{
                             .filter-item{
@@ -225,6 +234,7 @@
                                 margin-right: 15px;
                                 background-color: transparent;
                                 border: 1px solid #7c7c7c;
+                                margin-left:3px;
                                 img{
                                     transition: 200ms;
                                     width: 15px;
@@ -248,9 +258,10 @@
                     .filter-item.label.active.with-image a .term-image{
                         transition: 200ms;
                         background-color: black;
+                        
                         img{
                             transition: 600ms;
-                            scale: 1.3;
+                            scale: 1.5;
                             opacity: 1;
                         }
                     }
@@ -315,7 +326,6 @@
                             font-weight: 500;
                             margin-bottom: 20px;
                         }
-                            }
                     }
                     .button{
                         background-color: #404040;

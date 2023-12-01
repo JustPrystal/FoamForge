@@ -27,6 +27,9 @@
     if (user_can( $current_user, 'administrator' )) {
         echo ' adminbar';
     }
+    if(is_shop() || is_product_category()){
+      echo ' shop';
+    }
   ?>">
 
   <div class="all">

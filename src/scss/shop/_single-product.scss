@@ -2,6 +2,7 @@
     margin:0 auto;
     max-width:1200px;
     font-size:12px;
+    margin-top:10px;
     @include responsive(lg){
         max-width:100%;
         padding:0 20px;
