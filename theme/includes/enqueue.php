@@ -47,14 +47,14 @@
 				"type" => 'js',
 				"path" => 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js',
 				"version" => '1.8.1',
-				"loadInFooter" => true
+				"loadInFooter" => false
 			],
 			[
 				"name" => 'products.js', 
 				"type" => 'js',
 				"path" => $templatedir . '/assets/js/products.js',
 				"version" => '1.0.0',
-				"loadInFooter" => true
+				"loadInFooter" => false
 			],
 		];
 		

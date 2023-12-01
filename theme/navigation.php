@@ -107,13 +107,13 @@
 <script>
     let timeout;
     jQuery(document).ready(function(){
-        jQuery('.menu-item.dropdown').hover(function(){
-            jQuery(this).find('a:eq(0)').toggleClass('active');
-            jQuery(this).find('.mega-menu').stop().fadeToggle();
-        });
-        jQuery('.header .hamburger-icon').click(function(){
-            jQuery(this).toggleClass('active');
-            jQuery('.header .menu-wrap').toggleClass('active');
+        $(".menu-item.dropdown").mouseover(function(){
+            jQuery(this).find('a:eq(0)').addClass('active');
+            jQuery(this).find('.mega-menu').stop().fadeIn();
+        })
+        $(".menu-item.dropdown").mouseleave(function(){
+            jQuery(this).find('a:eq(0)').removeClass('active');
+            jQuery(this).find('.mega-menu').stop().fadeOut();
         })
     })
    

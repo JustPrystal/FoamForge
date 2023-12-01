@@ -12,6 +12,10 @@ jQuery(document).ready(function(){
 
             that.html('$'+ newPrice.toFixed(2));
         }
+        if($(".product").hasClass("product-type-simple")){
+            console.log("simple")
+            $('button.add-to-cart-btn').addClass('active');
+        }
     })
     function isOneVariantSelected(){
         var isSelected = false;
@@ -183,13 +187,21 @@ jQuery(document).ready(function(){
     })
     jQuery(".hide-filters, .hide-filters-mobile").click(function(){
         if(!$(".filters").hasClass("close")){
-            $(".hide-filters").text("show filters")
+            $(".hide-filters .text").text("show filters")
             $(".filters").addClass("close")
             $(".hide-filters-mobile").addClass("cross")
         }else{
-            $(".hide-filters").text("hide filters")
+            $(".hide-filters .text").text("hide filters")
             $(".filters").removeClass("close")
             $(".hide-filters-mobile").removeClass("cross")
+        }
+    })
+
+    jQuery(".faq-question").click(function(){
+        if($(this).parent().find(".faq-answer").css("display") == "none"){
+            $(this).parent().find(".faq-answer").slideDown()
+        }else{
+            $(this).parent().find(".faq-answer").slideUp()
         }
     })
 
