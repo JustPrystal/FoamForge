@@ -18,7 +18,7 @@
 defined( 'ABSPATH' ) || exit;
 
 get_header( 'shop' );
-get_blocks(wc_get_page_id('shop'));
+
 
 /**
  * Hook: woocommerce_before_main_content.
@@ -53,6 +53,9 @@ if(is_product_category()){
 		</section>
 	<?php
 	}	
+}
+else{
+	get_blocks(wc_get_page_id('shop'));
 }
 ?>
 <header class="woocommerce-products-header">
