@@ -82,13 +82,15 @@ body.shop{
             padding: 15px 0;
             border-bottom:1px solid #cecece;
             @include responsive(sm){
-                position: sticky;
-                background-color: $grey;
+                position: fixed;
                 background-color: white;
                 top: 90px;
                 z-index: 20;
                 justify-content: space-between;
                 grid-gap: 0px;
+                width: 100%;
+                left: 0;
+                padding: 15px;
             }
             .hide-filters{
                 font-weight: 700;
@@ -213,7 +215,7 @@ body.shop{
                     height: calc(100dvh - 135px);
                     overflow: auto;
                     overflow-x: hidden;
-                    margin-left: -20px;
+                    margin-left: -15px;
                     transform: translateX(-100%);
                 }
                 @include responsive(xs){

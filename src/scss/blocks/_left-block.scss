@@ -9,29 +9,6 @@
     @include responsive(xs){
         align-items: flex-end;
     }
-    .bg{
-        position: absolute;
-        inset: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 0;
-        @include responsive(xs){
-            display: none;
-        }
-    }
-    .bg-m{
-        position: absolute;
-        inset: 0;
-        display: none;
-        width: 100%;
-        top: -250px;
-        // left: 50%;
-        // transform: translateX(-50%);
-        z-index: 0;
-        @include responsive(xs){
-            display: block;
-        }
-    }
     .inner{
         max-width: 1200px;
         margin: 0 auto; 

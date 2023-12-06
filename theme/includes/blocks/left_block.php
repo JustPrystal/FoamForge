@@ -1,6 +1,18 @@
+<style>
+    .left-block{
+        background-image: url('<?php echo $block["background_image"];?>');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    @media(max-width: 576px){
+        .left-block{
+            background-image: url('<?php echo $block["mobile_background_image"];?>');
+            height:600px;
+        }
+    }
+</style>
 <section class="left-block" >
-    <img src="<?php echo $block["background_image"];?>" alt="" class="bg">
-    <img src="<?php echo $block["mobile_background_image"];?>" alt="" class="bg-m">
     <div class="inner">
         <div class="content">
             <div class="heading"><?php echo $block["heading"]?></div>
