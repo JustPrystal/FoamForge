@@ -18,6 +18,7 @@
 defined( 'ABSPATH' ) || exit;
 
 get_header( 'shop' );
+get_blocks(wc_get_page_id('shop'));
 
 /**
  * Hook: woocommerce_before_main_content.
@@ -27,11 +28,35 @@ get_header( 'shop' );
  * @hooked WC_Structured_Data::generate_website_data() - 30
  */
 if(is_product_category()){
-	do_action( 'woocommerce_before_main_content' );
+	$category = get_queried_object();
+	$category_id = $category->term_id;
+	$heading = get_field('heading', 'product_cat_' . $category_id);
+	$description = get_field('description', 'product_cat_' . $category_id);
+	$button = get_field('button', 'product_cat_' . $category_id);
+	$background_image = get_field('background_image', 'product_cat_' . $category_id);
+	$mobile_background_image = get_field('mobile_background_image', 'product_cat_' . $category_id);
+	$banner_exists = $heading || $description || ($background_image && $mobile_background_image) || $button;
+?>
+	<?php if ($banner_exists){?>
+		<section class="left-block category-banner" >
+			<img src="<?php echo $background_image;?>" alt="" class="bg">
+			<img src="<?php echo $mobile_background_image;?>" alt="" class="bg-m">
+			<div class="inner">
+				<div class="content">
+					<div class="heading"><?php echo $heading?></div>
+					<div class="description"><?php echo $description?></div>
+					<?php if ($button){?>
+						<a href="<?php echo $button["url"]?>" class="button"><?php echo $button["title"]?></a>
+					<?php } ?>
+				</div>
+			</div>
+		</section>
+	<?php
+	}	
 }
 ?>
 <header class="woocommerce-products-header">
-	<?php if ( apply_filters( 'woocommerce_show_page_title', true ) ) : ?>
+	<?php if (( apply_filters( 'woocommerce_show_page_title', true ) ) && ( !is_product_category() )) : ?>
 		<h1 class="woocommerce-products-header__title page-title"><?php woocommerce_page_title(); ?></h1>
 	<?php endif; ?>
 
@@ -82,7 +107,9 @@ if ( woocommerce_product_loop() ) {
 			</div>
 			<div class="products-wrapper">
 				<div class="filters">
-					<?php echo do_shortcode('[yith_wcan_filters slug="draft-preset-2"]');?>
+					<?php 
+						echo do_shortcode('[yith_wcan_filters slug="draft-preset-2"]');
+					?>
 				</div>
 				<?php
 				do_action( 'woocommerce_before_shop_loop' );
@@ -106,6 +133,9 @@ if ( woocommerce_product_loop() ) {
 				?>
 			</div>				
 		</div>	
+	</div>
+	<div id="search-results-container">
+
 	</div>
 	<?php
 	/**
@@ -135,6 +165,9 @@ do_action( 'woocommerce_after_main_content' );
  *
  * @hooked woocommerce_get_sidebar - 10
  */
+
 // do_action( 'woocommerce_sidebar' );
 
 get_footer( 'shop' );
+
+

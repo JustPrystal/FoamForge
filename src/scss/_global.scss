@@ -28,6 +28,10 @@ a{
 body {
     position:relative;
     font-family:$gilroy;
+    &.noscroll{
+      height: 100vh;
+      overflow: hidden;
+    }
 }
 
 

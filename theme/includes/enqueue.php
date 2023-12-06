@@ -5,12 +5,6 @@
 		$templatedir = get_template_directory_uri();
 		$enqueList = [	
 			[
-				"name" => 'select-2.css', 
-				"type" => 'css',
-				"path" => 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css',
-				"version" => '4.1.0'
-			],
-			[
 				"name" => 'slick-theme.min.css', 
 				"type" => 'css',
 				"path" => 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css',
@@ -21,6 +15,12 @@
 				"type" => 'css',
 				"path" => 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css',
 				"version" => '1.8.1'
+			],
+			[
+				"name" => 'select-2.css', 
+				"type" => 'css',
+				"path" => 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css',
+				"version" => '4.1.0'
 			],
 			[
 				"name" => 'style.css', 
@@ -40,7 +40,7 @@
 				"type" => 'js',
 				"path" => 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js',
 				"version" => '4.1.0',
-				"loadInFooter" => true
+				"loadInFooter" => false
 			],
 			[
 				"name" => 'slick.js', 

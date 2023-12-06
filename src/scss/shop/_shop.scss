@@ -114,6 +114,12 @@ body.shop{
                 width: 255px;
                 min-width: 255px;
             }
+            .yith-wcan-filters .yith-wcan-filter .filter-items .filter-item > a{
+                transition: 100ms;
+                &:hover{
+                    text-shadow:0 0 0.8px #000;
+                }
+            }
             .yith-wcan-filters{
                 margin-bottom: 0;
                 background-color: transparent;
@@ -162,6 +168,9 @@ body.shop{
                             left: auto;
                             ul{
                                 margin-top:0;
+                                overflow: auto;
+                                -ms-overflow-style: none; /* IE 11 */
+                                scrollbar-width: none;
                                 li{
                                     margin-bottom:0;
                                 }
@@ -208,6 +217,10 @@ body.shop{
                 }
                 @include responsive(xs){
                     width: 100%;
+                }
+                .aws-container{
+                    margin-top: 36px;
+                    margin-bottom: 50px;
                 }
                 .yith-wcan-filters{
                     background-color: transparent;
@@ -291,15 +304,27 @@ body.shop{
                 flex-wrap: wrap;
                 .product{
                     width: 33.33%;
-                    padding: 5px;
+                    padding: 20px;
                     padding-bottom: 40px;
                     list-style: none;
                     @include responsive(lg){
                         width: 50%;
+                        &:nth-child(2n){
+                            padding-right: 0;
+                        }
                     }
                     @include responsive(sm){
                         width: 100%;
                         padding: 0 0 40px 0;
+                        &:nth-child(2n){
+                            padding-right: inherit;
+                        }
+                    }
+                    &:nth-child(3n){
+                        padding-right: 0;
+                        @include responsive(lg){
+                            padding-right: inherit;
+                        }
                     }
                     a{
                         width: 100%;

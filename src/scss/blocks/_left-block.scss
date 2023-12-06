@@ -1,10 +1,45 @@
 .left-block{
-    background-repeat:no-repeat;
-    background-size:cover;
-    background-position:center center;
+    height: 500px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    padding: 0 20px;
+    &.category-banner{
+        margin-bottom: 60px;
+    }
+    @include responsive(xs){
+        align-items: flex-end;
+    }
+    .bg{
+        position: absolute;
+        inset: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 0;
+        @include responsive(xs){
+            display: none;
+        }
+    }
+    .bg-m{
+        position: absolute;
+        inset: 0;
+        display: none;
+        width: 100%;
+        top: -250px;
+        // left: 50%;
+        // transform: translateX(-50%);
+        z-index: 0;
+        @include responsive(xs){
+            display: block;
+        }
+    }
     .inner{
         max-width: 1200px;
         margin: 0 auto; 
+        // position: relative;
+        z-index: 1;
+        width: 100%;
         padding: 60px 0; 
         .content{
             display: flex;
@@ -12,7 +47,7 @@
             flex-direction: column;
             max-width: 385px;
             margin-left: 50px;
-            @include responsive(sm){
+            @include responsive(xs){
                 margin-left: 0px;
                 max-width: 100%;
                 
@@ -24,15 +59,29 @@
             }
             .heading{
                 text-transform: uppercase;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
                 font-weight: 600;
                 font-size: 50px;
                 margin-bottom: 10px;
-                span{
-                    font-size: 36px;
+                width: 100%;
+                @include responsive(xs){
+                    margin-bottom: 20px;
+                    line-height: 85%;
+                    font-size: 64px;
+                }
+                .top{
+                    font-size: 30px;
                     line-height: 80%;
+                    .has-mobile{
+                        display: none;
+                        @include responsive(xs){
+                            display: inline;
+                        }
+                    }
+                }
+                .has{
+                    @include responsive(xs){
+                        display: none;
+                    }
                 }
             }
             .description{
@@ -45,6 +94,9 @@
                 color: white;
                 text-transform: uppercase;
                 text-decoration: none;
+                @include responsive(xs){
+                    font-size: 30px;
+                }
             }
         }
     }

@@ -1,4 +1,6 @@
-<section class="left-block" style="background-image: url('<?php echo $block["background_image"];?>');">
+<section class="left-block" >
+    <img src="<?php echo $block["background_image"];?>" alt="" class="bg">
+    <img src="<?php echo $block["mobile_background_image"];?>" alt="" class="bg-m">
     <div class="inner">
         <div class="content">
             <div class="heading"><?php echo $block["heading"]?></div>

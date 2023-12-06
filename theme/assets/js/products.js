@@ -17,6 +17,7 @@ jQuery(document).ready(function(){
             $('button.add-to-cart-btn').addClass('active');
         }
     })
+
     function isOneVariantSelected(){
         var isSelected = false;
         jQuery('form.variations_form .variations select').each(function(){
@@ -38,7 +39,9 @@ jQuery(document).ready(function(){
         return isEmpty;
     }
     jQuery('form.variations_form .variations select:not(.magnet_size_dropdown)').select2({
-        width: '100%'
+        width: '100%',
+        minimumResultsForSearch: Infinity,
+        placeholder: 'Choose a Strength',
     });
     jQuery('form.variations_form .reset_variations').click(function(){
         jQuery(this).attr('style', '');
@@ -196,6 +199,13 @@ jQuery(document).ready(function(){
             $(".hide-filters-mobile").removeClass("cross")
         }
     })
+    jQuery(window).resize(function(){
+        if(jQuery(window).innerWidth() <= 767){
+            $(".filters").removeClass("close")
+            $(".hide-filters-mobile").removeClass("cross")
+            $(".hide-filters .text").text("hide filters")
+        }
+    })
 
     jQuery(".faq-question").click(function(){
         if($(this).parent().find(".faq-answer").css("display") == "none"){
@@ -205,4 +215,39 @@ jQuery(document).ready(function(){
         }
     })
 
+    //searchbar
+    jQuery(document).ready(function($) {
+        $('#searchform input').on('input', function() {
+            var searchTerm = $(this).val();
+    
+            // Perform AJAX request to get search results
+            $.ajax({
+                type: 'POST',
+                url: ajaxurl, // WordPress AJAX endpoint
+                data: {
+                    action: 'custom_search_action',
+                    searchTerm: searchTerm,
+                },
+                success: function(response) {
+                    // Update the container with the search results
+                    $('#search-results-container').html(response);
+                },
+                error: function(error) {
+                    console.error('AJAX error:', error);
+                }
+            });
+        });
+    });
+    $('.input-text.qty').keydown(function(e){
+        if (!parseInt(e.key)){
+            e.preventDefault();
+        }
+        if(e.key === 'Enter'){
+            $('.input-text.qty').blur()
+        }
+    })
+    $(".search-icon").click(function(){
+        $(".search-modal").stop().fadeToggle()
+        $("body").toggleClass("noscroll")
+    })
 });

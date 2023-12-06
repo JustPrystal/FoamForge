@@ -18,19 +18,18 @@
         return $match_found;
     }
 
-    add_filter( 'woocommerce_breadcrumb_home_url', 'woo_custom_breadrumb_home_url' );
-    function woo_custom_breadrumb_home_url() {
-        return get_permalink( wc_get_page_id( 'shop' ) );
-    }
+    // add_filter( 'woocommerce_breadcrumb_home_url', 'woo_custom_breadrumb_home_url' );
+    // function woo_custom_breadrumb_home_url() {
+    //     return get_permalink( wc_get_page_id( 'shop' ) );
+    // }
 
-    add_filter( 'woocommerce_breadcrumb_defaults', 'wcc_change_breadcrumb_home_text' );
-    function wcc_change_breadcrumb_home_text( $defaults ) {
-        // Change the breadcrumb home text from 'Home' to 'Apartment'
-        $defaults['home'] = 'Shop';
-        return $defaults;
-    }
+    // add_filter( 'woocommerce_breadcrumb_defaults', 'wcc_change_breadcrumb_home_text' );
+    // function wcc_change_breadcrumb_home_text( $defaults ) {
+    //     // Change the breadcrumb home text from 'Home' to 'Apartment'
+    //     $defaults['home'] = 'Shop';
+    //     return $defaults;
+    // }
 
-    
     remove_action('woocommerce_before_single_product', 'woocommerce_output_all_notices', 10);
     
     //shop edits
@@ -41,13 +40,13 @@
     add_filter( 'woocommerce_catalog_orderby', 'custom_woocommerce_catalog_orderby' );
     
     function custom_woocommerce_catalog_orderby( $options ) {
+        $options['new'] = 'New';
         $options['alpha'] = 'Alphabetical';
         $options['b-sell'] = 'Best Sellers';
         $options['featured'] = 'Featured';
-        $options['new'] = 'New';
         $options['price-asc'] = 'Price: Low to High';
         $options['price-desc'] = 'Price: High to Low';
-        // repositionArrayElement($options, "price-desc", 5);
+        // repositionArrayElement($options, "new", 1);
         // repositionArrayElement($options, "popularity", 1);
         // repositionArrayElement($options, "price", 2);
         // repositionArrayElement($options, "price-desc", 3);
@@ -124,4 +123,43 @@
         return $args;
     }
     add_filter('woocommerce_get_catalog_ordering_args', 'custom_woocommerce_get_catalog_ordering_args');
+
+    //searchbar
+
+    function enqueue_custom_scripts() {
+        wp_enqueue_script('custom-search', get_template_directory_uri() . '/js/custom-search.js', array('jquery'), '1.0', true);
+        wp_localize_script('custom-search', 'ajaxurl', admin_url('admin-ajax.php'));
+    }
+    add_action('wp_enqueue_scripts', 'enqueue_custom_scripts');
+
+    function custom_search_action() {
+        // Get the search term from the AJAX request
+        $searchTerm = sanitize_text_field($_POST['searchTerm']);
+
+        // Perform the search (you might need to customize this based on your product data structure)
+        $args = array(
+            'post_type' => 'product',
+            'posts_per_page' => -1,
+            's' => $searchTerm,
+        );
+
+        $query = new WP_Query($args);
+
+        // Output the results
+        if ($query->have_posts()) :
+            while ($query->have_posts()) : $query->the_post();
+                // Output the product information (you might customize this based on your needs)
+                echo '<div class="product">' . get_the_title() . '</div>';
+            endwhile;
+        else :
+            echo 'No results found.';
+        endif;
+
+        // Important: don't forget to exit to avoid extra output in the AJAX response
+        wp_die();
+    }
+    add_action('wp_ajax_custom_search_action', 'custom_search_action');
+    add_action('wp_ajax_nopriv_custom_search_action', 'custom_search_action');
+
+
 ?>

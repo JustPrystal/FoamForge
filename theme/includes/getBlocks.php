@@ -1,8 +1,8 @@
 <?php
-  function get_blocks() {
+  function get_blocks($post_id = false) {
     global $post;
 
-    $fields = get_fields($post->ID);
+    $fields = get_fields($post_id ? $post_id : $post->ID);
     loop_blocks($fields);
   }
 

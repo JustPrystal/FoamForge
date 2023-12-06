@@ -103,6 +103,13 @@
         </div>
     </div>
 </div>
+<div class="search-modal">
+    <div class="search-box">
+        <?php 
+            echo do_shortcode("[aws_search_form]");
+        ?>
+    </div>
+</div>
 
 <script>
     let timeout;
