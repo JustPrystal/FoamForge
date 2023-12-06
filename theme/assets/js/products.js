@@ -250,4 +250,8 @@ jQuery(document).ready(function(){
         $(".search-modal").stop().fadeToggle()
         $("body").toggleClass("noscroll")
     })
+    $(".cross").click(function(){
+        $(".search-modal").stop().fadeOut()
+        $("body").removeClass("noscroll")
+    })
 });

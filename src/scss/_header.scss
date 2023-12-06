@@ -195,4 +195,14 @@
         padding: 0 20px;
         margin-top: 300px;
     }
+    .cross{
+        position: absolute;
+        top: 145px;
+        right: 28px;
+        font-size: 60px;
+        color: white;
+        cursor: pointer;
+        font-family: monospace;
+        filter: drop-shadow(0 0 10px black);
+    }
 }
