@@ -18,7 +18,7 @@
             <div class="heading"><?php echo $block["heading"]?></div>
             <div class="description"><?php echo $block["description"]?></div>
             <?php if ($block["button"]){?>
-                <a href="<?php echo $block["button"]["url"]?>" class="button"><?php echo $block["button"]["title"]?></a>
+                <a href="<?php echo $block["button"]["url"]?>" class="button"><?php echo $block["button"]["title"]?><img class="button-icon" src="<?php echo $block["button_icon"]?>" alt=""></a>
             <?php } ?>
         </div>
     </div>

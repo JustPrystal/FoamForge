@@ -36,10 +36,12 @@
             margin-top: 50px;
             width:60%;
             @include responsive(lg){
+                top: 120px;
                 width:50%;
             }
             @include responsive(sm){
                 width:100%;
+                position: static;
                 margin-top:0;
             }
             .product-slider{
@@ -115,7 +117,8 @@
             margin-top: 150px;
             flex : 0 0 40%;
             @include responsive(lg){
-                flex: 0 0 50%;
+                // flex: 0 0 50%;
+                width: 50%;
             }
             @include responsive(sm){
                 flex: 0 0 100%;

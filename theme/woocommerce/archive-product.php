@@ -33,20 +33,33 @@ if(is_product_category()){
 	$heading = get_field('heading', 'product_cat_' . $category_id);
 	$description = get_field('description', 'product_cat_' . $category_id);
 	$button = get_field('button', 'product_cat_' . $category_id);
+	$button_icon = get_field('button_icon', 'product_cat_' . $category_id);
 	$background_image = get_field('background_image', 'product_cat_' . $category_id);
 	$mobile_background_image = get_field('mobile_background_image', 'product_cat_' . $category_id);
 	$banner_exists = $heading || $description || ($background_image && $mobile_background_image) || $button;
 ?>
 	<?php if ($banner_exists){?>
+		<style>
+			.left-block{
+				background-image: url('<?php echo $background_image;?>');
+				background-position: center;
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+			@media(max-width: 576px){
+				.left-block{
+					background-image: url('<?php echo $mobile_background_image;?>');
+					height:600px;
+				}
+			}
+		</style>
 		<section class="left-block category-banner" >
-			<img src="<?php echo $background_image;?>" alt="" class="bg">
-			<img src="<?php echo $mobile_background_image;?>" alt="" class="bg-m">
 			<div class="inner">
 				<div class="content">
 					<div class="heading"><?php echo $heading?></div>
 					<div class="description"><?php echo $description?></div>
 					<?php if ($button){?>
-						<a href="<?php echo $button["url"]?>" class="button"><?php echo $button["title"]?></a>
+						<a href="<?php echo $button["url"]?>" class="button"><?php echo $button["title"]?><img class="button-icon" src="<?php echo $button_icon?>" alt=""></a>
 					<?php } ?>
 				</div>
 			</div>

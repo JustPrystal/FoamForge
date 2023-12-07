@@ -5,7 +5,7 @@
     align-items: center;
     overflow: hidden;
     padding: 0 20px;
-    margin-bottom: 60px;
+    margin-bottom: 30px;
     @include responsive(xs){
         align-items: flex-end;
     }
@@ -16,11 +16,14 @@
         z-index: 1;
         width: 100%;
         padding: 60px 0; 
+        @include responsive(xs){
+            padding: 22px 0; 
+        }
         .content{
             display: flex;
             align-items: center;
             flex-direction: column;
-            max-width: 385px;
+            max-width: 450px;
             margin-left: 50px;
             @include responsive(xs){
                 margin-left: 0px;
@@ -35,17 +38,21 @@
             .heading{
                 text-transform: uppercase;
                 font-weight: 600;
-                font-size: 50px;
-                margin-bottom: 10px;
+                font-size: 66px;
+                line-height: 85%;
+                margin-bottom: 15px;
                 width: 100%;
                 @include responsive(xs){
                     margin-bottom: 20px;
                     line-height: 85%;
-                    font-size: 64px;
+                    font-size: 56px;
                 }
                 .top{
-                    font-size: 30px;
+                    font-size: 44px;
                     line-height: 80%;
+                    @include responsive(xs){
+                        font-size: 28px;
+                    }
                     .has-mobile{
                         display: none;
                         @include responsive(xs){
@@ -60,17 +67,31 @@
                 }
             }
             .description{
-                font-size: 18px;
+                font-size: 22px;
                 margin-bottom: 20px;
+                @include responsive(xs){
+                    font-size: 20px;
+                }
             }
             .button{
-                font-size: 36px;
+                font-size: 50px;
                 font-weight: 600;
                 color: white;
                 text-transform: uppercase;
                 text-decoration: none;
+                transition: 100ms ease;
+                display: flex;
+                align-items: center;
+                grid-gap: 10px;
+                .button-icon{
+                    width: 26px;
+                }
+                &:hover{
+                    scale: 1.1;
+                    transition: 100ms ease;
+                }
                 @include responsive(xs){
-                    font-size: 30px;
+                    font-size: 28px;
                 }
             }
         }

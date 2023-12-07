@@ -307,7 +307,7 @@ body.shop{
                 flex-wrap: wrap;
                 .product{
                     width: 33.33%;
-                    padding: 20px;
+                    padding: 10px;
                     padding-bottom: 40px;
                     list-style: none;
                     @include responsive(lg){

@@ -186,6 +186,7 @@
     z-index: 999;
     background-color: rgba($color: #fff, $alpha: 0.3);
     backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     justify-content: center;
     display: none;
     .search-box{
@@ -210,7 +211,7 @@
         color: white;
         cursor: pointer;
         font-family: monospace;
-        svg{
+        img{
             width: 44px;
         }
         @include responsive(sm){
