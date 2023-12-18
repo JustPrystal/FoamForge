@@ -51,7 +51,7 @@ if ( post_password_required() ) {
 				$gallery = $product->get_gallery_image_ids();
 				$images = array_merge($images , $gallery);
 			?>
-			<div class="product-slider <?php if(count($images) > 1){echo 'slider-active';}?>">
+			<div class="product-slider owl-carousel owl-theme <?php if(count($images) > 1){echo 'slider-active';}?>">
 				<?php foreach($images as $image){
 					?>
 					<div class="slide-item">

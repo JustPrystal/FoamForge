@@ -23,6 +23,18 @@
 				"version" => '4.1.0'
 			],
 			[
+				"name" => 'owl.carousel.min.css', 
+				"type" => 'css',
+				"path" => 'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css',
+				"version" => '2.3.4'
+			],
+			[
+				"name" => 'owl.theme.default.min.css', 
+				"type" => 'css',
+				"path" => 'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css',
+				"version" => '2.3.4'
+			],
+			[
 				"name" => 'style.css', 
 				"type" => 'css',
 				"path" => $templatedir . '/style.css',
@@ -47,6 +59,13 @@
 				"type" => 'js',
 				"path" => 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js',
 				"version" => '1.8.1',
+				"loadInFooter" => false
+			],
+			[
+				"name" => 'owl.carousel.min.js', 
+				"type" => 'js',
+				"path" => 'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js',
+				"version" => '2.3.4',
 				"loadInFooter" => false
 			],
 			[

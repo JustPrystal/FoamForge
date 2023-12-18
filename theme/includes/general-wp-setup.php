@@ -11,6 +11,7 @@ function add_to_upload_mimes( $upload_mimes ) {
   $upload_mimes['svg'] = 'image/svg+xml';
   $upload_mimes['svgz'] = 'image/svg+xml';
   $upload_mimes['ico'] = 'image/x-icon';
+  $upload_mimes['ai'] = 'application/postscript';
   return $upload_mimes;
 
 }
