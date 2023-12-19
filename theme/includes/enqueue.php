@@ -50,6 +50,13 @@
 				"loadInFooter" => false
 			],
 			[
+				"name" => 'products-slider.js', 
+				"type" => 'js',
+				"path" => $templatedir . '/assets/js/product-slider.js',
+				"version" => '1.0.0',
+				"loadInFooter" => false
+			],
+			[
 				"name" => 'products.js', 
 				"type" => 'js',
 				"path" => $templatedir . '/assets/js/products.js',

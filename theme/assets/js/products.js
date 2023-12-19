@@ -77,46 +77,10 @@ jQuery(document).ready(function(){
         }
     })
     
-    var sliderArgs = {
-        slidesToShow:1,
-        slidesToScroll:1,
-        arrows:false,
-        dots:false,
-        infinite:true,
-    }
-    if(jQuery('.product-slider .slide-item:not(.slick-cloned)').length >= 4){
-        sliderArgs.asNavFor = '.product-slider-thumbs';
-    }
-    jQuery('.product-slider.slider-active').slick(sliderArgs);
-
-    jQuery('.product-slider-thumbs.slider-active').slick({
-        slidesToShow:3,
-        slidesToScroll:1,
-        arrows:false,
-        dots:false,
-        centerPadding:0,
-        infinite:true,
-        centerMode:true,
-        infinite:true,
-        asNavFor:'.product-slider',
-    })
-    jQuery('.product-slider-thumbs .slide-item').click(function(){
-        // stop button from being spammed 
-        
-        var slideno = jQuery(this).data('slick-index');
-        jQuery('.product-slider.slider-active').slick('slickGoTo', parseInt(slideno));
-        if(!jQuery(this).hasClass('slick-current')){
-            jQuery('.product-slider-thumbs .slide-item').removeClass('slick-current');
-            jQuery(this).addClass('slick-current');
-        }
-    })
-
-    //Single Product Slider
-
     jQuery(document.body).on('click', '.variation-item .custom-switches .switch-item', function(){
         var val = jQuery(this).data('val');
         jQuery(this).parents('.value').find('select').val(val).change();
-
+    
         if(jQuery(this).parents('.value').find('select').val() == val){
             jQuery(this).parent().find('.switch-item').removeClass('active');
             jQuery(this).addClass('active');
