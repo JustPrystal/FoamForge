@@ -116,7 +116,6 @@
 </div>
 
 <script>
-    let timeout;
     jQuery(document).ready(function(){
         jQuery('.header .hamburger-icon').click(function(){ 
             jQuery(this).toggleClass('active'); 
