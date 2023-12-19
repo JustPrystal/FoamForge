@@ -123,43 +123,4 @@
         return $args;
     }
     add_filter('woocommerce_get_catalog_ordering_args', 'custom_woocommerce_get_catalog_ordering_args');
-
-    //searchbar
-
-    function enqueue_custom_scripts() {
-        wp_enqueue_script('custom-search', get_template_directory_uri() . '/js/custom-search.js', array('jquery'), '1.0', true);
-        wp_localize_script('custom-search', 'ajaxurl', admin_url('admin-ajax.php'));
-    }
-    add_action('wp_enqueue_scripts', 'enqueue_custom_scripts');
-
-    function custom_search_action() {
-        // Get the search term from the AJAX request
-        $searchTerm = sanitize_text_field($_POST['searchTerm']);
-
-        // Perform the search (you might need to customize this based on your product data structure)
-        $args = array(
-            'post_type' => 'product',
-            'posts_per_page' => -1,
-            's' => $searchTerm,
-        );
-
-        $query = new WP_Query($args);
-
-        // Output the results
-        if ($query->have_posts()) :
-            while ($query->have_posts()) : $query->the_post();
-                // Output the product information (you might customize this based on your needs)
-                echo '<div class="product">' . get_the_title() . '</div>';
-            endwhile;
-        else :
-            echo 'No results found.';
-        endif;
-
-        // Important: don't forget to exit to avoid extra output in the AJAX response
-        wp_die();
-    }
-    add_action('wp_ajax_custom_search_action', 'custom_search_action');
-    add_action('wp_ajax_nopriv_custom_search_action', 'custom_search_action');
-
-
 ?>
