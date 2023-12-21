@@ -41,7 +41,6 @@ jQuery(document).ready(function(){
     jQuery('form.variations_form .variations select:not(.magnet_size_dropdown)').select2({
         width: '100%',
         minimumResultsForSearch: Infinity,
-        placeholder: 'Choose a Strength',
     });
     jQuery('form.variations_form .reset_variations').click(function(){
         jQuery(this).attr('style', '');
