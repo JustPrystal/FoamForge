@@ -12,7 +12,7 @@
         }
     }
 </style>
-<section class="left-block" >
+<section class="left-block<? if($block["banner"]){ echo " banner" ; } ?>" >
     <div class="inner">
         <div class="content">
             <div class="heading"><?php echo $block["heading"]?></div>
@@ -23,3 +23,8 @@
         </div>
     </div>
 </section>
+<script>
+    if(jQuery(".left-block").hasClass("banner")){
+        jQuery(".header").addClass("transparent")
+    }
+</script>

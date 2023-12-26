@@ -219,7 +219,7 @@ body.shop{
                     transform: translateX(-100%);
                 }
                 @include responsive(xs){
-                    width: 100%;
+                    width: 80%;
                 }
                 .aws-container{
                     margin-top: 36px;
@@ -296,7 +296,7 @@ body.shop{
                         min-width: 250px;
                     }
                     @include responsive(xs){
-                        width: 100%;
+                        width: 80%;
                     }
                 }
             }

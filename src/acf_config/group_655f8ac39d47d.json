@@ -3,6 +3,31 @@
     "title": "Left Block",
     "fields": [
         {
+            "key": "field_6589f3a560d75",
+            "label": "Banner",
+            "name": "banner",
+            "aria-label": "",
+            "type": "checkbox",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "banner": "This section is used as a banner in this page."
+            },
+            "default_value": [],
+            "return_format": "value",
+            "allow_custom": 0,
+            "layout": "vertical",
+            "toggle": 0,
+            "save_custom": 0,
+            "custom_choice_button_text": "Add new choice"
+        },
+        {
             "key": "field_655f8ac41edcf",
             "label": "Heading",
             "name": "heading",
@@ -159,5 +184,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1701966914
+    "modified": 1703539684
 }
