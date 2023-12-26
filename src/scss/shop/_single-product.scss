@@ -167,6 +167,9 @@
         }
         .product-add-to-cart{
             margin-bottom:10px;
+            .tiered-pricing-wrapper{
+                display: none;
+            }
             form.variations_form{
                 .variations{
                     width:100%;
