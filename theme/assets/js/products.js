@@ -213,6 +213,12 @@ jQuery(document).ready(function(){
             $('.input-text.qty').blur()
         }
     })
+    $(".aws-wrapper input[type='search']").keydown(function(e){
+        if(e.key === 'Enter'){
+            e.preventDefault()
+            $('.input-text.qty').blur()
+        }
+    })
     $(".search-icon").click(function(){
         $(".search-modal").stop().fadeToggle()
         // $("body").toggleClass("noscroll")

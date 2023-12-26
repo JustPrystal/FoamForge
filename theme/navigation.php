@@ -167,16 +167,6 @@
         </div>
     </div>
 </div>
-<!-- <div class="search-modal">
-    <div class="cross">
-        <img src="<?php echo $cross?>" alt="">
-    </div>
-    <div class="search-box">
-        <?php 
-            echo do_shortcode("[aws_search_form]");
-        ?>
-    </div>
-</div> -->
 
 <script>
     jQuery(document).ready(function(){
