@@ -156,8 +156,18 @@
             }?>
         </div>
     </div>
+    <div class="search-modal">
+        <div class="search-box">
+            <div class="cross">
+                <img src="<?php echo $cross?>" alt="">
+            </div>
+            <?php 
+                echo do_shortcode("[aws_search_form]");
+            ?>
+        </div>
+    </div>
 </div>
-<div class="search-modal">
+<!-- <div class="search-modal">
     <div class="cross">
         <img src="<?php echo $cross?>" alt="">
     </div>
@@ -166,7 +176,7 @@
             echo do_shortcode("[aws_search_form]");
         ?>
     </div>
-</div>
+</div> -->
 
 <script>
     jQuery(document).ready(function(){

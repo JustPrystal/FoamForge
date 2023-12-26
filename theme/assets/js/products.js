@@ -215,10 +215,10 @@ jQuery(document).ready(function(){
     })
     $(".search-icon").click(function(){
         $(".search-modal").stop().fadeToggle()
-        $("body").toggleClass("noscroll")
+        // $("body").toggleClass("noscroll")
     })
     $(".cross").click(function(){
         $(".search-modal").stop().fadeOut()
-        $("body").removeClass("noscroll")
+        // $("body").removeClass("noscroll")
     })
 });
