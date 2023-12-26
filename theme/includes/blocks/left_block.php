@@ -12,7 +12,7 @@
         }
     }
 </style>
-<section class="left-block<? if($block["banner"]){ echo " banner" ; } ?>" >
+<section class="left-block <? if($block["banner"]){ echo " banner" ; } ?>" >
     <div class="inner">
         <div class="content">
             <div class="heading"><?php echo $block["heading"]?></div>

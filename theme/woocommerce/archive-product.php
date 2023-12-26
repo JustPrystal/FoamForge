@@ -34,7 +34,7 @@ if(is_product_category()){
 	$description = get_field('description', 'product_cat_' . $category_id);
 	$button = get_field('button', 'product_cat_' . $category_id);
 	$button_icon = get_field('button_icon', 'product_cat_' . $category_id);
-	$background_image = get_field('background_image', 'product_cat_' . $category_id);
+	$background_image = get_field('background_image', 'product_cat_' . $category_id); 
 	$mobile_background_image = get_field('mobile_background_image', 'product_cat_' . $category_id);
 	$banner_exists = $heading || $description || ($background_image && $mobile_background_image) || $button;
 ?>
@@ -53,7 +53,7 @@ if(is_product_category()){
 				}
 			}
 		</style>
-		<section class="left-block category-banner" >
+		<section class="left-block category-banner banner" >
 			<div class="inner">
 				<div class="content">
 					<div class="heading"><?php echo $heading?></div>
@@ -64,6 +64,11 @@ if(is_product_category()){
 				</div>
 			</div>
 		</section>
+		<script>
+			if(jQuery(".left-block").hasClass("banner")){
+				jQuery(".header").addClass("transparent")
+			}
+		</script>
 	<?php
 	}	
 }
