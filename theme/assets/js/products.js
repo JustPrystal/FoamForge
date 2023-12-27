@@ -1,4 +1,5 @@
 jQuery(document).ready(function(){
+    jQuery('.input-text.qty').val(1)
     jQuery('.input-text.qty').change(function(){
         var that = jQuery('.add-to-cart-btn .product-price');
         if(jQuery('.woocommerce-variation.single_variation').css('display') != 'none' || !jQuery('.woocommerce-variation.single_variation').is(':empty') || (!!jQuery(".woocommerce-variation"))){
@@ -38,28 +39,27 @@ jQuery(document).ready(function(){
 
         return isEmpty;
     }
-    function displayPriceTier(){
-        let fire = setInterval(() => {
-            if ($('.tpt__tiered-pricing').children().length > 0){
-                let currentTier = jQuery(".pricing-table-wrapper .tiered-pricing--active td:first-child>span span:first-child").text().trim();
-                jQuery(".display-price-tier").html("Current Quantity Discount Tier: " + currentTier + "&nbsp;&nbsp;&nbsp;" + "<span class='view-all-tiers'>View All Tiers</span>");
-                jQuery(".view-all-tiers").click(function(){
-                    jQuery(".pricing-table-wrapper").addClass("open")
-                })
-                jQuery(".tiered-pricing-table tr").click(function(){
-                    jQuery(".display-price-tier").html("Current Quantity Discount Tier: " + currentTier + "&nbsp;&nbsp;&nbsp;" + "<span class='view-all-tiers'>View All Tiers</span>");
-                    jQuery(".pricing-table-wrapper").removeClass("open")
-                })
-                clearInterval(fire)
-            }
-        }, 50);
-    }
-    jQuery(".view-all-tiers").click(function(){
-        jQuery(".pricing-table-wrapper").addClass("open")
-        console.log("jhaant")
-    })
-    jQuery(".tiered-pricing-table tr").click(function(){
-        jQuery(".display-price-tier").html("Current Quantity Discount Tier: " + currentTier + "&nbsp;&nbsp;&nbsp;" + "<span class='view-all-tiers'>View All Tiers</span>");
+    let fire = setInterval(() => {
+        if ($('.tpt__tiered-pricing').children().length > 0){
+            let currentTier = jQuery(".pricing-table-wrapper .tiered-pricing--active td:first-child>span").text().trim();
+            jQuery(".display-price-tier .tier").text("Current Quantity Discount Tier: " + currentTier);
+            jQuery(".display-price-tier").show(0)
+            jQuery(".view-all-tiers").click(function(){
+                jQuery(".pricing-table-wrapper").addClass("open")
+            })
+            jQuery(".tiered-pricing-table tr").click(function(){
+                setTimeout(() => {
+                    currentTier = jQuery(".pricing-table-wrapper .tiered-pricing--active td:first-child>span").text().trim();
+                    jQuery(".display-price-tier .tier").text("Current Quantity Discount Tier: " + currentTier);
+                }, 100);
+            })
+            clearInterval(fire)
+        }
+        else{
+            //do not remove this else block
+        }
+    }, 50);
+    jQuery(".pricing-table-wrapper .cross").click(function(){
         jQuery(".pricing-table-wrapper").removeClass("open")
     })
     jQuery('form.variations_form .variations select:not(.magnet_size_dropdown)').select2({
@@ -84,7 +84,6 @@ jQuery(document).ready(function(){
             jQuery('.add-to-cart-btn .product-price').html('');
         }else{
             jQuery('button.add-to-cart-btn').addClass('active');
-            displayPriceTier()
         }
     })
     
@@ -231,8 +230,11 @@ jQuery(document).ready(function(){
         });
     });
     $('.input-text.qty').keydown(function(e){
-        if (!parseInt(e.key)){
-            e.preventDefault();
+        let allowedKeys = ["ArrowUp", "Backspace", "ArrowDown", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
+        if (navigator.userAgent.indexOf("Firefox") > 0){
+            if (!allowedKeys.includes(e.key)){
+                e.preventDefault();
+            }
         }
         if(e.key === 'Enter'){
             $('.input-text.qty').blur()
@@ -241,7 +243,6 @@ jQuery(document).ready(function(){
     $(".aws-wrapper input[type='search']").keydown(function(e){
         if(e.key === 'Enter'){
             e.preventDefault()
-            $('.input-text.qty').blur()
         }
     })
     $(".search-icon").click(function(){

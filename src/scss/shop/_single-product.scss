@@ -302,6 +302,7 @@
                     }
                     .display-price-tier{
                         padding: 0px 10px;
+                        display: none;
                         color: #727272;
                         .view-all-tiers{
                             cursor: pointer;
@@ -567,6 +568,16 @@
     padding: 20px;
     background: #f3f3f3;
     border: 1px solid #bbb;
+    .cross{
+        position: absolute;
+        top: 0;
+        right: 0;
+        cursor: pointer;
+        width: 30px;
+        svg{
+            width: 100%;
+        }
+    }
     tr{
         height: 70px;
         td{

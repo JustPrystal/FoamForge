@@ -35,7 +35,10 @@ global $product;
 				<span class="qty-controls qty-up"></span>
 				<span class="qty-controls qty-down"></span>
 			</div>
-			<div class="display-price-tier"></div>
+			<div class="display-price-tier">
+				<span class="tier"></span>
+				<div class='view-all-tiers'>View All Tiers</div>
+			</div>
 		</div>
 	</div>
 	<?php
