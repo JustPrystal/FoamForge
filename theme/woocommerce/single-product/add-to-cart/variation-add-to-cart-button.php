@@ -20,18 +20,23 @@ global $product;
 	?>
 	<div class="quantity-wrap">
 		<label> Quantity: </label>
-		<?php 
-			woocommerce_quantity_input(
-				array(
-					'min_value'   => apply_filters( 'woocommerce_quantity_input_min', $product->get_min_purchase_quantity(), $product ),
-					'max_value'   => apply_filters( 'woocommerce_quantity_input_max', $product->get_max_purchase_quantity(), $product ),
-					'input_value' => "", // WPCS: CSRF ok, input var ok.
-					'placeholder'  => apply_filters( 'woocommerce_quantity_input_placeholder', 'Choose a Quantity', $product ),
-				)
-			);
-		?>
-		<span class="qty-controls qty-up"></span>
-		<span class="qty-controls qty-down"></span>
+		<div class="value-wrap">
+			<div class="value">
+				<?php 
+					woocommerce_quantity_input(
+						array(
+							'min_value'   => apply_filters( 'woocommerce_quantity_input_min', $product->get_min_purchase_quantity(), $product ),
+							'max_value'   => apply_filters( 'woocommerce_quantity_input_max', $product->get_max_purchase_quantity(), $product ),
+							'input_value' => "", // WPCS: CSRF ok, input var ok.
+							'placeholder'  => apply_filters( 'woocommerce_quantity_input_placeholder', 'Choose a Quantity', $product ),
+						)
+					);
+				?>
+				<span class="qty-controls qty-up"></span>
+				<span class="qty-controls qty-down"></span>
+			</div>
+			<div class="display-price-tier"></div>
+		</div>
 	</div>
 	<?php
 

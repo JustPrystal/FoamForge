@@ -51,7 +51,6 @@ if ( $product->is_in_stock() ) : ?>
 			<span class="qty-controls qty-up"></span>
 			<span class="qty-controls qty-down"></span>
 		</div>
-
 		<?php
 		do_action( 'woocommerce_after_add_to_cart_quantity' );
 		?>

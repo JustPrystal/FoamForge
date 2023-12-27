@@ -162,7 +162,9 @@ if ( post_password_required() ) {
 			?>
 		</div>
 	</div>
-	<?php echo do_shortcode('[tiered-pricing-table]')?>
+	<div class="pricing-table-wrapper">
+		<?php echo do_shortcode('[tiered-pricing-table]')?>
+	</div>
 	<?php get_blocks(); ?>
 	<?php if($product->get_upsell_ids()){?>
 	<div class="related-products">

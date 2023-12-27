@@ -38,6 +38,30 @@ jQuery(document).ready(function(){
 
         return isEmpty;
     }
+    function displayPriceTier(){
+        let fire = setInterval(() => {
+            if ($('.tpt__tiered-pricing').children().length > 0){
+                let currentTier = jQuery(".pricing-table-wrapper .tiered-pricing--active td:first-child>span span:first-child").text().trim();
+                jQuery(".display-price-tier").html("Current Quantity Discount Tier: " + currentTier + "&nbsp;&nbsp;&nbsp;" + "<span class='view-all-tiers'>View All Tiers</span>");
+                jQuery(".view-all-tiers").click(function(){
+                    jQuery(".pricing-table-wrapper").addClass("open")
+                })
+                jQuery(".tiered-pricing-table tr").click(function(){
+                    jQuery(".display-price-tier").html("Current Quantity Discount Tier: " + currentTier + "&nbsp;&nbsp;&nbsp;" + "<span class='view-all-tiers'>View All Tiers</span>");
+                    jQuery(".pricing-table-wrapper").removeClass("open")
+                })
+                clearInterval(fire)
+            }
+        }, 50);
+    }
+    jQuery(".view-all-tiers").click(function(){
+        jQuery(".pricing-table-wrapper").addClass("open")
+        console.log("jhaant")
+    })
+    jQuery(".tiered-pricing-table tr").click(function(){
+        jQuery(".display-price-tier").html("Current Quantity Discount Tier: " + currentTier + "&nbsp;&nbsp;&nbsp;" + "<span class='view-all-tiers'>View All Tiers</span>");
+        jQuery(".pricing-table-wrapper").removeClass("open")
+    })
     jQuery('form.variations_form .variations select:not(.magnet_size_dropdown)').select2({
         width: '100%',
         minimumResultsForSearch: Infinity,
@@ -60,6 +84,7 @@ jQuery(document).ready(function(){
             jQuery('.add-to-cart-btn .product-price').html('');
         }else{
             jQuery('button.add-to-cart-btn').addClass('active');
+            displayPriceTier()
         }
     })
     
