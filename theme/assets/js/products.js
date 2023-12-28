@@ -1,16 +1,22 @@
 jQuery(document).ready(function(){
-    jQuery('.input-text.qty').val(1)
     jQuery('.input-text.qty').change(function(){
         var that = jQuery('.add-to-cart-btn .product-price');
-        if(jQuery('.woocommerce-variation.single_variation').css('display') != 'none' || !jQuery('.woocommerce-variation.single_variation').is(':empty') || (!!jQuery(".woocommerce-variation"))){
+        
+        // if(jQuery('.woocommerce-variation.single_variation').css('display') != 'none' || !jQuery('.woocommerce-variation.single_variation').is(':empty') || (!!jQuery(".woocommerce-variation"))){
+        // added this on the first day for idk what reason, keeping it here in case of future debugging
+
+        //changing tier display
+        let currentTier = jQuery(".pricing-table-wrapper .tiered-pricing--active td:first-child>span").text().trim();
+        jQuery(".display-price-tier .tier").text("Current Quantity Discount Tier: " + currentTier);
+        
+        if(jQuery('.woocommerce-variation.single_variation').css('display') != 'none' || !jQuery('.woocommerce-variation.single_variation').is(':empty') ){
             var qty = jQuery(this).val();
             if( qty < 0 ){
                 qty = 1;
             }
-            var price = jQuery('.woocommerce-variation.single_variation bdi').text().replace("$",""); 
-            price = price ? price :  jQuery('.woocommerce-fallback-price bdi').text().replace("$","")        
+            var price = jQuery('.woocommerce-variation.single_variation bdi').text().replace("$","")
+            price = price ? price :  jQuery('.woocommerce-fallback-price').text().replace("$","")     
             var newPrice = parseFloat(qty) * parseFloat(price);
-
             that.html('$'+ newPrice.toFixed(2));
         }
         if($(".product").hasClass("product-type-simple")){
@@ -54,9 +60,6 @@ jQuery(document).ready(function(){
                 }, 100);
             })
             clearInterval(fire)
-        }
-        else{
-            //do not remove this else block
         }
     }, 50);
     jQuery(".pricing-table-wrapper .cross").click(function(){
