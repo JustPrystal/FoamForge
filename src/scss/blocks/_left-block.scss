@@ -6,6 +6,9 @@
     overflow: hidden;
     padding: 0 20px;
     margin-bottom: 30px;
+    &.banner{
+        height: 599px;
+    }
     @include responsive(xs){
         align-items: flex-end;
     }

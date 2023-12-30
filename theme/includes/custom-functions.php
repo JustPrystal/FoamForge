@@ -123,4 +123,69 @@
         return $args;
     }
     add_filter('woocommerce_get_catalog_ordering_args', 'custom_woocommerce_get_catalog_ordering_args');
+
+
+
+
+
+
+//addons
+// Add this code to your theme's functions.php file or use a custom plugin.
+
+function display_variation_addons_fields($loop, $variation_data, $variation) {
+    // ACF field keys
+    $type_of_screws_key = 'field_type_of_screws'; // Replace with your ACF field key for type_of_screws
+    $number_of_screws_key = 'field_number_of_screws'; // Replace with your ACF field key for number_of_screws
+
+    // Retrieve values for each variation
+    $type_of_screws_value = get_post_meta($variation->ID, $type_of_screws_key, true);
+    $number_of_screws_value = get_post_meta($variation->ID, $number_of_screws_key, true);
+
+    // Get a list of products for the dropdown
+    $products = get_posts(array(
+        'post_type' => 'product',
+        'numberposts' => -1,
+    ));
+
+    // Display fields
+    echo '<div class="options_group form-row form-row-full">';
+    woocommerce_wp_checkbox(
+        array(
+            'id' => 'add_addons_' . $loop,
+            'class' => 'checkbox',
+            'label' => __('Add Addons', 'woocommerce'),
+            'value' => get_post_meta($variation->ID, '_add_addons', true),
+        )
+    );
+
+    echo '<p class="form-row form-row-full">';
+    echo '<label for="type_of_screws_' . $loop . '">' . __('Type of Screws', 'woocommerce') . '</label>';
+    echo '<select id="type_of_screws_' . $loop . '" name="type_of_screws_' . $loop . '">';
+    echo '<option value="">' . __('Select Type of Screws', 'woocommerce') . '</option>';
+
+    foreach ($products as $product) {
+        echo '<option value="' . $product->ID . '" ' . selected($type_of_screws_value, $product->ID, false) . '>' . $product->post_title . '</option>';
+    }
+
+    echo '</select>';
+    echo '</p>';
+
+    echo '<p class="form-row form-row-full">';
+    echo '<label for="number_of_screws_' . $loop . '">' . __('Number of Screws', 'woocommerce') . '</label>';
+    woocommerce_wp_text_input(
+        array(
+            'id' => 'number_of_screws_' . $loop,
+            'class' => 'short',
+            'value' => $number_of_screws_value,
+            'custom_attributes' => array('step' => 'any', 'min' => '0'),
+            'placeholder' => __('Enter number of screws', 'woocommerce'),
+        )
+    );
+    echo '</p>';
+
+    echo '</div>';
+}
+
+add_action('woocommerce_product_after_variable_attributes', 'display_variation_addons_fields', 10, 3);
+
 ?>

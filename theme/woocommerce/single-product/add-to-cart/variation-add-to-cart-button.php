@@ -47,7 +47,19 @@ global $product;
 	?>
 	<div class="add-to-cart-btn-wrap">			
 		<div class="sku-wrap">
-			<?php woocommerce_template_single_meta(); ?>
+			<div class="top">
+				<div class="sku-inner">
+					<div class="label">SKU:&nbsp;</div>
+					<?php woocommerce_template_single_meta();?>
+				</div>
+				<div class="product-each">
+					<div class="label">EACH:&nbsp;</div>
+					<div class="each-price">
+						<span class="currency-symbol">$</span>
+						<span class="value"></span>
+					</div>
+				</div>
+			</div>
 		</div>
 		<button type="submit" class="add-to-cart-btn single_add_to_cart_button button alt<?php echo esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '' ); ?>"><?php echo "Add Selection to Cart" ?> <span class="product-price"></span></button>
 	</div>

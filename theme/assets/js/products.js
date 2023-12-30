@@ -6,21 +6,31 @@ jQuery(document).ready(function(){
         // added this on the first day for idk what reason, keeping it here in case of future debugging
 
         //changing tier display
-        let currentTier = jQuery(".pricing-table-wrapper .tiered-pricing--active td:first-child>span").text().trim();
-        jQuery(".display-price-tier .tier").text("Current Quantity Discount Tier: " + currentTier);
+        setTimeout(() => {
+            let currentTier = jQuery(".pricing-table-wrapper .tiered-pricing--active td:first-child>span").text().trim();
+            jQuery(".display-price-tier .tier").text("Current Quantity Discount Tier: " + currentTier);
+        }, 100);
         
         if(jQuery('.woocommerce-variation.single_variation').css('display') != 'none' || !jQuery('.woocommerce-variation.single_variation').is(':empty') ){
             var qty = jQuery(this).val();
             if( qty < 0 ){
                 qty = 1;
             }
-            var price = jQuery('.woocommerce-variation.single_variation bdi').text().replace("$","")
-            price = price ? price :  jQuery('.woocommerce-fallback-price').text().replace("$","")     
-            var newPrice = parseFloat(qty) * parseFloat(price);
-            that.html('$'+ newPrice.toFixed(2));
+            setTimeout(() => {
+                var price;
+                if (jQuery(".tiered-pricing-dynamic-price-wrapper").find("ins").length != 0){
+                    price = jQuery(".price ins .woocommerce-Price-amount").text().replace("$","");
+                }else{
+                    price = jQuery(".price .woocommerce-Price-amount").text().replace("$","");
+                }
+                var newPrice = parseFloat(qty) * parseFloat(price);
+                jQuery(".add-to-cart-btn-wrap .sku-wrap .top .product-each .each-price").addClass("show")
+                jQuery(".add-to-cart-btn-wrap .sku-wrap .top .product-each .each-price .value").text("")
+                jQuery(".add-to-cart-btn-wrap .sku-wrap .top .product-each .each-price .value").text(parseFloat(price))
+                that.html('$'+ newPrice.toFixed(2));
+            }, 100);
         }
         if($(".product").hasClass("product-type-simple")){
-            console.log("simple")
             $('button.add-to-cart-btn').addClass('active');
         }
     })
@@ -45,23 +55,9 @@ jQuery(document).ready(function(){
 
         return isEmpty;
     }
-    let fire = setInterval(() => {
-        if ($('.tpt__tiered-pricing').children().length > 0){
-            let currentTier = jQuery(".pricing-table-wrapper .tiered-pricing--active td:first-child>span").text().trim();
-            jQuery(".display-price-tier .tier").text("Current Quantity Discount Tier: " + currentTier);
-            jQuery(".display-price-tier").show(0)
-            jQuery(".view-all-tiers").click(function(){
-                jQuery(".pricing-table-wrapper").addClass("open")
-            })
-            jQuery(".tiered-pricing-table tr").click(function(){
-                setTimeout(() => {
-                    currentTier = jQuery(".pricing-table-wrapper .tiered-pricing--active td:first-child>span").text().trim();
-                    jQuery(".display-price-tier .tier").text("Current Quantity Discount Tier: " + currentTier);
-                }, 100);
-            })
-            clearInterval(fire)
-        }
-    }, 50);
+    jQuery(".view-all-tiers").click(function(){
+        jQuery(".pricing-table-wrapper").addClass("open")
+    })
     jQuery(".pricing-table-wrapper .cross").click(function(){
         jQuery(".pricing-table-wrapper").removeClass("open")
     })
@@ -87,6 +83,16 @@ jQuery(document).ready(function(){
             jQuery('.add-to-cart-btn .product-price').html('');
         }else{
             jQuery('button.add-to-cart-btn').addClass('active');
+            let fire = setInterval(() => {
+                if ($('.tpt__tiered-pricing').children().length > 0){
+                    let currentTier = jQuery(".pricing-table-wrapper .tiered-pricing--active td:first-child>span").text().trim();
+                    jQuery(".display-price-tier .tier").text("Current Quantity Discount Tier: " + currentTier);
+                    jQuery(".display-price-tier").addClass("show")
+                    clearInterval(fire);
+                }else{
+                    console.log("table loading...")
+                }
+            }, 100);
         }
     })
     
