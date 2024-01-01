@@ -127,35 +127,76 @@
 
 
 
+//addon
+// Display fields in the product variation settings
+function display_variation_addons_fields($loop, $variation_data, $variation) {
+    echo '<div class="options_group">';
+    $qty_of_addons = get_post_meta($variation->ID, "quantity_of_addons", true) ? get_post_meta($variation->ID, "quantity_of_addons", true) : 0;
+    $selected_product_value = get_post_meta($variation->ID, "addon_product", true) ? get_post_meta($variation->ID, "addon_product", true) : 0;
 
+    $select_args =         array(
+        'id'      => 'addon_product_' . $loop,
+        'label'   => __('Addon Product', 'woocommerce'),
+        'options' => get_products_as_options(),
+    );
 
-//addons
-// Add this code to your theme's functions.php file or use a custom plugin.
+    if($selected_product_value !== 0){
+        $select_args['value'] = $selected_product_value;
+    }
 
-// // Display ACF fields for each variation
-// function display_acf_fields_for_variations($loop, $variation_data, $variation) {
-//     // ACF field group key
-//     $acf_field_group_key = 'group_658f5d560202e'; // Replace with your ACF field group key
+    woocommerce_wp_select($select_args);
 
-//     echo '<div class="options_group">';
-//     acf_form(array(
-//         'post_id' => 'variation_' . $variation->ID,
-//         'field_groups' => array($acf_field_group_key),
-//         'submit_value' => 'Update',
-//         'updated_message' => 'Variation updated',
-//     ));
-//     echo '</div>';
-// }
+    woocommerce_wp_text_input(
+        array(
+            'id'          => 'quantity_of_addons_' . $loop,
+            'label'       => __('Quantity of Addons', 'woocommerce'),
+            'desc_tip'    => 'true',
+            'value'       => $qty_of_addons,
+            'description' => __('Enter the quantity of addons for this variation.', 'woocommerce'),
+            'type'        => 'number',
+            'custom_attributes' => array(
+                'step' => '1',
+                'min'  => '0',
+            ),
+        )
+    );
 
-// add_action('woocommerce_product_after_variable_attributes', 'display_acf_fields_for_variations', 10, 3);
+    echo '</div>';
+}
+add_action('woocommerce_product_after_variable_attributes', 'display_variation_addons_fields', 10, 3);
 
-// // Save ACF fields for each variation
-// function save_acf_fields_for_variations($variation_id, $loop) {
-//     $acf_field_group_key = 'group_658f5d560202e'; // Replace with your ACF field group key
+// Save custom fields for each variation
+function save_variation_addons_fields($variation_id, $loop) {
+    $addon_product = $_POST['addon_product_' . $loop];
+    $quantity_of_addons = $_POST['quantity_of_addons_' . $loop];
 
-//     acf_save_post($variation_id);
-// }
+    var_dump($variation_id, $addon_product, $quantity_of_addons);
 
-// add_action('woocommerce_save_product_variation', 'save_acf_fields_for_variations', 10, 2);
+    // if (!empty($addon_product)) {
+        update_post_meta($variation_id, 'addon_product', esc_attr($addon_product));
+    // }
 
+    // if (!empty($quantity_of_addons)) {
+        update_post_meta($variation_id, 'quantity_of_addons', esc_attr($quantity_of_addons));
+    // }
+    var_dump(get_post_meta( $variation_id ));
+}
+add_action('woocommerce_save_product_variation', 'save_variation_addons_fields', 10, 2);
+
+// Helper function to get products as options
+function get_products_as_options() {
+    $args = array(
+        'post_type'      => 'product',
+        'posts_per_page' => -1,
+    );
+
+    $products = get_posts($args);
+    $options = array();
+
+    foreach ($products as $product) {
+        $options[$product->ID] = $product->post_title;
+    }
+
+    return $options;
+}
 ?>

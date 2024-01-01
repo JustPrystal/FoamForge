@@ -63,7 +63,26 @@ global $product;
 		</div>
 		<button type="submit" class="add-to-cart-btn single_add_to_cart_button button alt<?php echo esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '' ); ?>"><?php echo "Add Selection to Cart" ?> <span class="product-price"></span></button>
 	</div>
-	<?php do_action( 'woocommerce_after_add_to_cart_button' ); ?>
+	<?php
+	// Display addon product and quantity on the frontend
+add_filter('woocommerce_cart_item_name', 'display_addon_product_on_cart', 10, 3);
+function display_addon_product_on_cart($product_name, $cart_item, $cart_item_key) {
+    $addon_product_id = get_post_meta($cart_item['variation_id'], 'addon_product', true);
+    $quantity_of_addons = get_post_meta($cart_item['variation_id'], 'quantity_of_addons', true);
+
+    if ($addon_product_id && $quantity_of_addons) {
+        $addon_product = get_post($addon_product_id);
+        $addon_product_name = $addon_product ? $addon_product->post_title : '';
+
+        $addon_text = sprintf(__('Addon Product: %s (Quantity: %s)', 'woocommerce'), $addon_product_name, $quantity_of_addons);
+        $product_name .= '<br>' . $addon_text;
+    }
+
+    return $product_name;
+}
+ 
+		do_action( 'woocommerce_after_add_to_cart_button' ); 
+	?>
 
 	<input type="hidden" name="add-to-cart" value="<?php echo absint( $product->get_id() ); ?>" />
 	<input type="hidden" name="product_id" value="<?php echo absint( $product->get_id() ); ?>" />
