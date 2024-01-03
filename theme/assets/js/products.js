@@ -1,11 +1,7 @@
 jQuery(document).ready(function(){
     jQuery('.input-text.qty').change(function(){
         var that = jQuery('.add-to-cart-btn .product-price');
-        
-        // if(jQuery('.woocommerce-variation.single_variation').css('display') != 'none' || !jQuery('.woocommerce-variation.single_variation').is(':empty') || (!!jQuery(".woocommerce-variation"))){
-        // added this on the first day for idk what reason, keeping it here in case of future debugging
 
-        //changing tier display
         setTimeout(() => {
             let currentTier = jQuery(".pricing-table-wrapper .tiered-pricing--active td:first-child>span").text().trim();
             jQuery(".display-price-tier .tier").text("Current Quantity Discount Tier: " + currentTier);
@@ -13,6 +9,7 @@ jQuery(document).ready(function(){
         
         if(jQuery('.woocommerce-variation.single_variation').css('display') != 'none' || !jQuery('.woocommerce-variation.single_variation').is(':empty') ){
             var qty = jQuery(this).val();
+            console.log("bv")
             if( qty < 0 ){
                 qty = 1;
             }
@@ -256,11 +253,9 @@ jQuery(document).ready(function(){
     })
     $(".search-icon").click(function(){
         $(".search-modal").stop().fadeToggle()
-        // $("body").toggleClass("noscroll")
     })
     $(".cross").click(function(){
         $(".search-modal").stop().fadeOut()
-        // $("body").removeClass("noscroll")
     })
 
 
@@ -279,6 +274,21 @@ jQuery(document).ready(function(){
             success: function(response){
                 jQuery('.product-meta-description-box').replaceWith( response.data["html"] );
                 jQuery(".product-meta-description-box").removeClass('loading');
+
+                let updatePrice = function(){
+                    let qty = parseInt(jQuery('.input-text.qty').val());
+                    var price = jQuery(".tiered-pricing-dynamic-price-wrapper ins").length !== 0 ? jQuery(".price ins .woocommerce-Price-amount").text().replace("$", "") : jQuery(".price .woocommerce-Price-amount").text().replace("$", "");
+
+                    if($("input[name=addon_checkbox]").prop('checked')){
+                        var newPrice =  parseFloat(qty) * ( response.data["addon_price"] + parseFloat(price) );
+                    } else{
+                        var newPrice =  parseFloat(qty) * parseFloat(price);
+                    }
+                    jQuery('.add-to-cart-btn .product-price').html('$'+ newPrice.toFixed(2));
+                }
+
+                $("input[name=addon_checkbox]").change(updatePrice)
+                $('.input-text.qty').change(updatePrice)
             },
             error: function(response){
                 //ERROR Handing;
@@ -313,9 +323,9 @@ jQuery(document).ready(function(){
 
         $.ajax({
             type: 'POST',
-            url: window.ajaxUrl, // The AJAX handler URL
+            url: window.ajaxUrl,
             data: {
-                action: 'add_products_to_cart', // The server-side function to handle the request
+                action: 'add_products_to_cart',
                 products: products,
             },
             success: function (response) {
