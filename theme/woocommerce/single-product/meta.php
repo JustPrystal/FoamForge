@@ -28,10 +28,13 @@ global $product;
 	<?php if ( wc_product_sku_enabled() && ( $product->get_sku() || $product->is_type( 'variable' ) ) ) : ?>
 
 		<span class="sku_wrapper"><span class="sku"><?php echo( $sku = $product->get_sku() ) ? $sku : esc_html__( '', 'woocommerce' ); ?></span></span>
+		<?php var_dump(get_post_meta($product->ID));?>
 
 	<?php endif; ?>
-
-	<?php //echo wc_get_product_category_list( $product->get_id(), ', ', '<span class="posted_in">' . _n( 'Category:', 'Categories:', count( $product->get_category_ids() ), 'woocommerce' ) . ' ', '</span>' ); ?>
+		
+	<?php 
+	// var_dump($product);
+	//echo wc_get_product_category_list( $product->get_id(), ', ', '<span class="posted_in">' . _n( 'Category:', 'Categories:', count( $product->get_category_ids() ), 'woocommerce' ) . ' ', '</span>' ); ?>
 
 	<?php //echo wc_get_product_tag_list( $product->get_id(), ', ', '<span class="tagged_as">' . _n( 'Tag:', 'Tags:', count( $product->get_tag_ids() ), 'woocommerce' ) . ' ', '</span>' ); ?>
 

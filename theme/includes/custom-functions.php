@@ -133,9 +133,23 @@ function display_variation_addons_fields($loop, $variation_data, $variation) {
     echo '<div class="options_group">';
     $qty_of_addons = get_post_meta($variation->ID, "quantity_of_addons", true) ? get_post_meta($variation->ID, "quantity_of_addons", true) : 0;
     $selected_product_value = get_post_meta($variation->ID, "addon_product", true) ? get_post_meta($variation->ID, "addon_product", true) : 0;
+    $addons_enabled = get_post_meta($variation->ID, 'addons_enabled', true); 
+
+    echo "<br>";
+    echo "<hr>";
+    echo "<br>";
+
+    woocommerce_wp_checkbox(
+        array(
+            'id'    => 'addons_enabled_' . $loop,
+            'class' => 'checkbox',
+            'label' => __('Enable Addons', 'woocommerce'),
+            'value' => $addons_enabled,
+        )
+    );
 
     $select_args =         array(
-        'id'      => 'addon_product_' . $loop,
+        'id'      => '_addon_product' . $loop,
         'label'   => __('Addon Product', 'woocommerce'),
         'options' => get_products_as_options(),
     );
@@ -146,9 +160,10 @@ function display_variation_addons_fields($loop, $variation_data, $variation) {
 
     woocommerce_wp_select($select_args);
 
+    
     woocommerce_wp_text_input(
         array(
-            'id'          => 'quantity_of_addons_' . $loop,
+            'id'          => '_quantity_of_addons' . $loop,
             'label'       => __('Quantity of Addons', 'woocommerce'),
             'desc_tip'    => 'true',
             'value'       => $qty_of_addons,
@@ -167,19 +182,15 @@ add_action('woocommerce_product_after_variable_attributes', 'display_variation_a
 
 // Save custom fields for each variation
 function save_variation_addons_fields($variation_id, $loop) {
-    $addon_product = $_POST['addon_product_' . $loop];
-    $quantity_of_addons = $_POST['quantity_of_addons_' . $loop];
-
-    var_dump($variation_id, $addon_product, $quantity_of_addons);
-
-    // if (!empty($addon_product)) {
-        update_post_meta($variation_id, 'addon_product', esc_attr($addon_product));
-    // }
-
-    // if (!empty($quantity_of_addons)) {
-        update_post_meta($variation_id, 'quantity_of_addons', esc_attr($quantity_of_addons));
-    // }
-    var_dump(get_post_meta( $variation_id ));
+    $addon_product = $_POST['_addon_product' . $loop];
+    $quantity_of_addons = $_POST['_quantity_of_addons' . $loop];
+    $addons_enabled = isset($_POST['addons_enabled_' . $loop]) ? 'yes' : 'no';
+    
+    update_post_meta($variation_id, 'addons_enabled', $addons_enabled);
+    update_post_meta($variation_id, 'addon_product', esc_attr($addon_product));
+    update_post_meta($variation_id, 'quantity_of_addons', esc_attr($quantity_of_addons));
+    
+    
 }
 add_action('woocommerce_save_product_variation', 'save_variation_addons_fields', 10, 2);
 
@@ -199,4 +210,90 @@ function get_products_as_options() {
 
     return $options;
 }
+
+add_action("wp_ajax_ff_load_product_meta_box", "load_product_meta_box_callback");
+add_action("wp_ajax_nopriv_ff_load_product_meta_box", "load_product_meta_box_callback");
+
+function load_product_meta_box_callback(){
+    $variation_id = $_REQUEST['id'];
+    $variation = wc_get_product( $variation_id );
+
+    $addon_enabled = get_post_meta($variation_id, 'addons_enabled', true);
+    ob_start();
+    ?>
+        <div class="product-meta-description-box">
+            <div class="row">
+                <div class="item-name">
+                    <strong>SKU:</strong> <?php echo $variation->get_sku(); ?>
+                </div>
+                <div class="item-price">
+                    <strong>EACH:</strong> <?php echo wc_price($variation->get_price()); ?>
+                </div>
+            </div>
+            <?php if($addon_enabled){
+                $addon_id = get_post_meta($variation_id, 'addon_product', true);
+                $addon_qty = get_post_meta($variation_id, 'quantity_of_addons', true);
+                $addon = wc_get_product( $addon_id );
+                $s = (intval($addon_qty) > 1) ? "s" : "";
+                
+                $title = $addon->get_title();
+                $unit_price = $addon->get_price();
+                $price_per_variation = floatval($unit_price) * floatval($addon_qty);
+                
+                ?>
+                <div class="row addons-available" data-addon_id="<?php echo $addon_id?>" data-addon_qty="<?php echo $addon_qty?>">
+                    <div class="addon-message">
+                        <strong> 
+                            <label class="ff_checkbox" for="addon_checkbox_<?php echo $variation_id; ?>">
+                                <input type="checkbox" id="addon_checkbox_<?php echo $variation_id; ?>" name="addon_checkbox" value="1" />
+                                ADD <?php echo trim(str_replace(Array('The', 'the'), '', $title)) . $s . "(x" . $addon_qty . ")" . " FOR " . $variation->attributes["style"] . "?";?> 
+                                <span class="checkmark"></span>
+                            </label>                           
+                        </strong>
+                    </div>
+                    <div class="item-price">
+                        <strong>EACH:</strong> <?php echo wc_price($unit_price); ?>
+                    </div>
+                </div>
+                
+            <?php }?>
+        </div>
+    
+    <?php
+    $meta_html = ob_get_clean();
+    wp_send_json_success(array(
+        'html' => $meta_html,
+        'addon_price' => $price_per_variation,
+        'addon_checked' => isset($_POST['addon_checkbox']) ? $_POST['addon_checkbox'] : 0
+    ), 200);
+
+
+    exit();
+}
+
+
+// Server-side function to handle the AJAX request for multiple products
+function add_products_to_cart() {
+    $products = isset($_POST['products']) ? $_POST['products'] : array();
+    if (!empty($products)) {
+
+        WC()->cart->add_to_cart($products["product"], $products["product_quantity"]);
+        if($products["addon"]){
+            WC()->cart->add_to_cart($products["addon"], $products["addon_quantity"]);
+        }
+        // Return a response
+        $response = array(
+            'redirect_url' => wc_get_cart_url(), // Redirect to the cart page
+        );
+
+        wp_send_json_success($response);
+    } else {
+        wp_send_json_error('No product IDs provided');
+    }
+}
+
+// Hook to add the server-side function
+add_action('wp_ajax_add_products_to_cart', 'add_products_to_cart');
+add_action('wp_ajax_nopriv_add_products_to_cart', 'add_products_to_cart'); // For non-logged-in users
+
 ?>

@@ -31,6 +31,8 @@
       echo ' shop';
     }
   ?>">
-
+  <script>
+    window.ajaxUrl = "<?php echo admin_url('admin-ajax.php'); ?>";
+  </script>
   <div class="all">
   <?php require_once(get_stylesheet_directory(). "/navigation.php"); ?>
