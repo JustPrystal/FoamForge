@@ -395,8 +395,20 @@
                         padding: 5px 0;
                         text-transform: uppercase;
                         border-bottom: 1px solid #aaa;
+                        .label{
+                            display: flex;
+                        }
                         &:last-child{
                             margin-bottom: 20px;
+                        }
+                        .product-each{
+                            display: flex;
+                            .each-price{
+                                display: none;
+                                &.show{
+                                    display: block;
+                                }
+                            }
                         }
                         .item-price{
                             white-space: nowrap;

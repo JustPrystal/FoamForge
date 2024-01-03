@@ -7,9 +7,8 @@ jQuery(document).ready(function(){
             jQuery(".display-price-tier .tier").text("Current Quantity Discount Tier: " + currentTier);
         }, 100);
         
-        if(jQuery('.woocommerce-variation.single_variation').css('display') != 'none' || !jQuery('.woocommerce-variation.single_variation').is(':empty') ){
+        if((jQuery('.woocommerce-variation.single_variation').css('display') != 'none' || !jQuery('.woocommerce-variation.single_variation').is(':empty')  && (!$(".product-type-variable").length > 0))){
             var qty = jQuery(this).val();
-            console.log("bv")
             if( qty < 0 ){
                 qty = 1;
             }
@@ -21,9 +20,9 @@ jQuery(document).ready(function(){
                     price = jQuery(".price .woocommerce-Price-amount").text().replace("$","");
                 }
                 var newPrice = parseFloat(qty) * parseFloat(price);
-                jQuery(".add-to-cart-btn-wrap .sku-wrap .top .product-each .each-price").addClass("show")
-                jQuery(".add-to-cart-btn-wrap .sku-wrap .top .product-each .each-price .value").text("")
-                jQuery(".add-to-cart-btn-wrap .sku-wrap .top .product-each .each-price .value").text(parseFloat(price))
+                jQuery(".add-to-cart-btn-wrap .sku-wrap .row .product-each .each-price").addClass("show")
+                jQuery(".add-to-cart-btn-wrap .sku-wrap .row .product-each .each-price .value").text("")
+                jQuery(".add-to-cart-btn-wrap .sku-wrap .row .product-each .each-price .value").text(parseFloat(price))
                 that.html('$'+ newPrice.toFixed(2));
             }, 100);
         }
@@ -80,16 +79,16 @@ jQuery(document).ready(function(){
             jQuery('.add-to-cart-btn .product-price').html('');
         }else{
             jQuery('button.add-to-cart-btn').addClass('active');
-            // let fire = setInterval(() => {
-            //     if ($('.tpt__tiered-pricing').children().length > 0){
-            //         let currentTier = jQuery(".pricing-table-wrapper .tiered-pricing--active td:first-child>span").text().trim();
-            //         jQuery(".display-price-tier .tier").text("Current Quantity Discount Tier: " + currentTier);
-            //         jQuery(".display-price-tier").addClass("show")
-            //         clearInterval(fire);
-            //     }else{
-            //         console.log("table loading...")
-            //     }
-            // }, 100);
+            let fire = setInterval(() => {
+                if ($('.tpt__tiered-pricing').children().length > 0){
+                    let currentTier = jQuery(".pricing-table-wrapper .tiered-pricing--active td:first-child>span").text().trim();
+                    jQuery(".display-price-tier .tier").text("Current Quantity Discount Tier: " + currentTier);
+                    jQuery(".display-price-tier").addClass("show")
+                    clearInterval(fire);
+                }else{
+                    console.log("table loading...")
+                }
+            }, 100);
         }
     })
     
