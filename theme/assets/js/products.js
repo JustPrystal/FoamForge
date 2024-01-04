@@ -1,4 +1,5 @@
 jQuery(document).ready(function(){
+    jQuery(".input-text.qty").val(1);
     jQuery('.input-text.qty').change(function(){
         var that = jQuery('.add-to-cart-btn .product-price');
 
@@ -7,26 +8,26 @@ jQuery(document).ready(function(){
             jQuery(".display-price-tier .tier").text("Current Quantity Discount Tier: " + currentTier);
         }, 100);
         
-        if((jQuery('.woocommerce-variation.single_variation').css('display') != 'none' || !jQuery('.woocommerce-variation.single_variation').is(':empty')  && (!$(".product-type-variable").length > 0))){
+        if(!$(".product-type-variable").length > 0){
             var qty = jQuery(this).val();
             if( qty < 0 ){
                 qty = 1;
             }
             setTimeout(() => {
-                var price;
-                if (jQuery(".tiered-pricing-dynamic-price-wrapper").find("ins").length != 0){
-                    price = jQuery(".price ins .woocommerce-Price-amount").text().replace("$","");
-                }else{
-                    price = jQuery(".price .woocommerce-Price-amount").text().replace("$","");
+                var price = jQuery(".tiered-pricing-dynamic-price-wrapper ins").length !== 0 ? jQuery(".price ins .woocommerce-Price-amount").text().replace("$", "") : jQuery(".price .woocommerce-Price-amount").text().replace("$", "");
+
+                if ($('.tpt__tiered-pricing').children().length > 0){
+                    let currentTier = jQuery(".pricing-table-wrapper .tiered-pricing--active td:first-child>span").text().trim();
+                    jQuery(".display-price-tier .tier").text("Current Quantity Discount Tier: " + currentTier);
+                    jQuery(".display-price-tier").addClass("show")
                 }
+
                 var newPrice = parseFloat(qty) * parseFloat(price);
                 jQuery(".add-to-cart-btn-wrap .sku-wrap .row .product-each .each-price").addClass("show")
                 jQuery(".add-to-cart-btn-wrap .sku-wrap .row .product-each .each-price .value").text("")
                 jQuery(".add-to-cart-btn-wrap .sku-wrap .row .product-each .each-price .value").text(parseFloat(price))
                 that.html('$'+ newPrice.toFixed(2));
             }, 100);
-        }
-        if($(".product").hasClass("product-type-simple")){
             $('button.add-to-cart-btn').addClass('active');
         }
     })
@@ -79,16 +80,6 @@ jQuery(document).ready(function(){
             jQuery('.add-to-cart-btn .product-price').html('');
         }else{
             jQuery('button.add-to-cart-btn').addClass('active');
-            let fire = setInterval(() => {
-                if ($('.tpt__tiered-pricing').children().length > 0){
-                    let currentTier = jQuery(".pricing-table-wrapper .tiered-pricing--active td:first-child>span").text().trim();
-                    jQuery(".display-price-tier .tier").text("Current Quantity Discount Tier: " + currentTier);
-                    jQuery(".display-price-tier").addClass("show")
-                    clearInterval(fire);
-                }else{
-                    console.log("table loading...")
-                }
-            }, 100);
         }
     })
     
@@ -273,7 +264,14 @@ jQuery(document).ready(function(){
             success: function(response){
                 jQuery('.product-meta-description-box').replaceWith( response.data["html"] );
                 jQuery(".product-meta-description-box").removeClass('loading');
-
+                setTimeout(() => {
+                    if ($('.tpt__tiered-pricing').children().length > 0){
+                        let currentTier = jQuery(".pricing-table-wrapper .tiered-pricing--active td:first-child>span").text().trim();
+                        jQuery(".display-price-tier .tier").text("Current Quantity Discount Tier: " + currentTier);
+                        jQuery(".display-price-tier").addClass("show")
+                        clearInterval(fire);
+                    }
+                }, 100);
                 let updatePrice = function(){
                     let qty = parseInt(jQuery('.input-text.qty').val());
                     var price = jQuery(".tiered-pricing-dynamic-price-wrapper ins").length !== 0 ? jQuery(".price ins .woocommerce-Price-amount").text().replace("$", "") : jQuery(".price .woocommerce-Price-amount").text().replace("$", "");
@@ -282,7 +280,9 @@ jQuery(document).ready(function(){
                         var newPrice =  parseFloat(qty) * ( response.data["addon_price"] + parseFloat(price) );
                     } else{
                         var newPrice =  parseFloat(qty) * parseFloat(price);
-                    }
+                    }   
+                    jQuery(".product-meta-description-box .row.product .item-price").html("")
+                    jQuery(".product-meta-description-box .row.product .item-price").html("<strong>EACH: </strong>$" + parseFloat(price))
                     jQuery('.add-to-cart-btn .product-price').html('$'+ newPrice.toFixed(2));
                 }
 
@@ -306,7 +306,7 @@ jQuery(document).ready(function(){
 
         let productID = parseInt($(this).attr("data-product_id"));
         products["product"] = productID;
-        
+
         let variationID = parseInt($(this).find(".variation_id").attr("value"));
         if(variationID){
             products["product"] = variationID;

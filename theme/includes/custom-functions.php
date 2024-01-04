@@ -222,7 +222,7 @@ function load_product_meta_box_callback(){
     ob_start();
     ?>
         <div class="product-meta-description-box">
-            <div class="row">
+            <div class="row product">
                 <div class="item-name">
                     <strong>SKU:</strong> <?php echo $variation->get_sku(); ?>
                 </div>
@@ -241,7 +241,7 @@ function load_product_meta_box_callback(){
                 $price_per_variation = floatval($unit_price) * floatval($addon_qty);
                 
                 ?>
-                <div class="row addons-available" data-addon_id="<?php echo $addon_id?>" data-addon_qty="<?php echo $addon_qty?>">
+                <div class="row addon addons-available" data-addon_id="<?php echo $addon_id?>" data-addon_qty="<?php echo $addon_qty?>">
                     <div class="addon-message">
                         <strong> 
                             <label class="ff_checkbox" for="addon_checkbox_<?php echo $variation_id; ?>">
@@ -276,7 +276,11 @@ function load_product_meta_box_callback(){
 function add_products_to_cart() {
     $products = isset($_POST['products']) ? $_POST['products'] : array();
     if (!empty($products)) {
-
+        $product = wc_get_product($products["product"]);
+        if ($product && $product->is_in_stock()) {
+            $stock_quantity = wc_get_product_stock_quantity($product);
+        }
+        
         WC()->cart->add_to_cart($products["product"], $products["product_quantity"]);
         if($products["addon"]){
             WC()->cart->add_to_cart($products["addon"], $products["addon_quantity"]);
