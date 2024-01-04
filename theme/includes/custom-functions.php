@@ -276,11 +276,11 @@ function load_product_meta_box_callback(){
 function add_products_to_cart() {
     $products = isset($_POST['products']) ? $_POST['products'] : array();
     if (!empty($products)) {
-        $product = wc_get_product($products["product"]);
-        if ($product && $product->is_in_stock()) {
-            $stock_quantity = wc_get_product_stock_quantity($product);
-        }
-        
+        // $product = wc_get_product($products["product"]);
+        // if ($product && $product->is_in_stock()) {
+        //     $stock_quantity = wc_get_product_stock_quantity($product);
+        // }
+
         WC()->cart->add_to_cart($products["product"], $products["product_quantity"]);
         if($products["addon"]){
             WC()->cart->add_to_cart($products["addon"], $products["addon_quantity"]);
