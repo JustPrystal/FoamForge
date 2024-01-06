@@ -271,30 +271,84 @@ function load_product_meta_box_callback(){
     exit();
 }
 
+function inventory_check(){
 
+}
 // Server-side function to handle the AJAX request for multiple products
 function add_products_to_cart() {
     $products = isset($_POST['products']) ? $_POST['products'] : array();
-    if (!empty($products)) {
-        // $product = wc_get_product($products["product"]);
-        // if ($product && $product->is_in_stock()) {
-        //     $stock_quantity = wc_get_product_stock_quantity($product);
-        // }
+    $data = array();
 
-        WC()->cart->add_to_cart($products["product"], $products["product_quantity"]);
-        if($products["addon"]){
-            WC()->cart->add_to_cart($products["addon"], $products["addon_quantity"]);
-        }
-        // Return a response
-        $response = array(
-            'redirect_url' => wc_get_cart_url(), // Redirect to the cart page
+    if (empty($products)) {
+        $output = array(
+            'error' => 'Something went wrong.',
         );
-
-        wp_send_json_success($response);
+        wp_send_json($data);
+        return;
     } else {
-        wp_send_json_error('No product IDs provided');
+        foreach ($products as $item) {
+            if ($item['quantity'] == 0) {
+                continue;
+            }
+            
+            $product = wc_get_product($item['ID']);
+            $product_id = $item['ID'];
+
+            $cart = WC()->cart->get_cart();
+            foreach ($cart as $cart_item) {
+                if($cart_item['variation_id']){
+                    if ($cart_item["variation_id"] == $product_id){
+                        $product_cart_qty = $cart_item["quantity"];
+                    }
+                }else {
+                    if ($cart_item["product_id"] == $product_id){
+                        $product_cart_qty = $cart_item["quantity"];
+                    }
+                }
+            }
+            $quantity = $item['quantity'];
+            $passed_validation = apply_filters('woocommerce_add_to_cart_validation', true, $product_id, $quantity);
+            $product_stock_qty = $product->get_stock_quantity();
+            $product_available_qty = $product_stock_qty - $product_cart_qty;
+
+            if (!(is_null($product_stock_qty) || ($product_available_qty >= $quantity))) {
+                if($product_available_qty == 0){
+                    $output = array(
+                        'error' => 'No more "' . $product->get_name() . '" available.',
+                    );
+                } else if($product_available_qty == 1) {
+                    $output = array(
+                        'error' => 'Only ' . $product_available_qty . ' "' . $product->get_name() . '" left to add to cart.',
+                    );
+                } else {
+                    $output = array(
+                        'error' => 'Please select a quantity less than or equal to ' . $product_available_qty . ' for "' . $product->get_name() . '" .',
+                    );
+                }
+                array_push($data, $output);
+                break; 
+            } elseif (!$passed_validation) {
+                $output = array(
+                    'error' => 'Something went wrong with adding "' . $product->get_name() . '" to cart.',
+                );
+                array_push($data, $output);
+                break; 
+            } else {
+                WC()->cart->add_to_cart($product_id, $quantity);
+                $output = array(
+                    'message' => '"' . $product->get_name() . '" (x' . $quantity . ') added to cart.',
+                    'redirect_to' => wc_get_cart_url(),
+                );
+                array_push($data, $output);
+            }
+        }
+
+        wp_send_json($data);
+
+        die();
     }
 }
+
 
 // Hook to add the server-side function
 add_action('wp_ajax_add_products_to_cart', 'add_products_to_cart');

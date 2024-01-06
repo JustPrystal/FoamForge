@@ -1,5 +1,4 @@
 jQuery(document).ready(function(){
-    jQuery(".input-text.qty").val(1);
     jQuery('.input-text.qty').change(function(){
         var that = jQuery('.add-to-cart-btn .product-price');
 
@@ -269,7 +268,6 @@ jQuery(document).ready(function(){
                         let currentTier = jQuery(".pricing-table-wrapper .tiered-pricing--active td:first-child>span").text().trim();
                         jQuery(".display-price-tier .tier").text("Current Quantity Discount Tier: " + currentTier);
                         jQuery(".display-price-tier").addClass("show")
-                        clearInterval(fire);
                     }
                 }, 100);
                 let updatePrice = function(){
@@ -300,24 +298,20 @@ jQuery(document).ready(function(){
         e.preventDefault();
 
         let products = {};
+        products["product"] = {
+            "ID" : parseInt($(this).attr("data-product_id")),
+            "quantity" : parseInt(jQuery('.input-text.qty').val()),
+        };
 
-        let qty = parseInt(jQuery('.input-text.qty').val());
-        products["product_quantity"] = qty;
-
-        let productID = parseInt($(this).attr("data-product_id"));
-        products["product"] = productID;
-
-        let variationID = parseInt($(this).find(".variation_id").attr("value"));
-        if(variationID){
-            products["product"] = variationID;
+        if(jQuery(".product-type-variable").length > 0){
+            products["product"]["ID"] = parseInt($(this).find(".variation_id").attr("value"));
         }
 
         if($("input[name=addon_checkbox]").prop('checked')){
-            let addonID = parseInt(jQuery(".addons-available").attr("data-addon_id"))
-            products["addon"] = addonID;
-
-            let addonQty = parseInt(jQuery(".addons-available").attr("data-addon_qty")) * qty;
-            products["addon_quantity"] = addonQty;
+            products["addon"] = {
+                "ID": parseInt(jQuery(".addons-available").attr("data-addon_id")),
+                "quantity": parseInt(jQuery(".addons-available").attr("data-addon_qty")) * products["product"]["quantity"],
+            };        
         }
 
         $.ajax({
@@ -328,8 +322,20 @@ jQuery(document).ready(function(){
                 products: products,
             },
             success: function (response) {
-                // Redirect to the cart page after adding products
-                // window.location.href = response.redirect_url;
+                $('.ff_notices .ff_notices-wrap').html("")
+                response.forEach(item => {
+                    var div = $('<div class="ff_notice">');
+                    if (item["message"]) {
+                        div.addClass("success");
+                        div.text(item["message"]);
+                        $(".redirect-cart").attr("href", item["redirect_to"]);
+                        $(".redirect-cart").text("View Cart");
+                    } else if (item["error"]) {
+                        div.addClass("error");
+                        div.text(item["error"]);
+                    }
+                    $('.ff_notices .ff_notices-wrap').append(div);
+                });
             },
         });
    

@@ -507,6 +507,25 @@
                     }
                 }
             }
+            .ff_notices{
+                margin-top: 20px;
+                display: flex;
+                justify-content: space-between;
+                align-items: baseline;
+                .redirect-cart{
+                    font-size: 14px;
+                    font-weight: 800;
+                    color: #272727;
+                }
+                .ff_notice{
+                    font-size: 12px;
+                    font-weight: 800;
+                    padding: 4px 10px;
+                    &.error{
+                        color: #990000;
+                    }
+                }
+            }
         }
         .woocommerce-notices-wrapper{
             margin-bottom: 30px;

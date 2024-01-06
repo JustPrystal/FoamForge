@@ -96,6 +96,10 @@ if ( $product->is_in_stock() ) : ?>
 			</div>
 			<button type="submit" class="add-to-cart-btn single_add_to_cart_button button alt<?php echo esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '' ); ?>"><?php echo "Add Selection to Cart" ?> <span class="product-price"></span></button>
 		</div>
+		<div class="ff_notices">
+			<div class="ff_notices-wrap"></div>
+			<a href="" class="redirect-cart"></a>
+		</div>
 		<?php do_action( 'woocommerce_after_add_to_cart_button' ); ?>
 	</form>
 
