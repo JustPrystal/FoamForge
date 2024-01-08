@@ -76,12 +76,13 @@
                 justify-content: start;
                 width:50%;
                 flex-direction: column;
-                transition:all .5s ease; 
+                transition:all .3s ease-in-out; 
                 overflow:auto;
-
+                
             }
             @include responsive(sm){
-                width:100%;
+                width:80%;
+                right:-80%;
             }
             &.active{
                 @include responsive(md){
@@ -91,9 +92,10 @@
             .menu-item{
                 padding:40px 35px;
                 @include responsive(md){
-                    padding:20px;
+                    padding:20px 0;
                 }
-                a{
+                &>a{
+                    padding:0 20px;
                     font-size:18px;
                     text-transform:uppercase;
                     color:#000;
@@ -115,11 +117,14 @@
                     left:0;
                     right:0;
                     top:99px;
+                    margin-top: 10px;
+                    border-top: 1px solid #b7b7b7;
+                    border-bottom: 1px solid #b7b7b7;
                     @include responsive(md){
                         position:static;
                         width:unset;
                         left:unset;
-                        background-color:unset;
+                        background-color:#fff;
                         right:unset;
                         top:unset;
                     }
@@ -136,15 +141,31 @@
                         }
                         .menu-col{
                             flex: 0 0 25%;
+                            padding-left: 10px;
                             .submenu-item{
                                 a{
                                   font-weight:600;  
+                                  text-transform:uppercase;
+                                  color:#000;
+                                  font-size: 14px;
+                                  text-decoration:none;
+                                  transition:0.3s all ease;
+                                  line-height:1;
+                                  &:hover{
+                                      text-shadow:0 0 0.8px #000;
+                                  }
+                                  &.active{
+                                      text-shadow:0 0 0.8px #000;
+                                  }
                                 }
                                 .child-menu{
-                                    margin-top:20px;
+                                    margin-top:10px;
+                                    padding-left: 10px;
+                                    margin-bottom: 20px;
+
                                     .child-item{
                                         a{
-                                            font-size:14px;
+                                            font-size:18px;
                                             text-transform:none;
                                             font-weight:400;
                                             margin-bottom:10px;

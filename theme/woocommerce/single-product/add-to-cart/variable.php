@@ -99,7 +99,7 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 				</div>
 			<?php endforeach; ?>
 		</div>
-		
+		<?php echo end( $attribute_keys ) === $attribute_name ? wp_kses_post( apply_filters( 'woocommerce_reset_variations_link', '<a class="reset_variations" href="#">' . esc_html__( 'Reset Variations', 'woocommerce' ) . '</a>' ) ) : ''; ?>
 		<?php do_action( 'woocommerce_after_variations_table' ); ?>
 
 		<div class="single_variation_wrap">

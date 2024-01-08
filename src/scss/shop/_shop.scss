@@ -204,7 +204,7 @@ body.shop{
                 width: 250px;
                 min-width: 250px;
                 background-color: white;
-                transition: all .5s ease ;
+                transition: all .3s ease-in-out ;
                 @include responsive(sm){
                     position: fixed;
                     top: 135px;

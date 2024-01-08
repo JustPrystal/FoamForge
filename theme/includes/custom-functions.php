@@ -243,13 +243,11 @@ function load_product_meta_box_callback(){
                 ?>
                 <div class="row addon addons-available" data-addon_id="<?php echo $addon_id?>" data-addon_qty="<?php echo $addon_qty?>">
                     <div class="addon-message">
-                        <strong> 
-                            <label class="ff_checkbox" for="addon_checkbox_<?php echo $variation_id; ?>">
-                                <input type="checkbox" id="addon_checkbox_<?php echo $variation_id; ?>" name="addon_checkbox" value="1" />
-                                ADD <?php echo trim(str_replace(Array('The', 'the'), '', $title)) . $s . "(x" . $addon_qty . ")" . " FOR " . $variation->attributes["style"] . "?";?> 
-                                <span class="checkmark"></span>
-                            </label>                           
-                        </strong>
+                        <label class="ff_checkbox" for="addon_checkbox_<?php echo $variation_id; ?>">
+                            <input type="checkbox" id="addon_checkbox_<?php echo $variation_id; ?>" name="addon_checkbox" value="1" />
+                            ADD <?php echo trim(str_replace(Array('The', 'the'), '', $title)) . $s . "(x" . $addon_qty . ")" . " FOR " . $variation->attributes["style"] . "?";?> 
+                            <span class="checkmark"></span>
+                        </label>  
                     </div>
                     <div class="item-price">
                         <strong>EACH:</strong> <?php echo wc_price($unit_price); ?>

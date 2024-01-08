@@ -4,7 +4,7 @@ jQuery(document).ready(function(){
 
         setTimeout(() => {
             let currentTier = jQuery(".pricing-table-wrapper .tiered-pricing--active td:first-child>span").text().trim();
-            jQuery(".display-price-tier .tier").text("Current Quantity Discount Tier: " + currentTier);
+            jQuery(".display-price-tier .tier").text("Quantity Discount Tier: " + currentTier);
         }, 100);
         
         if(!$(".product-type-variable").length > 0){
@@ -17,7 +17,7 @@ jQuery(document).ready(function(){
 
                 if ($('.tpt__tiered-pricing').children().length > 0){
                     let currentTier = jQuery(".pricing-table-wrapper .tiered-pricing--active td:first-child>span").text().trim();
-                    jQuery(".display-price-tier .tier").text("Current Quantity Discount Tier: " + currentTier);
+                    jQuery(".display-price-tier .tier").text("Quantity Discount Tier: " + currentTier);
                     jQuery(".display-price-tier").addClass("show")
                 }
 
@@ -63,6 +63,11 @@ jQuery(document).ready(function(){
     });
     jQuery('form.variations_form .reset_variations').click(function(){
         jQuery(this).attr('style', '');
+        jQuery(".display-price-tier").removeClass("show")
+        jQuery(".switch-item").removeClass("active")
+        jQuery(".variation-conversion-imperial").html("")
+        jQuery(".product-meta-description-box").html("")
+        jQuery('button.add-to-cart-btn').removeClass('active');
     })
     jQuery('form.variations_form .variations select').change(function(){
         var isEmpty = checkAllVariations();
@@ -266,7 +271,7 @@ jQuery(document).ready(function(){
                 setTimeout(() => {
                     if ($('.tpt__tiered-pricing').children().length > 0){
                         let currentTier = jQuery(".pricing-table-wrapper .tiered-pricing--active td:first-child>span").text().trim();
-                        jQuery(".display-price-tier .tier").text("Current Quantity Discount Tier: " + currentTier);
+                        jQuery(".display-price-tier .tier").text("Quantity Discount Tier: " + currentTier);
                         jQuery(".display-price-tier").addClass("show")
                     }
                 }, 100);
@@ -286,10 +291,10 @@ jQuery(document).ready(function(){
 
                 $("input[name=addon_checkbox]").change(updatePrice)
                 $('.input-text.qty').change(updatePrice)
+
             },
             error: function(response){
                 //ERROR Handing;
-                console.log(response);
                 jQuery(".product-meta-description-box").removeClass('loading');
             }
         })
