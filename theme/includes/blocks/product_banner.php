@@ -26,11 +26,11 @@
         <?php if ($desktop_section_height){ ?>
                 height: <?php echo $desktop_section_height ?>px;
         <?php } else { ?>
-            height: 800px;            
+            height: auto;            
         <?php } ?>
         background-position: center;
         background-repeat: no-repeat;
-        background-size: contain;
+        background-size: cover;
         display: flex;
         align-items: center;
         margin: 30px 0;
@@ -75,7 +75,7 @@
             <?php if ($tablet_section_height){ ?>
                     height: <?php echo $tablet_section_height ?>px;
             <?php } else { ?>
-                height: 600px;            
+                height: auto;            
             <?php } ?>
             display: flex;
             align-items: flex-end;
@@ -103,7 +103,7 @@
             <?php if ($mobile_section_height){ ?>
                     height: <?php echo $mobile_section_height ?>px;
             <?php }  else { ?>
-                height: 500px;            
+                height: auto;            
             <?php } ?>
             display: flex;
             align-items: flex-end;
