@@ -266,6 +266,8 @@ jQuery(document).ready(function(){
                 id: variation_id,
             },
             success: function(response){
+                console.log(response)
+
                 jQuery('.product-meta-description-box').replaceWith( response.data["html"] );
                 jQuery(".product-meta-description-box").removeClass('loading');
                 setTimeout(() => {
@@ -296,6 +298,7 @@ jQuery(document).ready(function(){
             error: function(response){
                 //ERROR Handing;
                 jQuery(".product-meta-description-box").removeClass('loading');
+                console.log(response)
             }
         })
     });

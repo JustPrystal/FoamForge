@@ -65,15 +65,17 @@ if ( post_password_required() ) {
 					<?php echo get_field('content_after_image');?>
 				</div>
 			<?php }?>
+			<?php if(count($images) > 1) {?>
 			<div class="product-slider-thumbs <?php if(count($images) > 3){ echo 'slider-active'; }?>">
-				<?php
-					$i = 0;
-					foreach($images as $image){?>
-					<div class="slide-item" data-slick-index="<?php echo $i;?>">
-						<img src="<?php echo wp_get_attachment_image_url($image , 'large')?>" alt="">
-					</div>
-					<?php $i++;} ?>
-			</div>
+					<?php
+						$i = 0;
+						foreach($images as $image){?>
+						<div class="slide-item" data-slick-index="<?php echo $i;?>">
+							<img src="<?php echo wp_get_attachment_image_url($image , 'large')?>" alt="">
+						</div>
+						<?php $i++;} ?>
+				</div>
+			<?php } ?>
 		</div>
 		<div class="column summary-col">
 			<div class="title-wrap">

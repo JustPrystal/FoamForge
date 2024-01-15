@@ -217,7 +217,6 @@ add_action("wp_ajax_nopriv_ff_load_product_meta_box", "load_product_meta_box_cal
 function load_product_meta_box_callback(){
     $variation_id = $_REQUEST['id'];
     $variation = wc_get_product( $variation_id );
-
     $addon_enabled = get_post_meta($variation_id, 'addons_enabled', true);
     ob_start();
     ?>
@@ -230,7 +229,7 @@ function load_product_meta_box_callback(){
                     <strong>EACH:</strong> <?php echo wc_price($variation->get_price()); ?>
                 </div>
             </div>
-            <?php if($addon_enabled){
+            <?php if($addon_enabled === "yes"){
                 $addon_id = get_post_meta($variation_id, 'addon_product', true);
                 $addon_qty = get_post_meta($variation_id, 'quantity_of_addons', true);
                 $addon = wc_get_product( $addon_id );
