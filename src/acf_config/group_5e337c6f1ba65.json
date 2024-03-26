@@ -206,6 +206,38 @@
                     ],
                     "min": "",
                     "max": ""
+                },
+                "layout_6601fc5112a9e": {
+                    "key": "layout_6601fc5112a9e",
+                    "name": "help_&_support",
+                    "label": "Help & Support",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_660226274ece0",
+                            "label": "fields",
+                            "name": "fields",
+                            "aria-label": "",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_660225d786811"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
                 }
             },
             "min": "",
@@ -242,5 +274,5 @@
     "active": true,
     "description": "Block Chooser for all content types that will have blocks.",
     "show_in_rest": 0,
-    "modified": 1704841070
+    "modified": 1711416900
 }
