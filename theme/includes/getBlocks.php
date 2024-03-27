@@ -38,9 +38,6 @@
             case 'product_banner':
               include 'blocks/product_banner.php';
               break;
-            case 'help_&_support':
-              include 'blocks/help_&_support.php';
-              break;
           }
         }
       }

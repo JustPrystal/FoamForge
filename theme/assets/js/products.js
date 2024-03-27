@@ -99,7 +99,16 @@ jQuery(document).ready(function(){
             jQuery(this).parent().find('.accordion-body').slideDown();
         }
     })
-    
+    jQuery(".variation-item select").change(function(){
+        for (let i = 1; i < ($(".variation-item").length - $(this).parents(".variation-item").index() ); i++) {
+            var indexOfVariationThatNeedsToBeReset = $(this).parents(".variation-item").index() + i;
+            $(".variation-item").eq(indexOfVariationThatNeedsToBeReset).find("select").val("").change()
+            $(".variation-item").eq(indexOfVariationThatNeedsToBeReset).find(".switch-item").removeClass("active")
+            jQuery(".variation-conversion-imperial").html("")
+            jQuery(".product-meta-description-box").html("")
+            jQuery('button.add-to-cart-btn').removeClass('active');
+        }
+    })
     jQuery(document.body).on('click', '.variation-item .custom-switches .switch-item', function(){
         var val = jQuery(this).data('val');
         jQuery(this).parents('.value').find('select').val(val).change();

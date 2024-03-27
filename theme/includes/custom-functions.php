@@ -351,4 +351,87 @@ function add_products_to_cart() {
 add_action('wp_ajax_add_products_to_cart', 'add_products_to_cart');
 add_action('wp_ajax_nopriv_add_products_to_cart', 'add_products_to_cart'); // For non-logged-in users
 
+function cptui_register_my_cpts() {
+
+	/**
+	 * Post Type: Help & Support.
+	 */
+
+	$general_args = [
+		"label" => esc_html__( "Help & Support", "custom-post-type-ui" ),
+		"labels" => [
+            "name" => esc_html__( "Help & Support", "custom-post-type-ui" ),
+            "singular_name" => esc_html__( "Help & Support", "custom-post-type-ui" ),
+        ],
+		"description" => "",
+		"public" => true,
+		"publicly_queryable" => true,
+		"show_ui" => true,
+		"show_in_rest" => true,
+		"rest_base" => "",
+		"rest_controller_class" => "WP_REST_Posts_Controller",
+		"rest_namespace" => "wp/v2",
+		"has_archive" => true,
+		"show_in_menu" => true,
+		"show_in_nav_menus" => true,
+		"delete_with_user" => false,
+		"exclude_from_search" => false,
+		"capability_type" => "post",
+		"map_meta_cap" => true,
+		"hierarchical" => true,
+		"can_export" => false,
+		"rewrite" => [ "slug" => "help", "with_front" => false ],
+		"query_var" => true,
+		"supports" => [ "title", "editor", "thumbnail", "page-attributes" ],
+		"show_in_graphql" => false,
+	];
+
+	register_post_type( "help-support", $general_args );
+
+    // $legal_args = [
+	// 	"label" => esc_html__( "Legal Support", "custom-post-type-ui" ),
+	// 	"labels" => [
+    //         "name" => esc_html__( "Legal Support", "custom-post-type-ui" ),
+    //         "singular_name" => esc_html__( "Legal Support", "custom-post-type-ui" ),
+    //     ],
+	// 	"description" => "",
+	// 	"public" => true,
+	// 	"publicly_queryable" => true,
+	// 	"show_ui" => true,
+	// 	"show_in_rest" => true,
+	// 	"rest_base" => "",
+	// 	"rest_controller_class" => "WP_REST_Posts_Controller",
+	// 	"rest_namespace" => "wp/v2",
+	// 	"has_archive" => false,
+	// 	"show_in_menu" => true,
+	// 	"show_in_nav_menus" => true,
+	// 	"delete_with_user" => false,
+	// 	"exclude_from_search" => false,
+	// 	"capability_type" => "post",
+	// 	"map_meta_cap" => true,
+	// 	"hierarchical" => true,
+	// 	"can_export" => false,
+	// 	"rewrite" => [ "slug" => "legal-support", "with_front" => true ],
+	// 	"query_var" => true,
+	// 	"supports" => [ "title", "editor", "thumbnail", "page-attributes" ],
+	// 	"show_in_graphql" => false,
+	// ];
+
+	// register_post_type( "legal-support", $legal_args );
+}
+
+add_action( 'init', 'cptui_register_my_cpts' );
+
+function get_top_level_parent($post){
+
+    while ($post->post_parent != 0) {
+        // Get the parent post
+        $parent_post = get_post($post->post_parent);
+        // Update $post to the parent post
+        $post = $parent_post;
+    }
+
+    return $post->ID;
+}
+
 ?>
