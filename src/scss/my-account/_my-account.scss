@@ -1,0 +1,89 @@
+
+.woocommerce{
+    display: flex;
+    .woocommerce-MyAccount-navigation{
+        width: 30%;
+        ul{
+            list-style: none;
+            border: 1px solid #e0e0e0;
+            border-right: 0;
+            padding: 0;
+            margin: 0;
+            li{
+                border-bottom: 1px solid #e9e9e9;
+                transition: 0.2s;
+                cursor: pointer;
+                &:last-child{
+                    border-bottom: 0;
+                }
+                &:nth-child(2n){
+                    background-color: #e9e9e9;
+                }
+                a{
+                    padding: 20px;
+                    width: 100%;
+                    color: #000000;
+                    text-transform: uppercase;
+                    text-decoration: none;
+                    transition: 0.2s;
+                }
+                &:hover{
+                    background-color: #e0e0e0;
+                    a{
+                        text-shadow: 0 0 0.8px #000;
+                    }
+                }
+            }
+        }
+    }
+    .woocommerce-MyAccount-content{
+        width: 70%;
+        padding: 20px;
+        border: 1px solid #e0e0e0;
+        a{
+            color: #727272;
+            font-weight: 600;
+            &:hover{
+                color: #000;
+            }
+        }
+        .woocommerce-info{
+            border-top-color: #727272;
+            &::before{
+                color: #727272;
+            }
+        }
+    }
+    //logout
+    .u-columns{
+        h2{
+            text-transform: uppercase;
+        }
+        a{
+            color: #727272;
+            font-weight: 600;
+            &:hover{
+                color: black;
+            }
+        }
+    }
+    //fields
+    input[type=text], input[type=password], input[type=number], input[type=email]{
+        height: 40px;
+        border: 1px solid #aaa;
+        border-radius: 4px;
+        font-family: "Gilroy";
+        font-size: 16px;
+        padding-left: 18px;
+    }
+    //buttons{
+        button.button{
+            font-family: "gilroy";
+            background-color: #e9e9e9;
+            transition: 0.1s;
+            &:hover{
+                background-color: #d4d4d4;
+
+            }
+        }
+}
