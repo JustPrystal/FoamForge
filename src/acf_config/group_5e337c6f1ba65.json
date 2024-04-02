@@ -206,7 +206,6 @@
                     ],
                     "min": "",
                     "max": ""
-<<<<<<< HEAD
                 },
                 "layout_6601fc5112a9e": {
                     "key": "layout_6601fc5112a9e",
@@ -239,8 +238,6 @@
                     ],
                     "min": "",
                     "max": ""
-=======
->>>>>>> 5240d11039a29c1cac4eede34b5ccde0cb3c14f3
                 }
             },
             "min": "",
@@ -277,9 +274,5 @@
     "active": true,
     "description": "Block Chooser for all content types that will have blocks.",
     "show_in_rest": 0,
-<<<<<<< HEAD
     "modified": 1711416900
-=======
-    "modified": 1704841070
->>>>>>> 5240d11039a29c1cac4eede34b5ccde0cb3c14f3
 }
