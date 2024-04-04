@@ -15,8 +15,8 @@
  * @version 7.0.1
  */
 
-defined( 'ABSPATH' ) || exit;
-
+defined( 'ABSPATH' ) || exit;?>
+<div class="cart-wrapper"><?php
 /*
  * @hooked wc_empty_cart_message - 10
  */
@@ -37,3 +37,4 @@ if ( wc_get_page_id( 'shop' ) > 0 ) : ?>
 		</a>
 	</p>
 <?php endif; ?>
+</div>

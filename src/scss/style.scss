@@ -28,8 +28,14 @@ Version: THEME_VERSION
 //Help
 @import './help/single-help_and_support.scss';
 
-//Acoount
+//Acount
 @import './my-account/my-account';
+
+//cart
+@import './cart/cart';
+
+//checkout
+@import './checkout/checkout';
 
 table.xdebug-error.xe-warning {
     display: none;

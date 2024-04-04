@@ -1,0 +1,300 @@
+.checkout-wrapper{
+    display: block;
+    .woocommerce-form-coupon-toggle{
+        .woocommerce-info{
+            border-top-color: #343434;
+            &::before{
+                color: #343434;
+            }
+            a{
+                color: #000000;
+                font-weight: 500;
+            }
+        }
+    }
+    form{
+        .form-row{
+            label{
+                font-size: 16px;
+                line-height: 1.8em;
+                @include responsive(xs){
+                    font-size: 12px;
+                }
+            }
+            .woocommerce-input-wrapper{
+                .input-text{
+                    padding: 8px;
+                    font-family: "Gilroy";
+                    color: #444;
+                    font-size: 16px;
+                    @include responsive(xs){
+                        font-size: 12px;
+                    }
+                    border: 1px solid #aaa;
+                    border-radius: 4px;
+                }
+            }
+        }
+    }
+    .woocommerce-checkout{
+        display: flex;
+        gap: 20px;
+        @include responsive(sm){
+            flex-direction: column;
+        }
+        .col2-set{
+            display: flex;
+            flex-direction: column;
+            .col-1{
+                margin-bottom: 12px;
+                width: 100%;
+                @include responsive(sm){
+                    margin-bottom: 10px;
+                }
+                .woocommerce-billing-fields{
+                    h3{
+                        font-size: 24px;
+                        font-weight: 700;
+                        text-transform: capitalize;
+                    }
+                    .woocommerce-billing-fields__field-wrapper{
+                        line-height: 100%;
+                        #billing_country_field,#billing_state_field{
+                            .woocommerce-input-wrapper{
+                                .select2{
+                                    .selection{
+                                        .select2-selection{
+                                            height: 39px;
+                                            @include responsive(xs){
+                                                height: 34px;
+                                            }
+                                            .select2-selection__rendered{
+                                                font-size: 16px;
+                                                line-height: 37px;
+                                                @include responsive(xs){
+                                                    font-size: 12px;
+                                                }
+                                                @include responsive(xs){
+                                                    line-height: 32px;
+                                                }
+                                            }
+                                            .select2-selection__arrow{
+                                                height: 35px;
+                                                @include responsive(xs){
+                                                    height: 30px;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .col-2{
+                width: 99%;
+                @include responsive(sm){
+                    margin-bottom: 3px;
+                }
+                .woocommerce-additional-fields{
+                    h3{
+                        margin-left: 2px;
+                        @include responsive(xs){
+                            font-size: 18px;
+                        }
+                    }
+                }
+            }
+        }
+        #order_review_heading{
+            display: none;
+        }
+        #order_review{
+            margin-top: 80px;
+            position: relative;
+            width: 100%;
+            &::before{
+                content: 'Your Order';
+                position: absolute;
+                top: -54px;
+                font-size: 24px;
+                font-weight: 700;
+                @include responsive(sm){
+                    top: -50px;
+                }
+            }
+            .shop_table{
+                background-color: #fff;
+                margin-bottom: 20px;
+                thead{
+                    tr{
+                        th{
+                            font-size: 20px;
+                            @include responsive(md){
+                                font-size: 18px;
+                            }
+                            @include responsive(sm){
+                                font-size: 20px;
+                            }
+                            @include responsive(xs){
+                                font-size: 16px;
+                            }
+                            padding: 8px;
+                        }
+                    }
+                }
+                tbody{
+                    .cart_item{
+                        .product-name,.product-total{
+                            font-size: 16px;
+                            padding: 8px;
+                            @include responsive(md){
+                                font-size: 14px;
+                            }
+                            @include responsive(sm){
+                                font-size: 16px;
+                            }
+                            @include responsive(xs){
+                                font-size: 12px;
+                            }
+                        }
+                        .product-name{
+                            .product-quantity{
+                                font-weight: 600;
+                            }
+                            .product-specifications{
+                                font-size: 14px;
+                                @include responsive(md){
+                                    font-size: 12px;
+                                }
+                                @include responsive(sm){
+                                    font-size: 14px;
+                                }
+                                @include responsive(xs){
+                                    font-size: 10px;
+                                }
+                                .product-item-data{
+                                    display: flex;
+                                    .variation-Shape,.variation-Style,.variation-Strength,.variation-Size{
+                                        &:nth-child(2){
+                                            p{
+                                                margin: 0;
+                                                font-size: 14px;
+                                                @include responsive(md){
+                                                    font-size: 12px;
+                                                }
+                                                @include responsive(sm){
+                                                    font-size: 14px;
+                                                }
+                                                @include responsive(xs){
+                                                    font-size: 10px;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }  
+                    }
+                }
+                tfoot{
+                    tr{
+                        th,td{
+                            padding: 8px;
+                            font-weight: 500;
+                            font-size: 18px;
+                            @include responsive(md){
+                                font-size: 16px;
+                            }
+                            @include responsive(sm){
+                                font-size: 18px;
+                            }
+                            @include responsive(xs){
+                                font-size: 14px;
+                            }
+                            bdi{
+                                font-size: 16px;
+                                font-weight: 500;
+                                text-align: center;
+                                @include responsive(md){
+                                    font-size: 14px;
+                                }
+                                @include responsive(sm){
+                                    font-size: 16px;
+                                }
+                                @include responsive(xs){
+                                    font-size: 12px;
+                                }
+                            }
+                        }
+                        &:nth-child(2){
+                            th{
+                                font-weight: 600;
+                            }
+                            td{
+                                bdi{
+                                    font-weight: 600;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            #payment{
+                background-color: #fff;
+                .methods{
+                    padding: 9px;
+                    .wc_payment_method{
+                        .payment_box{
+                            background-color: #f4f4f4;
+                            margin: 0;
+                            padding: 0.75em;
+                            margin-top: 8px;
+                            &::before{
+                                border-bottom-color: #f4f4f4;
+                            }
+                            p{
+                                margin: 0;
+                                font-size: 14px;
+                                line-height: 100%;
+                                @include responsive(xs){
+                                    font-size: 12px;
+                                }
+                            }
+                        }
+                    }
+                }
+                .place-order{
+                    padding: 9px;
+                    .woocommerce-terms-and-conditions-wrapper{
+                        .woocommerce-privacy-policy-text{
+                            p{
+                                margin: 0;
+                                font-size: 14px;
+                                @include responsive(xs){
+                                    font-size: 12px;
+                                }
+                                a{
+                                    color: #000000;
+                                    font-weight: 500;
+                                }
+                            }
+                        }
+                    }
+                    #place_order{
+                        background-color: #727272;
+                        margin-top: 10px;
+                        width: 100%;
+                        font-weight: 600;
+                        &:hover{
+                            background-color: #000000;
+                            transition: all 0.3s ease;
+
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
