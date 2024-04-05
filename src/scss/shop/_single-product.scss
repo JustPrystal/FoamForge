@@ -33,7 +33,7 @@
             top: 40px;
             align-self: flex-start;
             flex: 0 0 auto;
-            margin-top: 50px;
+            margin-top: 20px;
             width:60%;
             @include responsive(lg){
                 top: 120px;
@@ -46,10 +46,34 @@
             }
             .product-slider{
                 display:flex;
-                overflow-x:hidden;
                 padding-right:40px;
                 @include responsive(sm){
                     padding-right:0;
+                }
+                .slick-arrow{
+                    position: absolute;
+                    bottom: 0;
+                    top: auto;
+                    border: 2px solid black;
+                    border-top: 0;
+                    border-left: 0;
+                    bottom: -53px;
+                    width: 14px;
+                    height: 14px;
+                    transform-origin: center center;
+                    transform-box: fill-box;
+                    &::before{
+                        display: none;
+                    }
+                    &.slick-next{
+                        left: calc(50% + 260px);
+                        transform: rotate(-45deg) translateX(-50%);
+                    }
+                    &.slick-prev{
+                        right: calc(50% + 260px);
+                        left: unset;
+                        transform: rotate(135deg) translateX(50%);
+                    }
                 }
                 .slide-item{
                     flex: 0 0 auto;
@@ -74,10 +98,11 @@
             .product-slider-thumbs{
                 display:flex;
                 justify-content: center;
-                max-width:300px;
+                max-width:500px;
                 margin:0 auto;
-                margin-top:40px;
+                margin-top:20px;
                 gap:20px;
+ 
                 .slick-track{
                     display:flex;
                 }
@@ -92,7 +117,7 @@
                 .slide-item{
                     flex:0 0 auto;
                     border:1px solid #727272;
-                    width:33.3%;
+                    width:20%;
                     display:flex;
                     align-items: center;
                     justify-content: center;
@@ -119,7 +144,7 @@
             }
         }
         &.summary-col{
-            margin-top: 150px;
+            margin-top: 70px;
             // flex : 0 0 40%;
             width: 40%;
             @include responsive(lg){

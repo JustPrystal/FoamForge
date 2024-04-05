@@ -3,7 +3,7 @@ jQuery(window).on('load', function(){
     var sliderArgs = {
         slidesToShow:1,
         slidesToScroll:1,
-        arrows:false,
+        arrows:true,
         dots:false,
         infinite:true,
     }
@@ -12,15 +12,17 @@ jQuery(window).on('load', function(){
     }
     jQuery('.product-slider.slider-active').slick(sliderArgs);
     
+    
+    let slideLength = jQuery('.product-slider-thumbs.slider-active .slide-item').length <= 5 ? jQuery('.product-slider-thumbs.slider-active .slide-item').length : 5
+    console.log(slideLength)
     jQuery('.product-slider-thumbs.slider-active').slick({
-        slidesToShow:3,
+        slidesToShow: slideLength,
         slidesToScroll:1,
         arrows:false,
-        dots:false,
         centerPadding:0,
-        infinite:true,
+        draggable: true,
+        infinite:false,
         centerMode:true,
-        infinite:true,
         asNavFor:'.product-slider',
     })
     jQuery('.product-slider-thumbs .slide-item').click(function(){
