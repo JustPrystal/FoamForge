@@ -19,13 +19,71 @@
             "choices": {
                 "banner": "This section is used as a banner in this page."
             },
-            "default_value": [],
+            "default_value": [
+                "banner"
+            ],
             "return_format": "value",
             "allow_custom": 0,
             "layout": "vertical",
             "toggle": 0,
             "save_custom": 0,
             "custom_choice_button_text": "Add new choice"
+        },
+        {
+            "key": "field_66107da63902d",
+            "label": "Text Color",
+            "name": "text_color",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Select the header theme for this page",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "light": "Light",
+                "dark": "Dark"
+            },
+            "default_value": "light",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_6610a40614820",
+            "label": "Content Alignment",
+            "name": "content_alignment",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Select the header theme for this page",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "center-left": "Center Left",
+                "center-right": "Center Right",
+                "center-center": "Center Center",
+                "bottom-left": "Bottom Left",
+                "bottom-right": "Bottom Right",
+                "bottom-center": "Bottom Center"
+            },
+            "default_value": "center-left",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
         },
         {
             "key": "field_655f8ac41edcf",
@@ -184,5 +242,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1703539684
+    "modified": 1712367153
 }

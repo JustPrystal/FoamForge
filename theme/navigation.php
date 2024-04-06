@@ -32,6 +32,26 @@
     .transparent .inner .header-controls .control-item.cart a svg path{    
         fill: white;
     }
+
+    /* dark */
+    .transparent.dark .inner .logo-wrap a{
+        background-image: url('<?php echo $logo["url"]?>');
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
+    .transparent.dark .inner .menu-wrap .menu-item>a{
+        color: black;
+        transition: 200ms ease;
+    }
+    .transparent.dark .inner .menu-wrap .menu-item>a:hover{
+        text-shadow: 0 0 0.8px #000;
+    }
+    .transparent.dark .inner .header-controls .control-item a svg path{    
+        stroke: black;
+    }
+    .transparent.dark .inner .header-controls .control-item.cart a svg path{    
+        fill: black;
+    }
     @media (max-width:991px){
         .header.transparent{
             position: fixed;

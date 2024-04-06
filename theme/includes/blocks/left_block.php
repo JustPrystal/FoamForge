@@ -27,4 +27,5 @@
     if(jQuery(".left-block").hasClass("banner")){
         jQuery(".header").addClass("transparent")
     }
+
 </script>

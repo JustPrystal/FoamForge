@@ -36,6 +36,8 @@ if(is_product_category()){
 	$button_icon = get_field('button_icon', 'product_cat_' . $category_id);
 	$background_image = get_field('background_image', 'product_cat_' . $category_id); 
 	$mobile_background_image = get_field('mobile_background_image', 'product_cat_' . $category_id);
+	$text_color = get_field('text_color', 'product_cat_' . $category_id);
+	$content_alignment = get_field('content_alignment', 'product_cat_' . $category_id);
 	$banner_exists = $heading || $description || ($background_image && $mobile_background_image) || $button;
 ?>
 	<?php if ($banner_exists){?>
@@ -46,6 +48,67 @@ if(is_product_category()){
 				background-repeat: no-repeat;
 				background-size: cover;
 			}
+			/* alignment */
+
+				/* center left */
+				.content-alignment-center-left{
+					align-items: center;
+				}
+
+				/* center right */
+				.content-alignment-center-right .inner{
+					display: flex;
+					justify-content: flex-end;
+				}
+				.content-alignment-center-right .inner .content{
+					margin-left: 0;
+					margin-right: 50px;
+				}
+
+				/* center center */
+				.content-alignment-center-center .inner{
+					display: flex;
+					justify-content: center;
+				}
+				.content-alignment-center-center .inner .content{
+					margin: 0;
+				}
+
+				/* bottom left */
+				.content-alignment-bottom-left{
+					align-items: flex-end;
+				}
+
+				/* bottom center */
+				.content-alignment-bottom-center{
+					align-items: flex-end;
+				}
+				.content-alignment-bottom-center .inner{
+					display: flex;
+					justify-content: center;
+				}
+				.content-alignment-bottom-center .inner .content{
+					margin: 0;
+				}
+
+				/* bottom right */
+				
+				.content-alignment-bottom-right{
+					align-items: flex-end;
+				}
+				.content-alignment-bottom-right .inner{
+					display: flex;
+					justify-content: flex-end;
+				}
+				.content-alignment-bottom-right .inner .content{
+					margin-left: 0;
+					margin-right: 50px;
+				}
+
+			/* text color */
+			.left-block.dark .inner .content .heading, .left-block.dark .inner .content .description, .left-block.dark .inner .content .button{
+				color: black;
+			}
 			@media(max-width: 576px){
 				.left-block{
 					background-image: url('<?php echo $mobile_background_image;?>');
@@ -53,14 +116,14 @@ if(is_product_category()){
 				}
 			}
 		</style>
-		<section class="left-block category-banner banner" >
+		<section class="left-block category-banner banner <?php if($text_color == "dark"){ echo "dark"; }?> content-alignment-<?php echo $content_alignment;?>" >
 			<div class="inner">
 				<div class="content">
 					<div class="heading"><?php echo $heading?></div>
 					<div class="description"><?php echo $description?></div>
-					<?php if ($button){?>
+					<!-- <?php if ($button){?>
 						<a href="<?php echo $button["url"]?>" class="button"><?php echo $button["title"]?><img class="button-icon" src="<?php echo $button_icon?>" alt=""></a>
-					<?php } ?>
+					<?php } ?> -->
 				</div>
 			</div>
 		</section>
@@ -68,6 +131,9 @@ if(is_product_category()){
 			if(jQuery(".left-block").hasClass("banner")){
 				jQuery(".header").addClass("transparent")
 			}
+			<? if($text_color == "dark") { ?>
+				jQuery(".header").addClass("dark")
+			<?php } ?>
 		</script>
 	<?php
 	}	
