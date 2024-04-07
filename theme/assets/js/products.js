@@ -168,15 +168,15 @@ jQuery(document).ready(function(){
         jQuery('.variation-conversion-imperial').html('Imperial Conversion: ' + get_imperial_values_from_metric(jQuery(this).val())); 
     })
 
-    jQuery('.cart .quantity-wrap .qty-controls').click(function(){
+    jQuery('.cart .quantity-wrap .control-wrap').click(function(){
         var current_value = jQuery(this).parent().find('input').val()
         if(current_value == ""){
             current_value = 0;
         }
-        if(jQuery(this).hasClass('qty-up')){
+        if(jQuery(this).hasClass('up')){
             jQuery(this).parent().find('input').val(parseInt(current_value) + 1).change()    
         }
-        else if( jQuery(this).hasClass('qty-down')){
+        else if( jQuery(this).hasClass('down')){
             if(current_value == 1){
                 return;
             }

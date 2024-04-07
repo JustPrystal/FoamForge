@@ -5,8 +5,11 @@ jQuery(window).on('load', function(){
         slidesToScroll:1,
         arrows:true,
         dots:false,
-        infinite:true,
+        infinite:false,
     }
+    $('.product-slider.slider-active').on('init', function(event, slick){
+        $(this).css("overflow", "visible")
+    });
     if(jQuery('.product-slider .slide-item:not(.slick-cloned)').length >= 4){
         sliderArgs.asNavFor = '.product-slider-thumbs';
     }
@@ -14,7 +17,6 @@ jQuery(window).on('load', function(){
     
     
     let slideLength = jQuery('.product-slider-thumbs.slider-active .slide-item').length <= 5 ? jQuery('.product-slider-thumbs.slider-active .slide-item').length : 5
-    console.log(slideLength)
     jQuery('.product-slider-thumbs.slider-active').slick({
         slidesToShow: slideLength,
         slidesToScroll:1,

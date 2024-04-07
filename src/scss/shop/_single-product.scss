@@ -35,6 +35,7 @@
             flex: 0 0 auto;
             margin-top: 20px;
             width:60%;
+            padding-right:40px;
             @include responsive(lg){
                 top: 120px;
                 width:50%;
@@ -43,13 +44,11 @@
                 width:100%;
                 position: static;
                 margin-top:0;
+                padding-right: 0;
             }
             .product-slider{
                 display:flex;
-                padding-right:40px;
-                @include responsive(sm){
-                    padding-right:0;
-                }
+                overflow: hidden;
                 .slick-arrow{
                     position: absolute;
                     bottom: 0;
@@ -333,6 +332,39 @@
                     width: 100%;
                     .value{
                         position: relative;
+                        .control-wrap{
+                            position: absolute;
+                            right:0;
+                            width: 20px;
+                            height: 50%;
+                            cursor: pointer;
+                            &.up{
+                                top: 0;
+                            }
+                            &.down{
+                                bottom: 0;
+                            }
+                            &:hover{
+                                background-color: rgba($color: #000000, $alpha: 0.1);
+                            }
+                            span.qty-controls{
+                                border-color: #888 transparent transparent transparent;
+                                border-style: solid;
+                                border-width: 5px 4px 0 4px;
+                                height: 0;
+                                width: 0;
+                                left: 50%;
+                                transform: translateX(-50%);
+                                position: absolute;
+                                &.qty-up{
+                                    bottom: 3px;
+                                    transform:translateX(-50%) rotate(180deg);
+                                }
+                                &.qty-down{
+                                    top: 3px;
+                                }
+                            }
+                        }
                     }
                     .display-price-tier{
                         padding: 3px 10px;
@@ -375,23 +407,6 @@
                         }
                     }
 
-                }
-                span.qty-controls{
-                    border-color: #888 transparent transparent transparent;
-                    border-style: solid;
-                    border-width: 5px 4px 0 4px;
-                    height: 0;
-                    right:6px;
-                    position: absolute;
-                    width: 0;
-                    cursor:pointer;
-                    &.qty-up{
-                        top:13px;
-                        transform:rotate(180deg);
-                    }
-                    &.qty-down{
-                        bottom:13px;
-                    }
                 }
             }
             .add-to-cart-btn-wrap{

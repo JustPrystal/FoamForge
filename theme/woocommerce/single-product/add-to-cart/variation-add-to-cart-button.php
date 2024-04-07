@@ -32,8 +32,12 @@ global $product;
 						)
 					);
 				?>
-				<span class="qty-controls qty-up"></span>
-				<span class="qty-controls qty-down"></span>
+				<div class="control-wrap up">
+					<span class="qty-controls qty-up"></span>
+				</div>
+				<div class="control-wrap down">
+					<span class="qty-controls qty-down"></span>
+				</div>
 			</div>
 			<div class="display-price-tier">
 				<span class="tier"></span>
