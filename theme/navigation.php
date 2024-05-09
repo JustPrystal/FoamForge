@@ -4,6 +4,14 @@
     $menu = get_field('menu', 'option');
     $controls = get_field('header_controls', 'option');
     $cross = get_field('cross', 'option');
+
+    function format_link_title($title) {
+        $title = str_replace(" ", "-", $title);
+        $title = preg_replace("/[^a-zA-Z0-9\-]/", "_", $title);
+        $title = strtolower($title);
+        
+        return $title;
+    }
  ?>
  <style>
     .header.transparent{
@@ -100,9 +108,8 @@
           </a>
         </div>
         <div class="menu-wrap">
-            <?php foreach($menu as $menu_item){
-                ?>
-                    <div class="menu-item <?php if($menu_item['link_type'] == "dropdown"){ echo "dropdown"; }?>">
+            <?php foreach($menu as $menu_item){?>
+                    <div class="menu-item <?php echo format_link_title($menu_item['link']['title']); echo " "; if($menu_item['link_type'] == "dropdown"){ echo "dropdown"; } ?>">
                         <a href="<?php echo $menu_item['link']['url'] ?>" target="<?php echo $menu_item['link']['target']; ?>"><?php echo htmlspecialchars_decode($menu_item['link']['title']) ; ?></a>
                         <?php if($menu_item['link_type'] == 'dropdown'){?>
                             <div class="mega-menu">
@@ -182,7 +189,7 @@
                 <img src="<?php echo $cross?>" alt="">
             </div>
             <?php 
-                echo do_shortcode("[aws_search_form]");
+              echo do_shortcode("[aws_search_form]");
             ?>
         </div>
     </div>
@@ -190,6 +197,9 @@
 
 <script>
     jQuery(document).ready(function(){
+        let mouseStillIn = false;
+        let currentLink;
+        let prevLink;
         jQuery('.header .hamburger-icon').click(function(){ 
             jQuery(this).toggleClass('active'); 
             jQuery('.header .menu-wrap').toggleClass('active'); 
@@ -197,10 +207,22 @@
         jQuery(".menu-item.dropdown").mouseover(function(){
             jQuery(this).find('a:eq(0)').addClass('active');
             jQuery(this).find('.mega-menu').stop().show(0);
+            currentLink = $(this).attr("class").split(" ").filter((item)=>{return !(item == "menu-item" || item == "dropdown")}).toString()
+            mouseStillIn = true;
+            if (currentLink != prevLink && prevLink){
+                jQuery(`.${prevLink}`).find('a:eq(0)').removeClass('active');
+                jQuery(`.${prevLink}`).find('.mega-menu').stop().hide(0);
+            }
         })
         jQuery(".menu-item.dropdown").mouseleave(function(){
-            jQuery(this).find('a:eq(0)').removeClass('active');
-            jQuery(this).find('.mega-menu').stop().hide(0);
+            mouseStillIn = false;
+            prevLink = $(this).attr("class").split(" ").filter((item)=>{return !(item == "menu-item" || item == "dropdown")}).toString()
+            setTimeout(() => {
+                if(!mouseStillIn){
+                    jQuery(this).find('a:eq(0)').removeClass('active');
+                    jQuery(this).find('.mega-menu').stop().hide(0);
+                }
+            }, 500);
         })
     })
    
