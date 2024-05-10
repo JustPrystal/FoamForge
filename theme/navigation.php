@@ -114,6 +114,11 @@
                         <?php if($menu_item['link_type'] == 'dropdown'){?>
                             <div class="mega-menu">
                                 <div class="mega-menu-inner">
+                                    <?php if($menu_item["content"]) {?>
+                                    <div class="mega-menu-content">
+                                        <?php echo $menu_item["content"] ?>
+                                    </div>
+                                    <?php }?>
                                     <?php foreach($menu_item['menu'] as $sub_item){?>
                                         <div class="menu-col">
                                             <div class="submenu-item">

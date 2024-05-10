@@ -25,11 +25,8 @@
             
         }
         @include responsive(md){
-            padding:40px 20px;
-            flex-direction:row-reverse
-        }
-        @include responsive(sm){
             padding:30px 20px;
+            flex-direction:row-reverse
         }
         .hamburger-icon{
             display:none;
@@ -90,7 +87,7 @@
                 }
             }
             .menu-item{
-                padding:40px 35px;
+                padding:20px 35px;
                 @include responsive(md){
                     padding:20px 0px;
                 }
@@ -118,7 +115,8 @@
                     width:100%;
                     left:0;
                     right:0;
-                    top:99px;
+                    top:59px;
+                    padding:0 20px;
                     @include responsive(md){
                         position:static;
                         width:unset;
@@ -131,7 +129,6 @@
                         border-bottom: 1px solid #b7b7b7;
                     }
                     &-inner{
-                        padding:30px 20px;
                         display:flex;
                         max-width:1200px;
                         margin:0 auto;
@@ -141,8 +138,23 @@
                             padding-left:20px;
                             flex-direction:column;
                         }
+                        .mega-menu-content{
+                            padding-right: 20px;
+                            flex: 0 0 30%;
+                            p,div{
+                                margin-bottom: 20px;
+                            }
+                            &>p{
+                                margin: 0;
+                            }
+                            img{
+                                width: 100%;
+                                display: block;
+                            }
+                        }
                         .menu-col{
-                            flex: 0 0 25%;
+                            flex: 0 0 20%;
+                            padding: 20px 0;
                             @include responsive (md){
                                 
                                 padding-left: 10px;
