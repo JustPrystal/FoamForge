@@ -73,6 +73,28 @@
                         left: unset;
                         transform: rotate(135deg) translateX(50%);
                     }
+                    @include responsive (lg){
+                        &.slick-next{
+                            left: unset;
+                            right: 30px;
+                        }
+                        &.slick-prev{
+                            left: 30px;
+                            right: unset;
+                        }
+                    }
+                    @include responsive (sm){
+                        bottom: unset;
+                        top: 50%;
+                        &.slick-next{
+                            left: unset;
+                            right: 0;
+                        }
+                        &.slick-prev{
+                            left: 0;
+                            right: unset;
+                        }
+                    }
                 }
                 .slide-item{
                     flex: 0 0 auto;
@@ -276,6 +298,7 @@
                                     }
                                 }
                             }
+                            
                             .select2-container{
                                 .select2-selection--single{
                                     background-color:transparent;
@@ -285,6 +308,9 @@
                                     .select2-selection__arrow{
                                         height:38px;
                                     }
+                                }
+                                .select2-selection__placeholder{
+                                    color : #7a7a7a;
                                 }
                                 .select2-selection__rendered{
                                    color:#727272;

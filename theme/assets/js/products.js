@@ -60,7 +60,21 @@ jQuery(document).ready(function(){
     jQuery('form.variations_form .variations select:not(.magnet_size_dropdown)').select2({
         width: '100%',
         minimumResultsForSearch: Infinity,
+        // placeholder : ''
     });
+    jQuery('form.variations_form .variations select:not(.magnet_size_dropdown)').each(function() {
+        var element = $(this);
+        element.select2({
+            width: '100%',
+            minimumResultsForSearch: Infinity,
+            placeholder : element.find("option").eq(0).text()
+        })
+    })
+    // jQuery('form.variations_form .variations select.magnet_strength_dropdown').select2({
+    //     width: '100%',
+    //     placeholder: `Select a Strength`,
+    //     minimumResultsForSearch: Infinity,
+    // });
     jQuery('form.variations_form .reset_variations').click(function(){
         jQuery(this).attr('style', '');
         jQuery(".display-price-tier").removeClass("show")
@@ -124,7 +138,6 @@ jQuery(document).ready(function(){
     })
 
     function convert_metric_size_to_imperial(state){
-
         if(!state.id){
             return jQuery('<span class="metric_value"> Metric Scale</span>  <span class="imperial_value"> Imperial Scale </span>');
         }

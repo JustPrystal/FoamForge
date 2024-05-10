@@ -60,11 +60,6 @@ if ( post_password_required() ) {
 					<?php
 				}?>
 			</div>
-			<?php if(get_field('content_after_image')){?>
-				<div class="product-image-notice">
-					<?php echo get_field('content_after_image');?>
-				</div>
-			<?php }?>
 			<?php if(count($images) > 1) {?>
 			<div class="product-slider-thumbs <?php if(count($images) > 3){ echo 'slider-active'; }?>">
 					<?php
@@ -76,6 +71,11 @@ if ( post_password_required() ) {
 						<?php $i++;} ?>
 				</div>
 			<?php } ?>
+			<?php if(get_field('content_after_image')){?>
+				<div class="product-image-notice">
+					<?php echo get_field('content_after_image');?>
+				</div>
+			<?php }?>
 		</div>
 		<div class="column summary-col">
 			<div class="title-wrap">
