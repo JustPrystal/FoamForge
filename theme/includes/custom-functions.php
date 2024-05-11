@@ -422,6 +422,112 @@ function cptui_register_my_cpts() {
 
 add_action( 'init', 'cptui_register_my_cpts' );
 
+
+// custom taxonomies
+
+function cptui_register_my_taxes() {
+
+	/**
+	 * Taxonomy: Craft Focus.
+	 */
+
+	$labels = [
+		"name" => esc_html__( "Craft Focus", "custom-post-type-ui" ),
+		"singular_name" => esc_html__( "Craft Focus", "custom-post-type-ui" ),
+	];
+
+	
+	$args = [
+		"label" => esc_html__( "Craft Focus", "custom-post-type-ui" ),
+		"labels" => $labels,
+		"public" => true,
+		"publicly_queryable" => true,
+		"hierarchical" => true,
+		"show_ui" => true,
+		"show_in_menu" => true,
+		"show_in_nav_menus" => true,
+		"query_var" => true,
+		"rewrite" => [ 'slug' => 'craft-focus', 'with_front' => true, ],
+		"show_admin_column" => false,
+		"show_in_rest" => true,
+		"show_tagcloud" => false,
+		"rest_base" => "craft-focus",
+		"rest_controller_class" => "WP_REST_Terms_Controller",
+		"rest_namespace" => "wp/v2",
+		"show_in_quick_edit" => false,
+		"sort" => false,
+		"show_in_graphql" => false,
+	];
+	register_taxonomy( "craft-focus", [ "product" ], $args );
+
+	/**
+	 * Taxonomy: Materials.
+	 */
+
+	$labels = [
+		"name" => esc_html__( "Materials", "custom-post-type-ui" ),
+		"singular_name" => esc_html__( "Material", "custom-post-type-ui" ),
+	];
+
+	
+	$args = [
+		"label" => esc_html__( "Materials", "custom-post-type-ui" ),
+		"labels" => $labels,
+		"public" => true,
+		"publicly_queryable" => true,
+		"hierarchical" => false,
+		"show_ui" => true,
+		"show_in_menu" => true,
+		"show_in_nav_menus" => true,
+		"query_var" => true,
+		"rewrite" => [ 'slug' => 'materials', 'with_front' => true, ],
+		"show_admin_column" => false,
+		"show_in_rest" => true,
+		"show_tagcloud" => false,
+		"rest_base" => "materials",
+		"rest_controller_class" => "WP_REST_Terms_Controller",
+		"rest_namespace" => "wp/v2",
+		"show_in_quick_edit" => false,
+		"sort" => false,
+		"show_in_graphql" => false,
+	];
+	register_taxonomy( "materials", [ "product" ], $args );
+
+	/**
+	 * Taxonomy: Categories.
+	 */
+
+	$labels = [
+		"name" => esc_html__( "Categories", "custom-post-type-ui" ),
+		"singular_name" => esc_html__( "Category", "custom-post-type-ui" ),
+	];
+
+	
+	$args = [
+		"label" => esc_html__( "Categories", "custom-post-type-ui" ),
+		"labels" => $labels,
+		"public" => true,
+		"publicly_queryable" => true,
+		"hierarchical" => false,
+		"show_ui" => true,
+		"show_in_menu" => true,
+		"show_in_nav_menus" => true,
+		"query_var" => true,
+		"rewrite" => [ 'slug' => 'help_and_support__category', 'with_front' => true, ],
+		"show_admin_column" => false,
+		"show_in_rest" => true,
+		"show_tagcloud" => false,
+		"rest_base" => "help_and_support__category",
+		"rest_controller_class" => "WP_REST_Terms_Controller",
+		"rest_namespace" => "wp/v2",
+		"show_in_quick_edit" => false,
+		"sort" => false,
+		"show_in_graphql" => false,
+	];
+	register_taxonomy( "help_and_support__category", [ "help_and_support" ], $args );
+}
+add_action( 'init', 'cptui_register_my_taxes' );
+
 function get_top_level_parent($post){
 
     while ($post->post_parent != 0) {
