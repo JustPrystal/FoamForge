@@ -66,7 +66,7 @@
             background: #f4f4f4;
         }
         .transparent .inner .logo-wrap a{
-            background-image: none;
+            background-image: none !important;
         }
         .transparent .inner .logo-wrap a img{
             visibility: visible;

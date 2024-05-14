@@ -25,8 +25,8 @@
             
         }
         @include responsive(md){
-            padding:30px 20px;
-            flex-direction:row-reverse
+            padding:30px 10px;
+            flex-direction:row;
         }
         .hamburger-icon{
             display:none;
@@ -65,7 +65,7 @@
             justify-content: center;
             @include responsive(md){
                 position:fixed;
-                right:-100%;
+                left:-100%;
                 background:#f5f5f5;
                 bottom:0;
                 top:90px;
@@ -79,11 +79,11 @@
             }
             @include responsive(sm){
                 width:80%;
-                right:-80%;
+                left:-80%;
             }
             &.active{
                 @include responsive(md){
-                    right:0;
+                    left:0;
                 }
             }
             .menu-item{

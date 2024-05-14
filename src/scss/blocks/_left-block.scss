@@ -9,7 +9,8 @@
         // height: 599px;
     }
     @include responsive(xs){
-        align-items: flex-end;
+        display: flex !important;
+        align-items: flex-end !important;
     }
     .inner{
         max-width: 1200px;
@@ -20,6 +21,7 @@
         padding: 60px 0; 
         @include responsive(xs){
             padding: 22px 0; 
+            justify-content: center !important;
         }
         .content{
             display: flex;
@@ -30,7 +32,7 @@
             @include responsive(xs){
                 margin-left: 0px;
                 max-width: 100%;
-                
+                margin: 0 !important;
             }
             div{
                 text-align: center;
@@ -48,6 +50,7 @@
                     margin-bottom: 20px;
                     line-height: 85%;
                     font-size: 56px;
+                    text-align: center;
                 }
                 .top{
                     font-size: 44px;
