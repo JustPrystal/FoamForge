@@ -38,6 +38,7 @@ if(is_product_category()){
 	$mobile_background_image = get_field('mobile_background_image', 'product_cat_' . $category_id);
 	$text_color = get_field('text_color', 'product_cat_' . $category_id);
 	$content_alignment = get_field('content_alignment', 'product_cat_' . $category_id);
+	$banner_height = get_field('banner_height', 'product_cat_' . $category_id);
 	$banner_exists = $heading || $description || ($background_image && $mobile_background_image) || $button;
 ?>
 	<?php if ($banner_exists){?>
@@ -47,6 +48,9 @@ if(is_product_category()){
 				background-position: center;
 				background-repeat: no-repeat;
 				background-size: cover;
+			}
+			.left-block.banner{
+				height: <?php echo $banner_height?>px;
 			}
 			/* alignment */
 
@@ -120,7 +124,9 @@ if(is_product_category()){
 			<div class="inner">
 				<div class="content">
 					<div class="heading"><?php echo $heading?></div>
-					<div class="description"><?php echo $description?></div>
+					<?php if ($description){ ?>
+						<div class="description"><?php echo $description?></div>
+					<?php } ?>
 					<!-- <?php if ($button){?>
 						<a href="<?php echo $button["url"]?>" class="button"><?php echo $button["title"]?><img class="button-icon" src="<?php echo $button_icon?>" alt=""></a>
 					<?php } ?> -->

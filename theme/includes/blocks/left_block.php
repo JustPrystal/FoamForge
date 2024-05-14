@@ -5,6 +5,9 @@
         background-repeat: no-repeat;
         background-size: cover;
     }
+    .left-block.banner{
+        height: <?php echo $block["banner_height"]?>px;
+    }
     @media(max-width: 576px){
         .left-block{
             background-image: url('<?php echo $block["mobile_background_image"];?>');
