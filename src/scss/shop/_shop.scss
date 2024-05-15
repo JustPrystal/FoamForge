@@ -305,29 +305,20 @@ body.shop{
                 width: 100%;
                 padding-left: 0;
                 flex-wrap: wrap;
+                justify-content: space-between;
+                @include responsive(sm){
+                    padding-top: 47px;
+                }
                 .product{
-                    width: 33.33%;
-                    padding: 10px;
+                    width: calc(33.33% - 10px);
                     padding-bottom: 40px;
                     list-style: none;
                     @include responsive(lg){
-                        width: 50%;
-                        &:nth-child(2n){
-                            padding-right: 0;
-                        }
+                        width: calc(50% - 10px);
                     }
                     @include responsive(sm){
                         width: 100%;
                         padding: 0 0 40px 0;
-                        &:nth-child(2n){
-                            padding-right: inherit;
-                        }
-                    }
-                    &:nth-child(3n){
-                        padding-right: 0;
-                        @include responsive(lg){
-                            padding-right: inherit;
-                        }
                     }
                     a{
                         width: 100%;
