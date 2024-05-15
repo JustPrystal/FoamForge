@@ -305,9 +305,13 @@ body.shop{
                 width: 100%;
                 padding-left: 0;
                 flex-wrap: wrap;
-                justify-content: space-between;
+                gap: 15px;
+                @include responsive(lg){
+                    gap: 20px;
+                }
                 @include responsive(sm){
                     padding-top: 47px;
+                    gap: 0;
                 }
                 .product{
                     width: calc(33.33% - 10px);
