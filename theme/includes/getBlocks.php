@@ -23,6 +23,9 @@
             case 'two_column':
               include 'blocks/two_column.php';
               break;
+            case 'two_column_shortcode':
+              include 'blocks/two_column_shortcode.php';
+              break;
             case 'fullwidth':
               include 'blocks/fullwidth.php';
               break;
