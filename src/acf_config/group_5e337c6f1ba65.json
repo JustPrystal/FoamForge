@@ -212,9 +212,18 @@
                     "name": "help_&_support",
                     "label": "Help & Support",
                     "display": "block",
+                    "sub_fields": [],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_6654e953a3f80": {
+                    "key": "layout_6654e953a3f80",
+                    "name": "product_slider_with_tabs",
+                    "label": "Product Slider with Tabs",
+                    "display": "block",
                     "sub_fields": [
                         {
-                            "key": "field_660226274ece0",
+                            "key": "field_6654e95aa3f82",
                             "label": "fields",
                             "name": "fields",
                             "aria-label": "",
@@ -228,7 +237,7 @@
                                 "id": ""
                             },
                             "clone": [
-                                "group_660225d786811"
+                                "group_6654e8e804c38"
                             ],
                             "display": "seamless",
                             "layout": "block",
@@ -274,5 +283,5 @@
     "active": true,
     "description": "Block Chooser for all content types that will have blocks.",
     "show_in_rest": 0,
-    "modified": 1711416900
+    "modified": 1716840815
 }

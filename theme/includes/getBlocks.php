@@ -38,6 +38,9 @@
             case 'product_banner':
               include 'blocks/product_banner.php';
               break;
+            case 'product_slider_with_tabs':
+              include 'blocks/product_slider_with_tabs.php';
+              break;
           }
         }
       }
