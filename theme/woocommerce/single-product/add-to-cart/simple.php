@@ -98,7 +98,7 @@ if ( $product->is_in_stock() ) : ?>
 					</div>
 				</div>
 			</div>
-			<button type="submit" class="add-to-cart-btn single_add_to_cart_button button alt<?php echo esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '' ); ?>"><?php echo "Add Selection to Cart" ?> <span class="product-price"></span></button>
+			<button type="submit" class="add-to-cart-btn single_add_to_cart_button button alt<?php echo esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '' ); ?>"><?php echo "Add Selection to Cart" ?> <span class="product-price"><?php echo wc_price($product->get_price()); ?></span></button>
 		</div>
 		<div class="ff_notices">
 			<div class="ff_notices-wrap"></div>

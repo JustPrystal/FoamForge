@@ -219,47 +219,81 @@ function load_product_meta_box_callback(){
     $variation = wc_get_product( $variation_id );
     $addon_enabled = get_post_meta($variation_id, 'addons_enabled', true);
     ob_start();
-    ?>
-        <div class="product-meta-description-box">
-            <div class="row product">
-                <div class="item-name">
-                    <strong>SKU:</strong> <?php echo $variation->get_sku(); ?>
-                </div>
-                <div class="item-price">
-                    <strong>EACH:</strong> <?php echo wc_price($variation->get_price()); ?>
-                </div>
-            </div>
-            <?php if($addon_enabled === "yes"){
-                $addon_id = get_post_meta($variation_id, 'addon_product', true);
-                $addon_qty = get_post_meta($variation_id, 'quantity_of_addons', true);
-                $addon = wc_get_product( $addon_id );
-                $s = (intval($addon_qty) > 1) ? "s" : "";
-                
-                $title = $addon->get_title();
-                $unit_price = $addon->get_price();
-                $price_per_variation = floatval($unit_price) * floatval($addon_qty);
-                
-                ?>
-                <div class="row addon addons-available" data-addon_id="<?php echo $addon_id?>" data-addon_qty="<?php echo $addon_qty?>">
-                    <div class="addon-message">
-                        <label class="ff_checkbox" for="addon_checkbox_<?php echo $variation_id; ?>">
-                            <input type="checkbox" id="addon_checkbox_<?php echo $variation_id; ?>" name="addon_checkbox" value="1" />
-                            ADD <?php echo trim(str_replace(Array('The', 'the'), '', $title)) . $s . "(x" . $addon_qty . ")" . " FOR " . $variation->attributes["style"] . "?";?> 
-                            <span class="checkmark"></span>
-                        </label>  
+    ?>  
+        <div class="add-to-cart-btn-wrap">
+            <div class="product-meta-description-box">
+                <div class="row product">
+                    <div class="item-name">
+                        <strong>SKU:</strong> <?php echo $variation->get_sku(); ?>
                     </div>
                     <div class="item-price">
-                        <strong>EACH:</strong> <?php echo wc_price($unit_price); ?>
+                        <strong>EACH:</strong> <?php echo wc_price($variation->get_price()); ?>
                     </div>
                 </div>
                 
+                <?php if($addon_enabled === "yes"){
+                    $addon_id = get_post_meta($variation_id, 'addon_product', true);
+                    $addon_qty = get_post_meta($variation_id, 'quantity_of_addons', true);
+                    $addon = wc_get_product( $addon_id );
+                    $s = (intval($addon_qty) > 1) ? "s" : "";
+                    
+                    $title = $addon->get_title();
+                    $unit_price = $addon->get_price();
+                    $price_per_variation = floatval($unit_price) * floatval($addon_qty);
+                    
+                    ?>
+                    <div class="row addon addons-available" data-addon_id="<?php echo $addon_id?>" data-addon_qty="<?php echo $addon_qty?>">
+                        <div class="addon-message">
+                            <label class="ff_checkbox" for="addon_checkbox_<?php echo $variation_id; ?>">
+                                <input type="checkbox" id="addon_checkbox_<?php echo $variation_id; ?>" name="addon_checkbox" value="1" />
+                                ADD <?php echo trim(str_replace(Array('The', 'the'), '', $title)) . $s . "(x" . $addon_qty . ")" . " FOR " . $variation->attributes["style"] . "?";?> 
+                                <span class="checkmark"></span>
+                            </label>  
+                        </div>
+                        <div class="item-price">
+                            <strong>EACH:</strong> <?php echo wc_price($unit_price); ?>
+                        </div>
+                    </div>
+                    
+                <?php }?>
+            </div>
+            <?php if($variation->get_stock_status() === 'outofstock' || $variation->get_stock_quantity === 0){
+                ?>
+                <button disabled class="add-to-cart-btn single_add_to_cart_button button disabled">
+                    Out of Stock
+                </button>
+                <?php
+            }else {?>
+                <button type="submit" class="add-to-cart-btn single_add_to_cart_button active button alt<?php echo esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '' ); ?>"><?php echo "Add Selection to Cart" ?> <span class="product-price"><?php echo wc_price($variation->get_price()); ?></span></button>
             <?php }?>
         </div>
-    
-    <?php
+   <?php
     $meta_html = ob_get_clean();
+    
+    $fragments = array(
+        '.add-to-cart-btn-wrap' => $meta_html
+    );
+
+    $product_image = false;
+    if($variation->get_image_id()){
+        $image = wp_get_attachment_image_src($variation->get_image_id(), 'full');
+        $image = $image[0];
+
+        ob_start();
+        ?>
+        <div class="product-slider">
+            <div class="slide-item">
+                <img src="<?php echo $image; ?>" alt="">
+            </div>
+        </div>
+        <?php 
+        $product_image = ob_get_clean();
+
+        $fragments['.product-slider'] = $product_image;
+    }
+
     wp_send_json_success(array(
-        'html' => $meta_html,
+        'fragments' => $fragments,
         'addon_price' => $price_per_variation,
         'addon_checked' => isset($_POST['addon_checkbox']) ? $_POST['addon_checkbox'] : 0
     ), 200);
@@ -288,8 +322,8 @@ function add_products_to_cart() {
                 continue;
             }
             
-            $product = wc_get_product($item['ID']);
             $product_id = $item['ID'];
+            $product = wc_get_product($product_id);
 
             $cart = WC()->cart->get_cart();
             foreach ($cart as $cart_item) {
@@ -305,11 +339,12 @@ function add_products_to_cart() {
             }
             $quantity = $item['quantity'];
             $passed_validation = apply_filters('woocommerce_add_to_cart_validation', true, $product_id, $quantity);
+            $product_stock_status = $product->get_stock_status();
             $product_stock_qty = $product->get_stock_quantity();
             $product_available_qty = $product_stock_qty - $product_cart_qty;
 
-            if (!(is_null($product_stock_qty) || ($product_available_qty >= $quantity))) {
-                if($product_available_qty == 0){
+            if ((!(is_null($product_stock_qty) || ($product_available_qty >= $quantity))) || $product_stock_status == 'outofstock' ) {
+                if($product_stock_status == 'outofstock' || $product_available_qty == 0){
                     $output = array(
                         'error' => 'No more "' . $product->get_name() . '" available.',
                     );

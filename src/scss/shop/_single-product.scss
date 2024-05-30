@@ -105,6 +105,29 @@
                         
                     }
                 }
+                &.loading{
+                    position:relative;
+                    &:after{
+                        content:"";
+                        background-color:rgba(244,244,244,0.9);
+                        position:absolute;
+                        inset:0;
+                    }
+                    &:before{
+                       content: "";
+                       position:absolute;
+                       top:50%;
+                       left:50%;
+                       transform:translate(-50% , -50%);
+                       border:2px solid grey;
+                       border-left-color: transparent;
+                       border-radius:50%;
+                       width:20px;
+                       height:20px;
+                       z-index:1;
+                       animation: loader 1s linear infinite;
+                    }
+                }
             }
             .product-image-notice{
                 margin-top:60px;
@@ -588,6 +611,9 @@
                         @include responsive(sm){
                             font-size: 16px;
                         }
+                    }
+                    &.disabled{
+                        pointer-events:none;
                     }
                 }
             }
