@@ -1,4 +1,22 @@
 .two-column{
+    &.with-shortcode{
+        .inner{
+            // align-items: flex-start;
+            .left{
+                // margin-top: 35px;
+                position: relative;
+                &::before{
+                    position: absolute;
+                    content: "";
+                    left: 20px;
+                    width: 1px;
+                    top: 0;
+                    bottom: 0;
+                    background-color: #909090;
+                }
+            }
+        }
+    }
     .inner{
         max-width:1200px;
         margin:0 auto;
@@ -27,7 +45,8 @@
         .right{
             flex: 0 0 50%;
             @include responsive(sm){
-                flex: 0 0 100%;
+                width: 100%;
+                padding: 0 20px;
             }
             img{
                 width:100%;
@@ -45,5 +64,22 @@
                 padding-right:0;
             }
         }
+    }
+}
+.wpforms-field-container{
+    textarea{
+        resize: none;
+    }
+}
+.wpforms-submit-container{
+    button{
+        background-color:#404040 !important;
+        &:active{
+            outline: none;
+        }
+    }
+    @include responsive(sm){
+        display: flex;
+        justify-content: center;
     }
 }
