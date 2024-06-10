@@ -79,6 +79,38 @@
                     "min": "",
                     "max": ""
                 },
+                "layout_665548d0f4b15": {
+                    "key": "layout_665548d0f4b15",
+                    "name": "two_column_shortcode",
+                    "label": "Two Column (shortcode)",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_665548dcf4b18",
+                            "label": "fields",
+                            "name": "fields",
+                            "aria-label": "",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_6655489a25b4f"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
                 "layout_655cd25c844a2": {
                     "key": "layout_655cd25c844a2",
                     "name": "fullwidth",
@@ -212,9 +244,18 @@
                     "name": "help_&_support",
                     "label": "Help & Support",
                     "display": "block",
+                    "sub_fields": [],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_6654e953a3f80": {
+                    "key": "layout_6654e953a3f80",
+                    "name": "product_slider_with_tabs",
+                    "label": "Product Slider with Tabs",
+                    "display": "block",
                     "sub_fields": [
                         {
-                            "key": "field_660226274ece0",
+                            "key": "field_6654e95aa3f82",
                             "label": "fields",
                             "name": "fields",
                             "aria-label": "",
@@ -228,7 +269,7 @@
                                 "id": ""
                             },
                             "clone": [
-                                "group_660225d786811"
+                                "group_6654e8e804c38"
                             ],
                             "display": "seamless",
                             "layout": "block",
@@ -274,5 +315,5 @@
     "active": true,
     "description": "Block Chooser for all content types that will have blocks.",
     "show_in_rest": 0,
-    "modified": 1711416900
+    "modified": 1716865279
 }

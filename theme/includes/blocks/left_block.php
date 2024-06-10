@@ -1,5 +1,8 @@
+<?php
+    $GLOBALS['iteration']++;
+?>
 <style>
-    .left-block{
+    <?php echo ".left-block" . $GLOBALS['iteration'];?>{
         background-image: url('<?php echo $block["background_image"];?>');
         background-position: center;
         background-repeat: no-repeat;
@@ -15,7 +18,7 @@
         }
     }
 </style>
-<section class="left-block <? if($block["banner"]){ echo " banner" ; } ?>" >
+<section class="left-block left-block<?php echo $GLOBALS['iteration'];?> <? if($block["banner"]){ echo " banner" ; } ?>" >
     <div class="inner">
         <div class="content">
             <div class="heading"><?php echo $block["heading"]?></div>
