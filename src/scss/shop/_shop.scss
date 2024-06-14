@@ -82,10 +82,10 @@ body.shop{
             padding: 15px 0;
             border-bottom:1px solid #cecece;
             @include responsive(sm){
-                position: fixed;
+                // position: fixed;
                 background-color: white;
                 top: 90px;
-                z-index: 20;
+                // z-index: 20;
                 justify-content: space-between;
                 grid-gap: 0px;
                 width: 100%;
@@ -203,16 +203,16 @@ body.shop{
             .filters{
                 width: 250px;
                 min-width: 250px;
-                background-color: white;
+                background-color: rgba(255,255,255,0.8);
                 transition: all .3s ease-in-out ;
                 @include responsive(sm){
                     position: fixed;
-                    top: 135px;
+                    top: 90px;
                     padding-left: 20px;
                     z-index: 10;
                     border: 1px solid #c0c0c0;
                     border-left: 0;
-                    height: calc(100dvh - 135px);
+                    height: calc(100dvh - 90px);
                     overflow: auto;
                     overflow-x: hidden;
                     margin-left: -15px;
@@ -380,7 +380,7 @@ body.shop{
         display: none;
     }
 }
-.all{
+body.shop .all{
     @include responsive(md){
         padding-top: 90px;
     }

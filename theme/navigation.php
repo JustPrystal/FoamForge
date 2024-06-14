@@ -110,7 +110,7 @@
         <div class="menu-wrap">
             <?php foreach($menu as $menu_item){?>
                     <div class="menu-item <?php echo format_link_title($menu_item['link']['title']); echo " "; if($menu_item['link_type'] == "dropdown"){ echo "dropdown"; } ?>">
-                        <a href="<?php echo $menu_item['link']['url'] ?>" target="<?php echo $menu_item['link']['target']; ?>"><?php echo htmlspecialchars_decode($menu_item['link']['title']) ; ?></a>
+                        <a <?php if($menu_item['link_type'] !== 'dropdown') { ?> href="<?php echo $menu_item['link']['url'] ?>" <?php } ?> target="<?php echo $menu_item['link']['target']; ?>"><?php echo htmlspecialchars_decode($menu_item['link']['title']) ; ?></a>
                         <?php if($menu_item['link_type'] == 'dropdown'){?>
                             <div class="mega-menu">
                                 <div class="mega-menu-inner">

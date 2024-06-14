@@ -133,12 +133,13 @@
                         max-width:1200px;
                         margin:0 auto;
                         @include responsive(md){
-                            padding:0;
-                            padding-top:20px;
-                            padding-left:20px;
                             flex-direction:column;
+                            padding:20px 0px;
                         }
                         .mega-menu-content{
+                            @include responsive(md){
+                                display:none;
+                            }
                             padding-right: 20px;
                             flex: 0 0 30%;
                             p,div{
@@ -156,18 +157,29 @@
                             flex: 0 0 20%;
                             padding: 20px 0;
                             @include responsive (md){
-                                
+                                padding:0;
                                 padding-left: 10px;
+                                margin-bottom:30px;
+                                &:last-child{
+                                    margin-bottom: 0;
+                                }
                             }
                             .submenu-item{
                                 a{
-                                  font-weight:600;  
+                                  font-weight:400;  
                                   text-transform:uppercase;
                                   color:#000;
                                   font-size: 14px;
                                   text-decoration:none;
                                   transition:0.3s all ease;
                                   line-height:1;
+                                  @include responsive(md){
+                                    padding-bottom:5px;
+                                    color:#7b7b7b;
+                                    border-bottom:1px solid #333;
+                                    width:100%;
+                                  }
+                                  
                                   &:hover{
                                       text-shadow:0 0 0.8px #000;
                                   }
@@ -181,22 +193,34 @@
                                         margin-top:10px;
                                         margin-bottom: 20px;
                                         padding-left: 10px;
-
+                                        &:last-child{
+                                            margin-bottom: 0;
+                                        }
                                     }
 
                                     .child-item{
                                         a{
                                             text-transform:none;
-                                            font-weight:400;
+                                            font-weight:500;
                                             margin-bottom:10px;
+                                            color:#000;
                                             transition:all .3s ease;
+                                            @include responsive(md){
+                                                padding-bottom:0px;
+                                                border:none;
+                                                font-size:16px;
+                                            }
                                             &:hover{
                                                 text-shadow:0 0 0.8px #000;
                                                 padding-left: 5px;
                                             }
                                             @include responsive (sm){
                                                 font-size:18px;
-
+                                            }
+                                        }
+                                        &:last-child{
+                                            a{
+                                                margin-bottom:0;
                                             }
                                         }
                                     }

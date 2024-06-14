@@ -98,6 +98,6 @@
 		return $tag;
 	}
 	add_filter( 'script_loader_tag', 'js_async_attr', 1 );
-
+	
 
 ?>

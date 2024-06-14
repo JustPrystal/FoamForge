@@ -182,7 +182,6 @@ if ( woocommerce_product_loop() ) {
 			</div> -->
 			<div class="top-bar">
 				<div class="hide-filters">
-					<!-- Generator: Adobe Illustrator 28.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 					<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 						viewBox="0 0 23.7 15.8" style="enable-background:new 0 0 23.7 15.8;" xml:space="preserve">
 					<g>

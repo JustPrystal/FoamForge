@@ -196,15 +196,15 @@ jQuery(document).ready(function(){
             jQuery(this).val(1)
         }
     })
-    jQuery(".hide-filters, .hide-filters-mobile").click(function(){
-        if(!$(".filters").hasClass("close")){
-            $(".hide-filters .text").text("show filters")
-            $(".filters").addClass("close")
-            $(".hide-filters-mobile").addClass("cross")
+    jQuery(document.body).on('click', '.hide-filters', function(){
+        if(!jQuery(".filters").hasClass("close")){
+            jQuery(".hide-filters .text").text("show filters")
+            jQuery(".filters").addClass("close")
+            jQuery(".hide-filters-mobile").addClass("cross")
         }else{
-            $(".hide-filters .text").text("hide filters")
-            $(".filters").removeClass("close")
-            $(".hide-filters-mobile").removeClass("cross")
+            jQuery(".hide-filters .text").text("hide filters")
+            jQuery(".filters").removeClass("close")
+            jQuery(".hide-filters-mobile").removeClass("cross")
         }
     })
     jQuery(window).resize(function(){
