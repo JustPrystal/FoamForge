@@ -1,6 +1,0 @@
-THEME_OUTPUT_PATH='../../foam-forge/app/public/wp-content/themes/'
-THEME_FOLDER='Foam Forge'
-THEME_NAME='Foam Forge'
-THEME_AUTHOR='Foam Forge'
-THEME_VERSION='0.0.1'
-THEME_DESCRIPTION='A Wordpress Theme'

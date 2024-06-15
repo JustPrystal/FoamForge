@@ -26,6 +26,7 @@
                 transition: 150ms;
                 @include responsive(xs){
                     font-size: 12px;
+                    text-align: center;
                 }
                 &::after{
                     //line
@@ -58,13 +59,13 @@
             }
         }
         .tab-product-wrap{
-            // display: flex;
-            // gap: 50px;
+            display: flex;
+            gap: 50px;
             padding: 0 40px;
             @include responsive(sm){
-                // gap: 0px;
+                gap: 0px;
                 padding:0px;
-                // flex-direction: column;
+                flex-direction: column;
             }
             overflow: hidden;
             .tab-products{
