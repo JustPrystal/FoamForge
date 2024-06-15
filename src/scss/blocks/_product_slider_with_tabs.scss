@@ -6,6 +6,7 @@
     .inner{
         max-width: 1280px;
         margin: 0 auto;
+        position: relative;
         .tabs{
             max-width: 1200px;
             margin: 0 auto;
@@ -58,10 +59,12 @@
                 }
             }
         }
+        
         .tab-product-wrap{
             display: flex;
             gap: 50px;
             padding: 0 40px;
+            // position: relative;
             @include responsive(sm){
                 gap: 0px;
                 padding:0px;
@@ -76,15 +79,34 @@
                 // flex-shrink: 0;
                 gap: 10px;
                 // transition: 400ms;
+                position: relative;
                 
                 &.hidden{
                     opacity: 0;
                     pointer-events: none;
                 }
                 .slick-track{
-                    display: flex;
+                    // display: flex;
+                    // width: 100% !important;
+                    // position: relative !important;
+                    margin: 0;
+                }
+                .slick-arrow{
+                    width: 50px !important;
+                    padding: 5px !important;
+                    height: 50px;
+                    margin: auto 0;
+                    cursor: pointer;
+
+                }
+                .right{
+                    padding-left: 20px !important;
+                }
+                .left{
+                    padding-right: 20px !important;
                 }
                 .slick-list{
+                    width: 100% !important;
                     margin: 0 -10px;
                 }
                 .product-item{

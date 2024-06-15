@@ -24,6 +24,11 @@ html, body {
 }
 a{
   display:inline-block;
+  color:  #FFD700;
+
+  &:hover{
+    color: #DAA520;
+  }
 }
 body {
     position:relative;
