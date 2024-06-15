@@ -127,6 +127,11 @@
 
 
 
+
+
+
+
+
 //addon
 // Display fields in the product variation settings
 function display_variation_addons_fields($loop, $variation_data, $variation) {

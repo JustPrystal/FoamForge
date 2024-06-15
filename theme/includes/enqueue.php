@@ -61,7 +61,7 @@
 				"type" => 'js',
 				"path" => $templatedir . '/assets/js/products.js',
 				"version" => '1.0.0',
-				"loadInFooter" => false
+				"loadInFooter" => true
 			],
 		];
 		

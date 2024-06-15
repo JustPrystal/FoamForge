@@ -12,7 +12,7 @@
         height: <?php echo $block["banner_height"]?>px;
     }
     @media(max-width: 576px){
-        .left-block{
+        <?php echo ".left-block" . $GLOBALS['iteration'];?>{
             background-image: url('<?php echo $block["mobile_background_image"];?>');
             height:600px;
         }

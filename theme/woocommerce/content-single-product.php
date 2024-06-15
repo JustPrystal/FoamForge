@@ -30,6 +30,7 @@ if ( post_password_required() ) {
 	echo get_the_password_form(); // WPCS: XSS ok.
 	return;
 }
+
 ?>
 <div id="product-<?php the_ID(); ?>" <?php wc_product_class( '', $product ); ?>>
 	<div class="product-template">
@@ -42,7 +43,6 @@ if ( post_password_required() ) {
 				 * @hooked woocommerce_show_product_images - 20
 				 */
 				// do_action( 'woocommerce_before_single_product_summary' );
-
 				
 			?>
 			<?php 
@@ -50,7 +50,15 @@ if ( post_password_required() ) {
 				$images[0] = $product->get_image_id();
 				$gallery = $product->get_gallery_image_ids();
 				$images = array_merge($images , $gallery);
+
+				$left_icon = get_field("left", "options");
+				$right_icon = get_field("right", "options");
+				
 			?>
+			<?php if(count($images) > 1) {?>
+				<img src="<?php echo $left_icon?>" alt="" class="product-slider-arrow left">
+				<img src="<?php echo $right_icon?>" alt="" class="product-slider-arrow right">
+			<?php } ?>
 			<div class="product-slider <?php if(count($images) > 1){echo 'slider-active';}?>">
 				<?php foreach($images as $image){
 					?>

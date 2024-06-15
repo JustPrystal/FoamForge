@@ -35,67 +35,57 @@
             flex: 0 0 auto;
             margin-top: 20px;
             width:60%;
-            padding-right:40px;
+            padding: 0 40px;
             @include responsive(lg){
                 top: 120px;
                 width:50%;
             }
             @include responsive(sm){
                 width:100%;
-                position: static;
+                position: relative;
+                top: 0;
                 margin-top:0;
-                padding-right: 0;
+                padding: 0;
+            }
+            .product-slider-arrow{
+                position: absolute;
+                width: 20px;
+                bottom: 60px;
+                z-index: 5;
+                @include responsive (sm){
+                    bottom: unset;
+                    top: 50%;
+                    transform: translateY(-100%);
+                    width: 15px;
+                }
+                &.right{
+                    left: calc(50% + 260px);
+                    @include responsive (lg){
+                        left: unset;
+                        right: 30px;
+                    }
+                    @include responsive (sm){
+                        right: unset;
+                        left: 100%;
+                    }
+                }
+                &.left{
+                    right: calc(50% + 260px);
+                    left: unset;
+                    @include responsive (lg){
+                        left: 30px;
+                        right: unset;
+                    }
+                    @include responsive (sm){
+                        left: unset;
+                        right: 100%;
+                    }
+                }
+
             }
             .product-slider{
                 display:flex;
                 overflow: hidden;
-                .slick-arrow{
-                    position: absolute;
-                    bottom: 0;
-                    top: auto;
-                    border: 2px solid black;
-                    border-top: 0;
-                    border-left: 0;
-                    bottom: -53px;
-                    width: 14px;
-                    height: 14px;
-                    transform-origin: center center;
-                    transform-box: fill-box;
-                    &::before{
-                        display: none;
-                    }
-                    &.slick-next{
-                        left: calc(50% + 260px);
-                        transform: rotate(-45deg) translateX(-50%);
-                    }
-                    &.slick-prev{
-                        right: calc(50% + 260px);
-                        left: unset;
-                        transform: rotate(135deg) translateX(50%);
-                    }
-                    @include responsive (lg){
-                        &.slick-next{
-                            left: unset;
-                            right: 30px;
-                        }
-                        &.slick-prev{
-                            left: 30px;
-                            right: unset;
-                        }
-                    }
-                    @include responsive (sm){
-                        bottom: unset;
-                        top: 50%;
-                        &.slick-next{
-                            left: unset;
-                            right: 0;
-                        }
-                        &.slick-prev{
-                            left: 0;
-                            right: unset;
-                        }
-                    }
-                }
                 .slide-item{
                     flex: 0 0 auto;
                     width:100%;

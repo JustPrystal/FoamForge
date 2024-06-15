@@ -6,6 +6,8 @@ jQuery(window).on('load', function(){
         arrows:true,
         dots:false,
         infinite:false,
+        prevArrow: ".product-slider-arrow.left",
+        nextArrow: ".product-slider-arrow.right",
     }
     $('.product-slider.slider-active').on('init', function(event, slick){
         $(this).css("overflow", "visible")

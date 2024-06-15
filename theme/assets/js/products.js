@@ -376,4 +376,71 @@ jQuery(document).ready(function(){
         });
    
        })
+
+
+       //variation media gallery script
+
+       var mediaFrame;
+
+       // Add gallery images
+       jQuery('.woocommerce_variation').on('click', '.add_variation_gallery_images', function(e){
+            console.log("add")
+           e.preventDefault();
+
+           var button = $(this);
+           var loop = button.data('loop');
+
+           // If the media frame already exists, reopen it.
+           if (mediaFrame) {
+               mediaFrame.open();
+               return;
+           }
+
+           // Create a new media frame
+           mediaFrame = wp.media({
+               title: '<?php _e("Add Gallery Images", "woocommerce"); ?>',
+               button: {
+                   text: '<?php _e("Add to gallery", "woocommerce"); ?>'
+               },
+               multiple: true
+           });
+
+           // When an image is selected, run a callback
+           mediaFrame.on('select', function(){
+               var attachments = mediaFrame.state().get('selection').toJSON();
+               var attachment_ids = [];
+               var image_html = '';
+
+               attachments.forEach(function(attachment){
+                   attachment_ids.push(attachment.id);
+                   image_html += '<div class="variation-gallery-image" data-attachment_id="' + attachment.id + '">';
+                   image_html += '<img src="' + attachment.sizes.thumbnail.url + '" />';
+                   image_html += '<button type="button" class="button remove_variation_gallery_image">&times;</button>';
+                   image_html += '</div>';
+               });
+
+               $('#_variation_gallery_images' + loop).val(attachment_ids.join(','));
+               button.siblings('.variation-gallery-images').html(image_html);
+           });
+
+           // Finally, open the modal
+           mediaFrame.open();
+       });
+        // Remove gallery images
+        jQuery('body').on('click', '.remove_variation_gallery_image', function(e){
+        e.preventDefault();
+
+        var button = $(this);
+        var container = button.closest('.variation-gallery-image');
+        var attachment_id = container.data('attachment_id');
+        var hidden_field = container.closest('.options_group').find('input.variation-gallery-field');
+
+        var attachment_ids = hidden_field.val().split(',');
+        attachment_ids = attachment_ids.filter(function(id) {
+            return id != attachment_id;
+        });
+
+        hidden_field.val(attachment_ids.join(','));
+        container.remove();
+    });
 });

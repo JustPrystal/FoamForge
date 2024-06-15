@@ -193,6 +193,7 @@ if ( woocommerce_product_loop() ) {
 						hide filters
 					</div>
 				</div>
+				<?php echo do_shortcode("[yith_wcan_mobile_modal_opener]");?>
 				<div class="sort">
 					<?php echo do_shortcode('[yith_wcan_filters slug="draft-preset"]');?>
 				</div>
