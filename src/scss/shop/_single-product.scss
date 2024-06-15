@@ -704,7 +704,7 @@
     }
 }
 .related-products{
-    padding:30px 0px;
+    padding:30px 40px;
     .inner{
         max-width:1200px;
         margin:0 auto;
@@ -724,6 +724,12 @@
             margin:40px 0px;
             @include responsive(md){
                 flex-wrap:wrap;
+            }
+            .slick-track{
+                margin: 0;
+            }
+            .slick-list{
+                width: 100% !important;
             }
             .product-item{
                 flex: 0 0 calc(25% - 30px);
