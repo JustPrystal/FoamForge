@@ -50,7 +50,7 @@
             .product-slider-arrow{
                 position: absolute;
                 width: 20px;
-                bottom: 60px;
+                bottom: 10px;
                 z-index: 5;
                 @include responsive (sm){
                     bottom: unset;
@@ -132,8 +132,9 @@
             .product-slider-thumbs{
                 display:flex;
                 justify-content: center;
-                max-width:500px;
+                max-width:400px;
                 margin:0 auto;
+                overflow: hidden;
                 margin-top:20px;
                 gap:20px;
  
@@ -151,7 +152,7 @@
                 .slide-item{
                     flex:0 0 auto;
                     border:1px solid #727272;
-                    width:20%;
+                    width:33%;
                     display:flex;
                     align-items: center;
                     justify-content: center;
@@ -705,12 +706,14 @@
 }
 .related-products{
     padding:30px 40px;
+    @include responsive(sm){
+        padding:30px 20px;
+    }
     .inner{
         max-width:1200px;
         margin:0 auto;
         @include responsive(lg){
             max-width:100%;
-            padding:0px 20px;
         }
         
         h3.heading{
@@ -720,11 +723,8 @@
         }
         .products-wrap{
             display:flex;
-            gap:40px;
+            gap:10px;
             margin:40px 0px;
-            @include responsive(md){
-                flex-wrap:wrap;
-            }
             .slick-track{
                 margin: 0;
             }

@@ -201,34 +201,80 @@
 </div>
 
 <script>
-    jQuery(document).ready(function(){
-        let mouseStillIn = false;
-        let currentLink;
-        let prevLink;
-        jQuery('.header .hamburger-icon').click(function(){ 
-            jQuery(this).toggleClass('active'); 
-            jQuery('.header .menu-wrap').toggleClass('active'); 
-        }) 
-        jQuery(".menu-item.dropdown").mouseover(function(){
-            jQuery(this).find('a:eq(0)').addClass('active');
-            jQuery(this).find('.mega-menu').stop().show(0);
-            currentLink = $(this).attr("class").split(" ").filter((item)=>{return !(item == "menu-item" || item == "dropdown")}).toString()
-            mouseStillIn = true;
-            if (currentLink != prevLink && prevLink){
-                jQuery(`.${prevLink}`).find('a:eq(0)').removeClass('active');
-                jQuery(`.${prevLink}`).find('.mega-menu').stop().hide(0);
+jQuery(document).ready(function(){
+    // Initialize the menu functionality based on the initial window size
+    initializeMenu();
+
+    // Reinitialize the menu functionality on window resize
+    jQuery(window).resize(function(){
+        initializeMenu();
+    });
+});
+
+function initializeMenu() {
+    if (window.innerWidth <= 991) {
+        setupSmallScreenMenu();
+    } else {
+        setupLargeScreenMenu();
+    }
+}
+
+function setupSmallScreenMenu() {
+    // Remove any existing event listeners to avoid duplication
+    jQuery('.header .hamburger-icon').off('click');
+    jQuery('.menu-item.dropdown').off('mouseover mouseleave');
+    
+    // Code for screens smaller than or equal to 991px
+    jQuery('.header .hamburger-icon').click(function(){ 
+        jQuery(this).toggleClass('active'); 
+        jQuery('.header .menu-wrap').toggleClass('active'); 
+    }); 
+    jQuery(".menu-item.dropdown").click(function(){
+        jQuery(".menu-item.dropdown").find('a:eq(0)').removeClass('active');
+        jQuery(".menu-item.dropdown").find('.mega-menu').stop().slideUp(300);
+        jQuery(this).find('a:eq(0)').addClass('active');
+        jQuery(this).find('.mega-menu').stop().slideDown(300);
+    });
+}
+
+function setupLargeScreenMenu() {
+    // Remove any existing event listeners to avoid duplication
+    jQuery('.header .hamburger-icon').off('click');
+    jQuery('.menu-item.dropdown').off('mouseover mouseleave');
+
+    // Code for screens larger than 991px
+    let mouseStillIn = false;
+    let currentLink;
+    let prevLink;
+    jQuery('.header .hamburger-icon').click(function(){ 
+        jQuery(this).toggleClass('active'); 
+        jQuery('.header .menu-wrap').toggleClass('active'); 
+    }); 
+    jQuery(".menu-item.dropdown").mouseover(function(){
+        jQuery(this).find('a:eq(0)').addClass('active');
+        jQuery(this).find('.mega-menu').stop().show(0);
+        currentLink = jQuery(this).attr("class").split(" ").filter((item) => { 
+            return !(item == "menu-item" || item == "dropdown");
+        }).toString();
+        mouseStillIn = true;
+        if (currentLink != prevLink && prevLink){
+            jQuery(`.${prevLink}`).find('a:eq(0)').removeClass('active');
+            jQuery(`.${prevLink}`).find('.mega-menu').stop().hide(0);
+        }
+    });
+    jQuery(".menu-item.dropdown").mouseleave(function(){
+        mouseStillIn = false;
+        prevLink = jQuery(this).attr("class").split(" ").filter((item) => { 
+            return !(item == "menu-item" || item == "dropdown");
+        }).toString();
+        setTimeout(() => {
+            if(!mouseStillIn){
+                jQuery(this).find('a:eq(0)').removeClass('active');
+                jQuery(this).find('.mega-menu').stop().hide(0);
             }
-        })
-        jQuery(".menu-item.dropdown").mouseleave(function(){
-            mouseStillIn = false;
-            prevLink = $(this).attr("class").split(" ").filter((item)=>{return !(item == "menu-item" || item == "dropdown")}).toString()
-            setTimeout(() => {
-                if(!mouseStillIn){
-                    jQuery(this).find('a:eq(0)').removeClass('active');
-                    jQuery(this).find('.mega-menu').stop().hide(0);
-                }
-            }, 500);
-        })
-    })
+        }, 500);
+    });
+}
+
    
 </script>

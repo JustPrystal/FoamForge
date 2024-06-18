@@ -5,7 +5,7 @@ jQuery(window).on('load', function(){
         slidesToScroll:1,
         arrows:true,
         dots:false,
-        infinite:false,
+        infinite:true,
         prevArrow: ".product-slider-arrow.left",
         nextArrow: ".product-slider-arrow.right",
     }
@@ -18,14 +18,14 @@ jQuery(window).on('load', function(){
     jQuery('.product-slider.slider-active').slick(sliderArgs);
     
     
-    let slideLength = jQuery('.product-slider-thumbs.slider-active .slide-item').length <= 5 ? jQuery('.product-slider-thumbs.slider-active .slide-item').length : 5
+    let slideLength = jQuery('.product-slider-thumbs.slider-active .slide-item').length <= 3 ? jQuery('.product-slider-thumbs.slider-active .slide-item').length : 3
     jQuery('.product-slider-thumbs.slider-active').slick({
-        slidesToShow: slideLength,
+        slidesToShow: slideLength ,
         slidesToScroll:1,
         arrows:false,
         centerPadding:0,
         draggable: true,
-        infinite:false,
+        infinite:true,
         centerMode:true,
         asNavFor:'.product-slider',
     })

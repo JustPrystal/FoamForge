@@ -62,13 +62,8 @@
         
         .tab-product-wrap{
             display: flex;
-            gap: 50px;
-            padding: 0 40px;
-            // position: relative;
-            @include responsive(sm){
-                gap: 0px;
-                padding:0px;
-            }
+            max-width: 1200px;
+            margin: 0 auto;
             overflow: hidden;
             .tab-products{
                 flex: 0 0 auto;
@@ -91,18 +86,11 @@
                     margin: 0;
                 }
                 .slick-arrow{
-                    width: 50px !important;
+                    width: 30px !important;
                     padding: 5px !important;
-                    height: 50px;
                     margin: auto 0;
                     cursor: pointer;
 
-                }
-                .right{
-                    padding-left: 20px !important;
-                }
-                .left{
-                    padding-right: 20px !important;
                 }
                 .slick-list{
                     width: 100% !important;
@@ -174,9 +162,10 @@
     }
 }
 .tab-arrow{
-    position: absolute;
+    // position: absolute;
     z-index: 2;
     width: 30px;
+    padding: 5px;
     top: calc(50% - 70px);
     cursor: pointer;
     &.right-arrow{
