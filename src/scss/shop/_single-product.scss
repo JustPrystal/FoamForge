@@ -152,7 +152,7 @@
                 .slide-item{
                     flex:0 0 auto;
                     border:1px solid #727272;
-                    width:33%;
+                    width:calc(33% - 20px);
                     display:flex;
                     align-items: center;
                     justify-content: center;
