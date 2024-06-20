@@ -67,6 +67,7 @@
             overflow: hidden;
             .tab-products{
                 flex: 0 0 auto;
+                align-items: center;
                 min-width:100%;
                 width: 100%;
                 display: flex;
@@ -88,8 +89,11 @@
                 .slick-arrow{
                     width: 30px !important;
                     padding: 5px !important;
-                    margin: auto 0;
                     cursor: pointer;
+
+                    &:hover{
+                        animation: pulse 1s infinite;
+                    }
 
                 }
                 .slick-list{
@@ -181,10 +185,27 @@
     padding: 5px;
     top: calc(50% - 70px);
     cursor: pointer;
+    
+    &:hover{
+        animation: pulse 1s infinite;
+    }
+    
     &.right-arrow{
         right: -50px;
     }
     &.left-arrow{
         left: -50px;
+    }
+}
+
+@keyframes pulse {
+    0%{
+        transform: scale(1);
+    }
+    50%{
+        transform: scale(1.1);
+    }
+    100%{
+        transform: scale(1);
     }
 }
