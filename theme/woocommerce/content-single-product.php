@@ -35,50 +35,52 @@ if ( post_password_required() ) {
 <div id="product-<?php the_ID(); ?>" <?php wc_product_class( '', $product ); ?>>
 	<div class="product-template">
 		<div class="column image-col">
-			<?php
-				/**
-				 * Hook: woocommerce_before_single_product_summary.
-				 *
-				 * @hooked woocommerce_show_product_sale_flash - 10
-				 * @hooked woocommerce_show_product_images - 20
-				 */
-				// do_action( 'woocommerce_before_single_product_summary' );
-				
-			?>
-			<?php 
-				$images = []; 
-				$images[0] = $product->get_image_id();
-				$gallery = $product->get_gallery_image_ids();
-				$images = array_merge($images , $gallery);
+			<div class="image-wrap">
+				<?php
+					/**
+					 * Hook: woocommerce_before_single_product_summary.
+					 *
+					 * @hooked woocommerce_show_product_sale_flash - 10
+					 * @hooked woocommerce_show_product_images - 20
+					 */
+					// do_action( 'woocommerce_before_single_product_summary' );
+					
+				?>
+				<?php 
+					$images = []; 
+					$images[0] = $product->get_image_id();
+					$gallery = $product->get_gallery_image_ids();
+					$images = array_merge($images , $gallery);
 
-				$left_icon = get_field("left", "options");
-				$right_icon = get_field("right", "options");
-				
-			?>
-			<?php if(count($images) > 1) {?>
-				<img src="<?php echo $left_icon?>" alt="" class="product-slider-arrow left">
-				<img src="<?php echo $right_icon?>" alt="" class="product-slider-arrow right">
-			<?php } ?>
-			<div class="product-slider <?php if(count($images) > 1){echo 'slider-active';}?>">
-				<?php foreach($images as $image){
-					?>
-					<div class="slide-item">
-						<img src="<?php echo wp_get_attachment_image_url($image , 'large')?>" alt="">
-					</div>
-					<?php
-				}?>
-			</div>
-			<?php if(count($images) > 1) {?>
-			<div class="product-slider-thumbs <?php if(count($images) > 3){ echo 'slider-active'; }?>">
-					<?php
-						$i = 0;
-						foreach($images as $image){?>
-						<div class="slide-item" data-slick-index="<?php echo $i;?>">
+					$left_icon = get_field("left", "options");
+					$right_icon = get_field("right", "options");
+					
+				?>
+				<?php if(count($images) > 1) {?>
+					<img src="<?php echo $left_icon?>" alt="" class="product-slider-arrow left">
+					<img src="<?php echo $right_icon?>" alt="" class="product-slider-arrow right">
+				<?php } ?>
+				<div class="product-slider <?php if(count($images) > 1){echo 'slider-active';}?>">
+					<?php foreach($images as $image){
+						?>
+						<div class="slide-item">
 							<img src="<?php echo wp_get_attachment_image_url($image , 'large')?>" alt="">
 						</div>
-						<?php $i++;} ?>
+						<?php
+					}?>
 				</div>
-			<?php } ?>
+				<?php if(count($images) > 1) {?>
+				<div class="product-slider-thumbs <?php if(count($images) > 3){ echo 'slider-active'; }?>">
+						<?php
+							$i = 0;
+							foreach($images as $image){?>
+							<div class="slide-item" data-slick-index="<?php echo $i;?>">
+								<img src="<?php echo wp_get_attachment_image_url($image , 'large')?>" alt="">
+							</div>
+							<?php $i++;} ?>
+					</div>
+				<?php } ?>
+			</div>
 			<?php if(get_field('content_after_image')){?>
 				<div class="product-image-notice">
 					<?php echo get_field('content_after_image');?>

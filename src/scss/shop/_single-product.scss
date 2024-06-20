@@ -47,11 +47,18 @@
                 margin-top:0;
                 padding: 0;
             }
+            .image-wrap{
+                position: relative;
+            }
             .product-slider-arrow{
                 position: absolute;
                 width: 20px;
                 bottom: 10px;
                 z-index: 5;
+                cursor: pointer;
+                &:hover{
+                    animation: pulse 1s infinite;
+                }
                 @include responsive (sm){
                     bottom: unset;
                     top: 50%;
@@ -121,7 +128,6 @@
             }
             .product-image-notice{
                 margin-top:60px;
-                margin-bottom:-30px;
                 text-align: center;
                 @include responsive(sm){
                     font-size:12px;
