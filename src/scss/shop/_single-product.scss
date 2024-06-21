@@ -47,11 +47,21 @@
                 margin-top:0;
                 padding: 0;
             }
+            .image-wrap{
+                position: relative;
+            }
             .product-slider-arrow{
                 position: absolute;
                 width: 20px;
                 bottom: 10px;
                 z-index: 5;
+                cursor: pointer;
+                &:hover{
+                    animation: pulse 1s infinite;
+                    @include responsive(sm){
+                        animation: unset;
+                    }
+                }
                 @include responsive (sm){
                     bottom: unset;
                     top: 50%;
@@ -121,7 +131,6 @@
             }
             .product-image-notice{
                 margin-top:60px;
-                margin-bottom:-30px;
                 text-align: center;
                 @include responsive(sm){
                     font-size:12px;
@@ -244,13 +253,17 @@
                     
                     .variation-item{
                         display:flex;
-                        align-items: baseline;
                         gap:20px;
                         margin-bottom:20px;
                         .label{
                             color:#727272;
                             text-transform:uppercase;
                             font-size:16px;
+                            margin-top: 10px;
+
+                            @include responsive(xs){
+                                font-size: 14px;
+                            }
                         }
                         .value{
                             flex:1;
@@ -325,9 +338,17 @@
                                 }
                                 .select2-selection__placeholder{
                                     color : #7a7a7a;
+
+                                    @include responsive(xs){
+                                        font-size: 14px;
+                                    }
                                 }
                                 .select2-selection__rendered{
-                                   color:#727272;
+                                    color:#727272;
+                                    
+                                    @include responsive(xs){
+                                        font-size: 14px;
+                                    }
                                 }
                             }
                             .variation-conversion-imperial{
@@ -360,13 +381,17 @@
             }
             .quantity-wrap{
                 display:flex;
-                align-items: baseline;
                 margin-bottom:20px;
                 gap:20px;
                 position:relative;
                 label{
                     color:#727272;
                     text-transform:uppercase;
+                    margin-top: 10px;
+
+                    @include responsive(xs){
+                        font-size: 14px;
+                    }
                 }
                 .value-wrap{
                     width: 100%;
@@ -437,6 +462,11 @@
                         color:#727272;
                         font-family: $gilroy;
                         font-size: 16px;
+
+                        @include responsive(xs){
+                            font-size: 14px;
+                        }
+
                         -moz-appearance: textfield;
                         &::placeholder{
                             color:#727272;
@@ -596,6 +626,11 @@
                     justify-content: center;
                     font-family:$gilroy;
                     transition:all .3s ease;
+
+                    @include responsive(xs){
+                        font-size: 14px;
+                    }
+
                     &:hover{
                         background-color:#000;
                         color:#fff;
@@ -730,11 +765,26 @@
             display:flex;
             gap:10px;
             margin:40px 0px;
+            align-items: center;
             .slick-track{
                 margin: 0;
             }
             .slick-list{
                 width: 100% !important;
+            }
+            .slick-dots{
+                bottom: -30px;
+                li{
+                    width: 10px;
+                    height: 10px;
+                    filter: grayscale(1);
+                }
+                .slick-active{
+                    filter: unset;
+                }
+                > li:only-child {
+                    display: none;
+                }
             }
             .product-item{
                 flex: 0 0 calc(25% - 30px);
