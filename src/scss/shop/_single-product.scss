@@ -58,6 +58,9 @@
                 cursor: pointer;
                 &:hover{
                     animation: pulse 1s infinite;
+                    @include responsive(sm){
+                        animation: unset;
+                    }
                 }
                 @include responsive (sm){
                     bottom: unset;

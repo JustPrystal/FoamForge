@@ -93,6 +93,9 @@
 
                     &:hover{
                         animation: pulse 1s infinite;
+                        @include responsive(sm){
+                            animation: unset;
+                        }
                     }
 
                 }
@@ -188,6 +191,9 @@
     
     &:hover{
         animation: pulse 1s infinite;
+        @include responsive(sm){
+            animation: unset;
+        }
     }
     
     &.right-arrow{
