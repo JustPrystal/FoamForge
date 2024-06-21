@@ -190,7 +190,9 @@ function save_variation_addons_fields($variation_id, $loop) {
     $addon_product = $_POST['_addon_product' . $loop];
     $quantity_of_addons = $_POST['_quantity_of_addons' . $loop];
     $addons_enabled = isset($_POST['addons_enabled_' . $loop]) ? 'yes' : 'no';
-    
+    // $closeup = $_POST['upload_my_custom_image_field' . $loop];
+
+    // update_post_meta($variation_id, 'my_custom_image_field', esc_attr( $closeup ));
     update_post_meta($variation_id, 'addons_enabled', $addons_enabled);
     update_post_meta($variation_id, 'addon_product', esc_attr($addon_product));
     update_post_meta($variation_id, 'quantity_of_addons', esc_attr($quantity_of_addons));
@@ -223,6 +225,9 @@ function load_product_meta_box_callback(){
     $variation_id = $_REQUEST['id'];
     $variation = wc_get_product( $variation_id );
     $addon_enabled = get_post_meta($variation_id, 'addons_enabled', true);
+    $variation_closeup = get_post_meta($variation_id, 'closeup_image_field', true);
+    $extra_info = get_post_meta($variation_id, 'extra_information', true);
+
     ob_start();
     ?>  
         <div class="add-to-cart-btn-wrap">
@@ -261,6 +266,13 @@ function load_product_meta_box_callback(){
                     </div>
                     
                 <?php }?>
+                <?php if($variation_closeup){
+                    $image_closeup = wp_get_attachment_image_src($variation_closeup, 'medium')[0]?>
+                    <img class="closeup-image" src="<?php echo $image_closeup;?>" alt="">
+                <?php } ?>
+                <?php if($extra_info){?>
+                    <p class="extra-info"><?php echo $extra_info?></p>
+                <?php } ?>
             </div>
             <?php if($variation->get_stock_status() === 'outofstock' || $variation->get_stock_quantity === 0){
                 ?>

@@ -12,6 +12,7 @@ Version: THEME_VERSION
 @import 'global'; 
 @import 'header';
 @import 'footer';
+@import 'admin';
 
 //Blocks
 @import './blocks/two-column';
@@ -41,4 +42,3 @@ Version: THEME_VERSION
 table.xdebug-error.xe-warning {
     display: none;
 }
-

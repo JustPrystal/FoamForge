@@ -1,142 +1,141 @@
 <?php
 
-//gallery in variable products' variations
-function display_variation_gallery_field($loop, $variation_data, $variation) {
-    echo '<div class="options_group">';
-    
-    // Get existing gallery images
-    $variation_gallery_images = get_post_meta($variation->ID, '_variation_gallery_images', true) ? get_post_meta($variation->ID, '_variation_gallery_images', true) : array();
+//Product Variations Upload Custom Image Field
 
-    // Display the gallery field
-    woocommerce_wp_text_input(
-        array(
-            'id'          => '_variation_gallery_images' . $loop,
-            'label'       => __('Variation Gallery Images', 'woocommerce'),
+function variation_settings_fields( $loop, $variation_data, $variation ) {
+    $closeup_image_field = $variation_data['closeup_image_field'][0] ?? null;
+    ?>
+    <hr>
+    <p style="margin-bottom: 4px; margin-top: 20px;">
+        Close-up Image
+    </p>
+    <p class="form-row form-row-first upload_closeup_field" style="margin-top: 0; width: 100%;">
+        <a
+            href="#"
+            class="upload_closeup_field_button tips <?php echo $closeup_image_field ? 'remove' : ''; ?>"
+             data-tip="<?php echo $closeup_image_field ? esc_attr__( 'Remove this image', 'woocommerce' ) : esc_attr__( 'Upload an image', 'woocommerce' ); ?>"
+            rel="<?php echo esc_attr( $variation->ID ); ?>">
+            <img style="max-width: 200px;" src="<?php echo $closeup_image_field ? esc_url( wp_get_attachment_thumb_url( $closeup_image_field ) ) : esc_url( wc_placeholder_img_src() ); ?>" />
+            <input
+                type="hidden"
+                id="upload_closeup_image_field<?php echo esc_attr( $loop ); ?>"
+                name="upload_closeup_image_field[<?php echo esc_attr( $loop ); ?>]"
+                class="upload_closeup_image_field" value="<?php echo esc_attr( $closeup_image_field ); ?>" />
+        </a>
+    </p>
+    <?php
+    
+    woocommerce_wp_text_input( 
+        array( 
+            'id'          => 'extra_information_' . $variation->ID, 
+            'label'       => __( 'Extra Information', 'woocommerce' ), 
             'desc_tip'    => 'true',
-            'description' => __('Add gallery images for this variation.', 'woocommerce'),
-            'type'        => 'hidden',
-            'value'       => implode(',', $variation_gallery_images),
-            'class'       => 'variation-gallery-field'
+            'description' => __( 'Enter extra information for this variation.', 'woocommerce' ),
+            'value'       => get_post_meta( $variation->ID, 'extra_information', true )
         )
     );
-
-    // Button to add images
-    echo '<button type="button" class="button add_variation_gallery_images" data-loop="' . $loop . '">' . __('Add Gallery Images', 'woocommerce') . '</button>';
     
-    // Display the selected images
-    echo '<div class="variation-gallery-images">';
-    if (!empty($variation_gallery_images)) {
-        foreach ($variation_gallery_images as $image_id) {
-            echo '<div class="variation-gallery-image" data-attachment_id="' . esc_attr($image_id) . '">';
-            echo wp_get_attachment_image($image_id, 'thumbnail');
-            echo '<button type="button" class="button remove_variation_gallery_image">&times;</button>';
-            echo '</div>';
-        }
-    }
-    echo '</div>';
-
-    echo '</div>';
-}
-add_action('woocommerce_variation_options_pricing', 'display_variation_gallery_field', 10, 3);
-
-
-//Saving the Gallery Field Data
-
-function save_variation_gallery_field($variation_id, $i) {
-    if (isset($_POST['_variation_gallery_images' . $i])) {
-        $gallery_images = array_filter(array_map('intval', explode(',', sanitize_text_field($_POST['_variation_gallery_images' . $i]))));
-        update_post_meta($variation_id, '_variation_gallery_images', $gallery_images);
-    }
-}
-add_action('woocommerce_save_product_variation', 'save_variation_gallery_field', 10, 2);
-
-//JavaScript for Handling Media Library
-function variation_gallery_images_scripts() {
     ?>
-    <script type="text/javascript">
-        jQuery(document).ready(function($){
-            var mediaFrame;
-            let attachment_ids = [];
-
-            // Add gallery images
-            $('.woocommerce_variations').on('click', '.add_variation_gallery_images', function(e){
-                e.preventDefault();
-
-                var button = $(this);
-                var loop = button.data('loop');
-                var existing_ids = $('#_variation_gallery_images' + loop).val().split(',').filter(function(id) {
-                    return id.trim() !== '';
-                }); // Ensure no empty strings
-                for (let i = 0; i < existing_ids.length; i++) {
-                    const element = existing_ids[i];
-                    if(!attachment_ids.includes(element)){
-                        attachment_ids.push(element)
-                    }else{
-                        continue;
-                    }
-                }
-                console.log("attachment_ids before gay ", attachment_ids)
-                // If the media frame already exists, reopen it.
-                if (mediaFrame) {
-                    mediaFrame.open();
-                    return;
-                }
-                console.log("attachment_ids between gay ", attachment_ids)
-
-                // Create a new media frame
-                mediaFrame = wp.media({
-                    title: '<?php _e("Add Gallery Images", "woocommerce"); ?>',
-                    button: {
-                        text: '<?php _e("Add to gallery", "woocommerce"); ?>'
-                    },
-                    multiple: true
-                });
-                console.log("attachment_ids after gay ", attachment_ids)
-                // When an image is selected, run a callback
-                mediaFrame.on('select', function(){
-                    var attachments = mediaFrame.state().get('selection').toJSON();
-                    var image_html = button.siblings('.variation-gallery-images').html(); // Preserve existing images
-                    attachments.forEach(function(attachment){
-                        if(!attachment_ids.includes(attachment.id.toString())){
-                            attachment_ids.push(attachment.id.toString());
-                            image_html += '<div class="variation-gallery-image" data-attachment_id="' + attachment.id + '">';
-                            image_html += '<img src="' + attachment.sizes.thumbnail.url + '" />';
-                            image_html += '<button type="button" class="button remove_variation_gallery_image">&times;</button>';
-                            image_html += '</div>';
-                        }
-                    });
-                    $('#_variation_gallery_images' + loop).val(attachment_ids.join(','));
-                    button.siblings('.variation-gallery-images').html(image_html);
-                });
-
-                // Finally, open the modal
-                mediaFrame.open();
-            });
-
-            // Remove gallery images
-            $('body').on('click', '.remove_variation_gallery_image', function(e){
-                e.preventDefault();
-
-                var button = $(this);
-                var container = button.closest('.variation-gallery-image');
-                var attachment_id = container.data('attachment_id');
-                var hidden_field = container.closest('.options_group').find('input.variation-gallery-field');
-                attachment_ids = attachment_ids.filter(function(id) {
-                    return id != attachment_id.toString();
-                });
-
-                hidden_field.val(attachment_ids.join(','));
-                container.remove();
-            });
-        });
-    </script>
     <?php
 }
-add_action('admin_footer', 'variation_gallery_images_scripts');
+add_action( 'woocommerce_product_after_variable_attributes', 'variation_settings_fields', 10, 3 );
 
-function enqueue_admin_scripts() {
-    wp_enqueue_media();
+
+function save_variation_settings_fields( $variation_id, $loop ) {
+    $value = wc_clean( wp_unslash( $_POST['upload_closeup_image_field'][ $loop ] ) );
+    $custom_image_field = $_POST['extra_information_' . $variation_id];
+
+    update_post_meta( $variation_id, 'closeup_image_field', esc_attr( $value ));
+    update_post_meta( $variation_id, 'extra_information', esc_html( $custom_image_field ) );
 }
-add_action('admin_enqueue_scripts', 'enqueue_admin_scripts');
+add_action( 'woocommerce_save_product_variation', 'save_variation_settings_fields', 10, 2 );
+
+function product_variation_img_script() {
+$screen = get_current_screen();
+    if ($screen->post_type === 'product') :
+        ?>
+        <style>
+            .upload_closeup_field_button:focus {
+                outline: none !important;
+                box-shadow: none !important;
+            }
+        </style>
+        <script>
+           (function($) {
+        var settings = {
+            setting_variation_image: null,
+            setting_variation_image_id: null
+        }
+        function add_closeup_field(event) {
+            var $button = $( this ),
+                post_id = $button.attr( 'rel' ),
+                $parent = $button.closest( '.upload_closeup_field' );
+
+            settings.setting_variation_image    = $parent;
+            settings.setting_variation_image_id = post_id;
+
+            event.preventDefault();
+            
+            if ( $button.hasClass('remove')) {
+                console.log("remove");
+                $( '.upload_closeup_image_field', settings.setting_variation_image ).val( '' ).trigger( 'change' );
+                settings.setting_variation_image.find( 'img' ).eq( 0 )
+                    .attr( 'src', woocommerce_admin_meta_boxes_variations.woocommerce_placeholder_img_src );
+                settings.setting_variation_image.find( '.upload_closeup_field_button' ).removeClass( 'remove' );
+
+            } else {
+                
+                // If the media frame already exists, reopen it.
+                if ( settings.variable_image_frame ) {
+                    settings.variable_image_frame.uploader.uploader
+                        .param( 'post_id', settings.setting_variation_image_id );
+                    settings.variable_image_frame.open();
+                    return;
+                } else {
+                    wp.media.model.settings.post.id = settings.setting_variation_image_id;
+                }
+
+                // Create the media frame.
+                settings.variable_image_frame = wp.media.frames.variable_image = wp.media({
+                    // Set the title of the modal.
+                    title: woocommerce_admin_meta_boxes_variations.i18n_choose_image,
+                    button: {
+                        text: woocommerce_admin_meta_boxes_variations.i18n_set_image
+                    },
+                    states: [
+                        new wp.media.controller.Library({
+                            title: woocommerce_admin_meta_boxes_variations.i18n_choose_image,
+                            filterable: 'all'
+                        })
+                    ]
+                });
+
+                // When an image is selected, run a callback.
+                settings.variable_image_frame.on( 'select', function () {
+
+                    var attachment = settings.variable_image_frame.state()
+                        .get( 'selection' ).first().toJSON(),
+                        url = attachment.sizes && attachment.sizes.thumbnail ? attachment.sizes.thumbnail.url : attachment.url;
+
+                    $( '.upload_closeup_image_field', settings.setting_variation_image ).val( attachment.id )
+                        .trigger( 'change' );
+                    settings.setting_variation_image.find( '.upload_closeup_field_button' ).addClass( 'remove' );
+                    settings.setting_variation_image.find( 'img' ).eq( 0 ).attr( 'src', url );
+
+                    wp.media.model.settings.post.id = settings.wp_media_post_id;
+                });
+
+                // Finally, open the modal.
+                settings.variable_image_frame.open();
+            }
+        }
+
+        $(document).on('click', '.upload_closeup_field_button', add_closeup_field);
+        })(jQuery)
+        </script>
+<?php
+    endif;
+}
+add_action('admin_footer', 'product_variation_img_script');
 
 ?>
