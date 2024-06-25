@@ -267,7 +267,7 @@ function load_product_meta_box_callback(){
                     
                 <?php }?>
                 <?php if($variation_closeup){
-                    $image_closeup = wp_get_attachment_image_src($variation_closeup, 'medium')[0]?>
+                    $image_closeup = wp_get_attachment_image_src($variation_closeup, 'full')[0]?>
                     <img class="closeup-image" src="<?php echo $image_closeup;?>" alt="">
                 <?php } ?>
                 <?php if($extra_info){?>
