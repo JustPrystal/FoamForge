@@ -288,7 +288,7 @@ function load_product_meta_box_callback(){
     $meta_html = ob_get_clean();
     
     $fragments = array(
-        '.add-to-cart-btn-wrap' => $meta_html
+        '.add-to-cart-btn-wrap' => $meta_html,
     );
 
     $product_image = false;
@@ -306,7 +306,7 @@ function load_product_meta_box_callback(){
         <?php 
         $product_image = ob_get_clean();
 
-        $fragments['.product-slider'] = $product_image;
+        $fragments['.product-template .image-col .image-wrap'] = $product_image;
     }
 
     wp_send_json_success(array(
