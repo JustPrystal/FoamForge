@@ -2,9 +2,12 @@
     &.with-shortcode{
         .inner{
             // align-items: flex-start;
+            gap: 0px;
             .left{
                 // margin-top: 35px;
                 position: relative;
+                flex: 0 0 50%;
+                padding-left: 40px;
                 &::before{
                     position: absolute;
                     content: "";
@@ -14,6 +17,9 @@
                     bottom: 0;
                     background-color: #909090;
                 }
+            }
+            .right{
+                flex: 0 0 50%;
             }
         }
     }
