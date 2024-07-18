@@ -1,7 +1,6 @@
 jQuery(document).ready(function(){
     jQuery('.input-text.qty').change(function(){
         var that = jQuery('.add-to-cart-btn .product-price');
-
         setTimeout(() => {
             let currentTier = jQuery(".pricing-table-wrapper .tiered-pricing--active td:first-child>span").text().trim();
             jQuery(".display-price-tier .tier").text("Quantity Discount Tier: " + currentTier);
@@ -303,8 +302,13 @@ jQuery(document).ready(function(){
                 }, 100);
                 let updatePrice = function(){
                     let qty = parseInt(jQuery('.input-text.qty').val());
-                    var price = jQuery(".tiered-pricing-dynamic-price-wrapper ins").length !== 0 ? jQuery(".price ins .woocommerce-Price-amount").text().replace("$", "") : jQuery(".price .woocommerce-Price-amount").text().replace("$", "");
 
+                    // [price] stores value of orginal price or discounted price based on tiered pricing being activated or not
+                    var price = jQuery(".display-price-tier").hasClass("show") ? jQuery(".tiered-pricing-dynamic-price-wrapper ins .woocommerce-Price-amount").text().replace("$", "") : jQuery(".product-meta-description-box .row.product .item-price").text().replace("EACH:", "").replace("$","");
+                    
+                    // this checks if the quantity has entered the discount tier and updates the prric accordingly, and not if not
+                    price = price ? price : jQuery(".price .woocommerce-Price-amount").text().replace("$", "");
+                    
                     if($("input[name=addon_checkbox]").prop('checked')){
                         var newPrice =  parseFloat(qty) * ( response.data["addon_price"] + parseFloat(price) );
                     } else{

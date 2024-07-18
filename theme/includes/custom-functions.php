@@ -225,6 +225,7 @@ function load_product_meta_box_callback(){
     $variation_id = $_REQUEST['id'];
     $variation = wc_get_product( $variation_id );
     $addon_enabled = get_post_meta($variation_id, 'addons_enabled', true);
+    $variation_image = $variation->get_image_id();
     $variation_closeup = get_post_meta($variation_id, 'closeup_image_field', true);
     $extra_info = get_post_meta($variation_id, 'extra_information', true);
 
@@ -291,16 +292,16 @@ function load_product_meta_box_callback(){
         '.add-to-cart-btn-wrap' => $meta_html,
     );
 
-    $product_image = false;
-    if($variation->get_image_id()){
-        $image = wp_get_attachment_image_src($variation->get_image_id(), 'full');
-        $image = $image[0];
+    if($variation_image){
+        $image = wp_get_attachment_image_src($variation_image, 'full')[0];
 
         ob_start();
         ?>
-        <div class="product-slider">
-            <div class="slide-item">
-                <img src="<?php echo $image; ?>" alt="">
+        <div class="image-wrap">
+            <div class="product-slider">
+                <div class="slide-item">
+                    <img src="<?php echo $image; ?>" alt="">
+                </div>
             </div>
         </div>
         <?php 
