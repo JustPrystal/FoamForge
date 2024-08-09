@@ -801,6 +801,7 @@
             }
             .product-item{
                 flex: 0 0 calc(25% - 30px);
+                padding: 0 5px;
                 @include responsive(md){
                     flex: 0 0 calc(33.3% - 30px);
                 }
