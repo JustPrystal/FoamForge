@@ -8,6 +8,7 @@ jQuery(window).on('load', function(){
         infinite:true,
         prevArrow: ".product-slider-arrow.left",
         nextArrow: ".product-slider-arrow.right",
+        adaptiveHeight: true
     }
     $('.product-slider.slider-active').on('init', function(event, slick){
         $(this).css("overflow", "visible")

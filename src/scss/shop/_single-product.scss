@@ -485,6 +485,9 @@
                     border:1px solid #000;
                     border-bottom:none;
                     padding:8px 10px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
                     @include responsive(sm){
                         margin:0px 7px;
                         font-size: 13px;
@@ -517,6 +520,7 @@
                         display: flex;
                         justify-content: space-between;
                         padding: 5px 0;
+                        width: 100%;
                         text-transform: uppercase;
                         border-bottom: 1px solid #aaa;
                         .label{
@@ -609,6 +613,12 @@
                         padding: 10px;
                         max-width: 400px;
                         width: 100%;
+                    }
+                    .extra-info{
+                        margin: auto;
+                        width: 100%;
+                        padding: 5px 0;
+                        border-top: 1px solid #aaaaaa;
                     }
                 }
                 button.add-to-cart-btn{
@@ -778,6 +788,9 @@
                     width: 10px;
                     height: 10px;
                     filter: grayscale(1);
+                    img{
+                        aspect-ratio: 1;
+                    }
                 }
                 .slick-active{
                     filter: unset;

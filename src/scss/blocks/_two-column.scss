@@ -2,9 +2,16 @@
     &.with-shortcode{
         .inner{
             // align-items: flex-start;
+            gap: 0px;
             .left{
                 // margin-top: 35px;
                 position: relative;
+                flex: 0 0 50%;
+                padding-left: 40px;
+                @include responsive(sm){
+                    flex: 0 0 100%;
+                    padding: 0;
+                }
                 &::before{
                     position: absolute;
                     content: "";
@@ -13,6 +20,17 @@
                     top: 0;
                     bottom: 0;
                     background-color: #909090;
+                    @include responsive(sm){
+                        display: none;
+                    }
+                }
+            }
+            .right{
+                flex: 0 0 50%;
+                @include responsive(sm){
+                    flex: 0 0 100%;
+                    width: 100%;
+                    padding: 0;
                 }
             }
         }
@@ -22,17 +40,18 @@
         margin:0 auto;
         display:flex;
         align-items: center;
+        gap: 40px;
         padding:40px 0px;
         @include responsive(lg){
             max-width:100%;
-            padding:40px 20px;
+            padding:40px;
         }
         @include responsive(sm){
+            padding:40px 20px;
             flex-wrap:wrap;
         }
         .left{
-            flex: 0 0 50%;
-            padding-right:40px;
+            flex: 0 0 calc(50% - 20px);
             @include responsive(sm){
                 flex: 0 0 100%;
                 padding:0;
@@ -40,11 +59,17 @@
             .heading{
                 font-size:28px;
                 font-weight:600;
+                color: #242424;
+            }
+            p{
+                font-size: 18px;
+                color: #242424;
             }
         }
         .right{
-            flex: 0 0 50%;
+            flex: 0 0 calc(50% - 20px);
             @include responsive(sm){
+                flex: 0 0 100%;
                 width: 100%;
                 padding: 0 20px;
             }
@@ -55,13 +80,12 @@
         }
         &.inverted{
             flex-direction:row-reverse;
-            @include responsive(sm){
-                flex-direction:column-reverse;
-                padding:0;
-            }
+
             .left{
-                padding-left:40px;
                 padding-right:0;
+                @include responsive(sm){
+                    padding:0;
+                }
             }
         }
     }

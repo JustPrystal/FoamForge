@@ -225,6 +225,7 @@ function load_product_meta_box_callback(){
     $variation_id = $_REQUEST['id'];
     $variation = wc_get_product( $variation_id );
     $addon_enabled = get_post_meta($variation_id, 'addons_enabled', true);
+    $variation_image = $variation->get_image_id();
     $variation_closeup = get_post_meta($variation_id, 'closeup_image_field', true);
     $extra_info = get_post_meta($variation_id, 'extra_information', true);
 
@@ -267,7 +268,7 @@ function load_product_meta_box_callback(){
                     
                 <?php }?>
                 <?php if($variation_closeup){
-                    $image_closeup = wp_get_attachment_image_src($variation_closeup, 'medium')[0]?>
+                    $image_closeup = wp_get_attachment_image_src($variation_closeup, 'full')[0]?>
                     <img class="closeup-image" src="<?php echo $image_closeup;?>" alt="">
                 <?php } ?>
                 <?php if($extra_info){?>
@@ -288,25 +289,25 @@ function load_product_meta_box_callback(){
     $meta_html = ob_get_clean();
     
     $fragments = array(
-        '.add-to-cart-btn-wrap' => $meta_html
+        '.add-to-cart-btn-wrap' => $meta_html,
     );
 
-    $product_image = false;
-    if($variation->get_image_id()){
-        $image = wp_get_attachment_image_src($variation->get_image_id(), 'full');
-        $image = $image[0];
+    if($variation_image){
+        $image = wp_get_attachment_image_src($variation_image, 'full')[0];
 
         ob_start();
         ?>
-        <div class="product-slider">
-            <div class="slide-item">
-                <img src="<?php echo $image; ?>" alt="">
+        <div class="image-wrap">
+            <div class="product-slider">
+                <div class="slide-item">
+                    <img src="<?php echo $image; ?>" alt="">
+                </div>
             </div>
         </div>
         <?php 
         $product_image = ob_get_clean();
 
-        $fragments['.product-slider'] = $product_image;
+        $fragments['.product-template .image-col .image-wrap'] = $product_image;
     }
 
     wp_send_json_success(array(
