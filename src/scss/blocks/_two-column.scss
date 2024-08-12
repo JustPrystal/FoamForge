@@ -8,6 +8,10 @@
                 position: relative;
                 flex: 0 0 50%;
                 padding-left: 40px;
+                @include responsive(sm){
+                    flex: 0 0 100%;
+                    padding: 0;
+                }
                 &::before{
                     position: absolute;
                     content: "";
@@ -16,10 +20,18 @@
                     top: 0;
                     bottom: 0;
                     background-color: #909090;
+                    @include responsive(sm){
+                        display: none;
+                    }
                 }
             }
             .right{
                 flex: 0 0 50%;
+                @include responsive(sm){
+                    flex: 0 0 100%;
+                    width: 100%;
+                    padding: 0;
+                }
             }
         }
     }
