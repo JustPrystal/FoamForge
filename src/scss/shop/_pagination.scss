@@ -4,15 +4,15 @@
     align-items: center;
 
     .page-numbers{
+        list-style-type: none;
         color: #323232;
         display: flex;
-        list-style-type: none;
         align-items: center;
+        gap: 10px;
         text-decoration: none;
         padding: 0;
 
         li{
-            margin-right: 15px;
             
             img{
                 width: 16px;
@@ -27,7 +27,7 @@
         align-items: center;
         justify-content: center;
         color: #F4F4F4;
-        padding: 7px;
+        padding: 10px;
         background-color: #404040;
         border-radius: 3px;
     }
