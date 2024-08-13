@@ -594,3 +594,20 @@ function get_top_level_parent($post){
 }
 
 ?>
+<?php
+
+
+add_filter( 'woocommerce_pagination_args', 	'change_woo_pagination' );
+function change_woo_pagination( $args ) {
+    $left = get_field('left','options');
+    $right = get_field('right','options');
+
+?>
+    <?php $args['prev_text'] = '<img src="'. $left .'" alt="arrow">' ;?>
+    <?php $args['next_text'] = '<img src="'. $right .'" alt="arrow">' ;?>
+
+
+    <?php
+        return $args;
+    }
+?>
