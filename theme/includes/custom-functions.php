@@ -634,7 +634,8 @@ function change_woo_pagination($args)
 // remove Stamps.com from checkout shipping options
 
 add_filter('woocommerce_cart_shipping_method_full_label', function ($label, $method) {
-    $label = trim(str_replace("Stamps.com", "", $method->get_label()));
+    $remove_strings = ["Stamps.com", "UPS by ShipStation"]; // List of strings to remove
+    $label = trim(str_replace($remove_strings, "", $method->get_label()));
     $has_cost = 0 < $method->cost;
     $hide_cost = !$has_cost && in_array($method->get_method_id(), array('free_shipping', 'local_pickup'), true);
 
