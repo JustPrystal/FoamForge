@@ -331,6 +331,8 @@
                                     background-color:transparent;
                                     height:40px;
                                     padding:6px 10px;
+                                    display: flex;
+                                    align-items: center;
 
                                     .select2-selection__arrow{
                                         height:38px;
@@ -345,7 +347,7 @@
                                 }
                                 .select2-selection__rendered{
                                     color:#727272;
-                                    
+                                    line-height: normal;
                                     @include responsive(xs){
                                         font-size: 14px;
                                     }
